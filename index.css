@@ -1,0 +1,97 @@
+.b {
+	font-size:14px;
+	text-align:center;
+}
+</style>
+
+<style type="text/css">
+div#banner{
+
+	width:90%;
+	height:50%;	 
+	margin:0px auto;
+}
+
+
+.color-box {
+    width: 50px;
+    height: 20px;
+    display: inline-block;
+    background-color: #ccc;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.underline-color{
+	width: 100px;
+    height: 100px;
+}
+
+
+div#banner > button{
+	background:#000088 no-repeat;
+
+	width:180px;
+	height:180px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:60px;
+	text-align:center;
+
+
+
+}
+
+.center{
+
+
+	height: 200px;
+    width: 750px;
+   
+ 
+    position: absolute;     /*絕對位置*/
+    top: 50%;               /*從上面開始算，下推 50% (一半) 的位置*/
+    left: 50%;              /*從左邊開始算，右推 50% (一半) 的位置*/
+    margin-top: -15px;     /*高度的一半*/
+    margin-left: -350px;    /*寬度的一半*/
+
+
+}
+
+
+.f {
+	background: #000088 no-repeat;
+	
+	width:120px;
+	height:120px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:60px;
+	text-align:center;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.s {
+	background: #000088 no-repeat;
+}
+
+
+.player {
+
+	
+	width:100px;
+	height:30px;
+	margin:10px;
+	padding:20px;
+	border: 10px;
+	font-size:20px;
+	text-align:center;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}

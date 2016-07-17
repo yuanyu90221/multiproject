@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Cherry Swash';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Cherry Swash'), local('CherrySwash-Regular'), url(http://themes.googleusercontent.com/static/fonts/cherryswash/v2/HqOk7C7J1TZ5i3L-ejF0vqRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Cherry Swash';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Cherry Swash Bold'), local('CherrySwash-Bold'), url(http://themes.googleusercontent.com/static/fonts/cherryswash/v2/-CfyMyQqfucZPQNB0nvYyBAPw1J91axKNXP_-QX9CC8.woff) format('woff');
+}

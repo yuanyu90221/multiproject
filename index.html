@@ -1,0 +1,1699 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<style type="text/css">
+.b {
+	font-size:14px;
+	text-align:center;
+}
+</style>
+
+<style type="text/css">
+div#banner{
+
+	width:90%;
+	height:50%;	 
+	margin:0px auto;
+}
+
+
+.color-box {
+    width: 50px;
+    height: 20px;
+    display: inline-block;
+    background-color: #ccc;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.underline-color{
+	width: 100px;
+    height: 100px;
+}
+
+
+div#banner > button{
+	background:#000088 no-repeat;
+
+	width:180px;
+	height:180px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:60px;
+	text-align:center;
+
+
+
+}
+
+.center{
+
+
+	height: 200px;
+    width: 750px;
+   
+ 
+    position: absolute;     /*絕對位置*/
+    top: 50%;               /*從上面開始算，下推 50% (一半) 的位置*/
+    left: 50%;              /*從左邊開始算，右推 50% (一半) 的位置*/
+    margin-top: -15px;     /*高度的一半*/
+    margin-left: -350px;    /*寬度的一半*/
+
+
+}
+
+
+.f {
+	background: #000088 no-repeat;
+	
+	width:120px;
+	height:120px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:60px;
+	text-align:center;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.s {
+	background: #000088 no-repeat;
+}
+
+
+.player {
+
+	
+	width:100px;
+	height:30px;
+	margin:10px;
+	padding:20px;
+	border: 10px;
+	font-size:20px;
+	text-align:center;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+</style>
+
+
+<title>table-tv</title>
+<link href="css/newstyle.css" rel="stylesheet" type="text/css" media="all" />
+
+<script type="text/javascript" src="/static/jquery.min.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+    
+    
+		
+		var all_g_name=[];
+		var all_points = [];//累積的成績
+		var times = 0;
+		var host = '127.0.0.1'
+		console.log('host:'+host);
+		var func = {};
+		
+		
+        $(function () {
+        	
+        
+        	$('#remind_text').hide();
+        	$('#infor').hide();
+        	$('#dice_infor').hide();
+        	$('#dice_number').hide();
+
+        	for(var i=2; i<13; i++){
+        		$('#dice_number'+ i).hide();
+        	}
+
+        	//var socket = io.connect('http://192.168.43.153:8000');
+		    var socket = io.connect('http://'+host+':8000');
+		    socket.emit('tv');
+		    
+		    //顯示全部遊戲
+            socket.on('qrcode', function(all_game,tv_guid){
+            	$('#player_name').empty();
+            	$('#score').hide();
+             	//$('div').remove('.game'); //刪除之前的遊戲，重新畫
+             	$('#all-qrcode').empty();//把之前的移除
+			 	$('#banner').empty();//刪除之前的資料
+			 	$('#logo').empty(); 
+			 	
+			 	$('#logo').append('<h1><a >Game Center</a></h1>');
+                for (var i = 0; i < all_game.length; i++) {
+            		var gn = all_game[i].g_name;
+					var gg = all_game[i].game_guid;
+					var game_inning = $('<div/>').addClass('game');
+					var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http%3A//192.168.43.153%3A8000%3Finning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
+					//var u = 'http://192.168.43.153:8000/?inning='+ tv_guid + '&game='+ gg+'?';
+					var u = 'http://'+host+':8000/?inning='+ tv_guid + '&game='+ gg+'?';
+					if(i == 2){
+						$('#all-qrcode').append('<div class="col_1_of_3 span_1_of_3"><div class="title-img2"><div class="title"><img src="images/books.png" alt=""/></div><div class="title-desc"><p>'+ gn +'</p></div> <div class="clear"></div> </div><p class="desc1"><img  src="' + url + '" /></p></div><div class="clear"></div>'+'<p>'+ u +'</p>');
+
+						//新增名稱 
+					}
+					
+					if(i == 3 || i == 4){
+						$('#all-qrcode').append('<div class="col_1_of_3 span_1_of_3"><div class="title-img2"><div class="title"><img src="images/cup.png" alt=""/></div><div class="title-desc"><p>'+ gn +'</p></div> <div class="clear"></div> </div><p class="desc1"><img  src="' + url + '" /></p></div><div class="clear"></div>'+'<p>'+ u +'</p>');
+						
+						$('#all-qrcode').append('<div class="col_1_of_3 span_1_of_3"><div class="title-img1"></div></div>');  
+						//新增名稱    
+                	     		
+                		      		
+					}
+
+					if(i ==0 || i==1){
+
+                		$('#all-qrcode').append('<div class="col_1_of_3 span_1_of_3"><div class="title-img2"><div class="title"><img src="images/cup.png" alt=""/></div><div class="title-desc"><p>'+ gn +'</p></div> <div class="clear"></div> </div><p class="desc1"><img  src="' + url + '" /></p></div>'+'<p>'+ u +'</p>');//新增名稱    
+                		
+                		$('#all-qrcode').append('<div class="col_1_of_3 span_1_of_3"><div class="title-img1"></div></div>');       		
+					}
+            	}
+            		            
+            });
+            
+            
+                        
+           
+          //變成只有一個qrcode  
+          socket.on('tv_change',function(tv_guid, game_guid, g_name){
+          	
+          	$('#all-qrcode').empty();//把之前的移除
+          	$('#banner').empty();//刪除之前的資料
+          	$('#logo').empty();          	
+          	var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http%3A//192.168.43.153%3A8000%3Finning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";         	
+          	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />');
+          	$('#logo').append('<h1><a >'+ g_name +'</a></h1><div>');
+
+          	
+	       // $('#player_name').append('<span class="player" style="background:#99FF99">'+ players_name[i] +'</span>'); 
+	        
+
+          });
+          
+          
+          //更新顯示已經加入得玩家
+
+          var players_name=[];//所有人的名字
+          var count_p=0;
+
+
+          socket.on('tv_n_player', function(p_name){
+          	players_name =[];//所有人的名字
+          	count_p =0;
+          	$(".player").empty();
+          	$('#player_name').empty();
+          	players_name.push(p_name);
+          	count_p ++;
+          	//alert(players_name);
+          	for(var i=0; i< players_name.length; i++){
+	          $('#player_name').append('<span class="player" style="background:#99FF99">'+ players_name[i] +'</span>'); 
+	        }
+
+          })
+
+
+
+
+
+
+          socket.on('tv_newplayer', function(p_name, u_guid, tv_guid, game_guid){
+          	//all_s=[], all_n=[];
+          	//$('div#banner > img').remove();
+          	console.log('這是現在的電視'+ tv_guid);
+          	console.log('現在的遊戲guid:'+game_guid);
+          	//$(".player").empty();
+          	$('#player_name').empty();
+          	players_name.push(p_name);
+          	
+
+          	count_p ++;
+          	//alert(players_name);
+          	for(var i=0; i< players_name.length; i++){
+	          $('#player_name').append('<span class="player" style="background:#99FF99">'+ players_name[i] +'</span>'); 
+	        }
+
+	          
+          });
+
+
+         
+
+          socket.on('all_score_tv', function(name, score){//顯示所有人成績
+
+          		$('#logo').empty();
+          	    $('#logo').append('<h1><a >大家的成績</a></h1><div>');
+          		$('#banner').empty();
+          		console.log(name, score);
+          		$('#player_name').empty();
+
+          	if(name.length> 4){
+          		for(var i=0; i< 4;i++){
+						$('#banner').append("<div  style='font-size:20pt'>"+ name[i] +"的分數"+ score[i] +"</div>");		
+          		}
+          	}
+          	else{
+          		for(var i=0; i< name.length;i++){
+						$('#banner').append("<div  style='font-size:20pt'>"+ name[i] +"的分數"+ score[i] +"</div>");		
+          		}
+          	}
+				
+
+          });
+
+
+
+          
+          
+          socket.on('tv_name_split', function(delete_name){
+          		//alert(delete_name);
+	      	    var index = players_name.indexOf(delete_name);
+	      	    //alert(index);
+	      	    if (index > -1) {
+			  		players_name.splice(index, 1);
+			  	}
+			  	//alert(players_name);
+          })
+          
+          
+          socket.on('new_g_tv', function(tv_key, g_name, game_guid){//新的一局遊戲
+          	all_s=[];
+          	all_n=[];
+          	$('#all-qrcode').empty();//把之前的移除
+          	$('#banner').empty();//刪除之前的資料
+          	$('#logo').empty(); 
+          	$('#player_name').empty();
+	      		var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http%3A//192.168.43.153%3A8000%3Finning%3D"+ tv_key +"%26game%3D"+ game_guid +"%3F&chld=H|0"; 
+	      	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />');
+          	$('#logo').append('<h1><a >'+ g_name +'</a></h1><div>'); 
+          	   
+          });
+         
+          
+          					
+          
+          socket.on('ox_game_start_tv', function(str_p, all_player){
+          	$('#score').empty();
+          	  $('#all_qrcode').hide();
+          	  $('#qrcode').hide();
+          	  $('#banner').empty();
+          	  $('#player_name').empty();
+          	  
+          	  for(var j=0; j< all_player.length; j++){
+				if(str_p.guid == all_player[j].guid ){
+					$('#player_name').append('<span class="player" style="background:#FF0088 ">'+ all_player[j].name +'</span>');
+				}
+				else{
+					$('#player_name').append('<span class="player" style="background:#99FF99 ">'+ all_player[j].name +'</span>');
+					}	
+			  }
+          	  
+          	  
+	    	
+				//$('#game').append("<p>"+str_p+"先開始</p>");
+				
+					$('div').remove('.b'); //刪除之前的board
+					$('div').remove('.f'); //刪除之前的board
+					var board = $('<table/>').addClass('b')
+											 .attr('style', 'border: 5px ;background-color: rgb(255, 255, 255);  width:60%; height:60%;	align=center cellpadding=4 cellspacing=4 frame=border rules=all');
+					var body = $('<tbody/>').addClass('b');
+						var tr0 = $('<tr/>').addClass('b');
+						var tr1 = $('<tr/>').addClass('b');
+						var tr2 = $('<tr/>').addClass('b');
+		
+							for(var i=0; i<3; i++){
+								var td = $('<td/>').addClass('b')
+												   .attr('style','width:120px;height:120px; float:left;margin:10px;padding:20px;font-size:60px;text-align:center;')
+												   
+								var button = $('<button/>').addClass('b')
+														   .attr('id', i)
+
+														   .attr('style','width:120px;height:120px; float:left;margin:10px;padding:20px;font-size:60px;text-align:center; background-image: url("../static/question-1.jpg");')
+
+														   
+								td.append(button);	  		   	   
+							    tr0.append(td); 												
+							}
+	
+							for(var i=3;i<6;i++){
+								var td = $('<td/>').addClass('b')
+												   .attr('style','width:120px;height:120px; float:left;margin:10px;padding:20px;font-size:60px;text-align:center;');
+												   
+								var button = $('<button/>').addClass('b')
+														   .attr('id', i)
+														   .attr('style','width:120px;height:120px; float:left;margin:10px;padding:20px;font-size:60px;text-align:center;background-image: url("../static/question-1.jpg");')
+														  
+								td.append(button);	  		   	   
+							    tr1.append(td);
+							}
+						
+						
+							for(var i=6;i<9;i++){
+								var td = $('<td/>').addClass('b')
+												   .attr('style','width:120px;height:120px; float:left;margin:10px;padding:20px;font-size:60px;text-align:center;');
+												  
+								var button = $('<button/>').addClass('b')
+														   .attr('id', i)
+														   .attr('style','width:120px;height:120px; float:left;margin:10px;padding:20px;font-size:60px;text-align:center;background-image: url("../static/question-1.jpg");')
+								
+								td.append(button);	  		   	   
+							    tr2.append(td);
+							}
+													
+				body.append(tr0);
+				body.append(tr1);
+				body.append(tr2);
+				board.append(body);
+					$('#banner').append('<br><br>');
+                    $('#banner').append(board);					    
+		    
+          });
+          
+         	 socket.on('new_board_tv',function(board, all_player){
+         	 	$('#player_name').empty();
+         	 	
+         	 	for(var j=0; j< all_player.length; j++){
+					
+						$('#player_name').append('<span class="player" style="background:#99FF99 ">'+ all_player[j].name +'</span>');
+					
+			  }
+         	 	
+         	 
+	          	for(var i=0;i<board.length;i++){
+					if(board[i]!=null){
+						$('#'+ i).text(board[i]);
+						$('#'+ i).css({'background-image': "url(../static/green.jpg)"});
+					}
+				}          	
+			});
+			
+			
+			//all_socket[ player_i ].emit('winner_tv', new_board.board, win);
+			socket.on('winner_tv',function(board, win){
+				
+				for(var i=0;i<board.length;i++){
+					if(board[i]!=null){
+						$('#'+ i).text(board[i]);
+						$('#'+ i).css({'background-image': "url(../static/green.jpg)"});
+						
+					}
+				}
+					all_points = [];
+					//$('#finish').show();
+					//$('#finish').append("<p>"+ winner +"贏了，獲得"+ win.score +"分</p>");
+				
+			});
+			
+			
+			socket.on('deuce_tv', function(board){
+			
+				for(var i=0;i<board.length;i++){
+					if(board[i]!=null){
+						$('#'+ i).text(board[i]);
+						$('#'+ i).css({'background-image': "url(../static/green.jpg)"});
+						
+					}
+				}
+
+				all_points = [];
+				
+			})
+			
+			
+var flip_kind ='';//哪一種（簡單還是困難）
+			
+			
+			//以下是flip game的
+			socket.on('show_tiles_tv', function(all_tile, player, p_start, name, all_player, flip_select_number){
+			//$('#memory_board').show();
+			flip_kind = flip_select_number;
+			$('#score').empty();
+			$('#player_name').empty();
+				for(var j=0; j< all_player.length; j++){
+					if(p_start.guid == all_player[j].guid ){
+						$('#player_name').append('<span class="player"  style="background:'+ all_player[j].color +' ; border-style:solid;border-color:red;">'+ all_player[j].name +'</span>');
+					}
+
+					else{
+
+					$('#player_name').append('<span class="player" style="background:'+ all_player[j].color +'">'+ all_player[j].name +'</span>');//每個人的名稱與分數
+					}					
+				}
+			$('#banner').empty();//刪除QR CODE
+		    tiles =[];
+		   // $('#game_data').append("<p>"+ name +"先開始玩</p>");
+		   		if(flip_select_number == 1){
+
+		   			for(var i=0;i<all_tile.length;i++){
+		    			$('div').remove('.f'); //刪除之前的board
+		    			$('div').remove('.s');
+						var tile = $('<button/>').addClass('f')
+		    						  			.attr('id', 'tile_'+i)
+									  			.click(function(){
+										  			var t_id = $(this).attr('id');
+										  			var t_text = $(this).attr('text');//undefind
+										  			var i_d = t_id.substring(7, 5);
+										  			socket.emit('tile_click',t_id, i_d,t_text, player);
+										  		});
+					tiles.push(tile);										  		    						   	   
+					}
+
+					$('#banner').append('<br><br>');
+					$('#banner').append(tiles);	
+					$('#banner').append('<div class="clear"></div>');
+
+		   		}
+
+		   		if(flip_select_number == 2){
+		   				for(var i=0;i<all_tile.length;i++){
+		    			$('div').remove('.f'); //刪除之前的board
+		    			$('div').remove('.s');
+						var tile = $('<button/>').addClass('s')
+		    						  			.attr('id', 'tile_'+i)
+		    						  			.attr('style','height:120px;width:120px;')
+
+									  			.click(function(){
+										  			var t_id = $(this).attr('id');
+										  			var t_text = $(this).attr('text');//undefind
+										  			var i_d = t_id.substring(7, 5);
+										  			socket.emit('tile_click',t_id, i_d,t_text, player);
+										  		});
+					tiles.push(tile);										  		    						   	   
+					}
+
+					$('#banner').append('<br><br>');
+					$('#banner').append(tiles);	
+					$('#banner').append('<div class="clear"></div>');
+		   		}
+		   
+		    })
+		    
+		    
+		    
+		    socket.on('score_before_tv' , function(each_score){//每個人之前獲得的成績last_score
+		    		all_points.push(each_score);
+			    	//$('#all_score').append('<p>這個人成績是：'+ each_score +'</p>');
+			    
+		    });
+
+
+		    socket.on('new_tileplayer_tv', function(new_p, all_player){
+		    	$('#player_name').empty();
+		    	for(var j=0; j< all_player.length; j++){
+		    		if(all_player[j].guid == new_p.guid){
+						$('#player_name').append('<span class="player" style="background:'+ all_player[j].color +'; border-style:solid;border-color:red;">'+ all_player[j].name +'分數'+ all_player[j].fliped+'</span>');//每個人的名稱與分數
+						
+
+						
+					}
+
+					else{
+						$('#player_name').append('<span class="player" style="background:'+ all_player[j].color +'">'+ all_player[j].name +'分數'+ all_player[j].fliped +'</span>');//每個人的名稱與分數
+					}
+				}	
+		    })
+		    
+		    
+		    
+		    socket.on('new_tileboard_tv', function(t_id, id, player,m_player, tile_ids_array, all_player){
+
+
+		    	if( flip_kind == 2){
+		    	//$('div').remove('.s');
+		    	
+		    	$('#player_name').empty();
+		    	for(var j=0; j< all_player.length; j++){
+		    		if(all_player[j].guid == m_player.guid){
+						$('#player_name').append('<span class="player" style="background:'+ all_player[j].color +'; border-style:solid; border-color:red;">'+ all_player[j].name +'分數'+ all_player[j].fliped +'</span>');//每個人的名稱與分數
+
+
+					}
+
+					else{
+						$('#player_name').append('<span class="player" style="background:'+ all_player[j].color +'">'+ all_player[j].name +'分數'+ all_player[j].fliped +'</span>');//每個人的名稱與分數
+					}
+				}
+				var tile_img;					
+				
+		    	if(tile_ids_array.length == 2){
+		    	
+		    		
+
+		    		$("#"+ t_id +"").attr('style','height:120px;width:120px; background:'+ m_player.color +'');
+		    		var img = "<img src='../static/"+ id +"-1.png' height='80' width='80' />";  
+					$("#"+ t_id +"").html(img);
+					if(tile_img == img){ tile_img='';  }
+					else{
+					setTimeout(function(){time()}, 700);					
+					function time(){
+						for(var i=0;i<tile_ids_array.length;i++){
+							$("#"+ tile_ids_array[i] +"").attr('style','height:120px; width:120px; background:#0f0f0f;');
+							//height:120px;width:120px;
+							$("#"+ tile_ids_array[i] +"").html('');
+						}
+					}
+				}
+
+		    	}
+		    	else{
+		    		$("#"+ t_id +"").attr('style','height:120px;width:120px; background:'+m_player.color+'');
+		    		var img = "<img src='../static/"+ id +"-1.png' height='80' width='80'/>";
+					$("#"+ t_id +"").html(img);
+					tile_img = img;
+		    	}
+
+		    }
+
+
+
+
+		    if( flip_kind == 1){
+
+		    	$('#player_name').empty();
+		    	for(var j=0; j< all_player.length; j++){
+		    		if(all_player[j].guid == m_player.guid){
+						$('#player_name').append('<span class="player" style="background:'+ all_player[j].color +'; border-style:solid;border-color:red;">'+ all_player[j].name +'分數'+ all_player[j].fliped +'</span>');//每個人的名稱與分數
+
+
+
+						
+					}
+
+					else{
+						$('#player_name').append('<span class="player" style="background:'+ all_player[j].color +'">'+ all_player[j].name +'分數'+ all_player[j].fliped +'</span>');//每個人的名稱與分數
+					}
+				}
+				var tile_img;					
+				
+		    	if(tile_ids_array.length == 2){
+		    	
+		    		
+
+		    		$("#"+ t_id +"").attr('style',' background:'+ m_player.color +'');
+		    		var img = "<img src='../static/"+ id +"-1.png' />";  
+					$("#"+ t_id +"").html(img);
+					if(tile_img == img){ tile_img='';  }
+					else{
+					setTimeout(function(){time_1()}, 700);					
+					function time_1(){
+						for(var i=0;i<tile_ids_array.length;i++){
+							$("#"+ tile_ids_array[i] +"").attr('style','background:#0f0f0f; ');
+							$("#"+ tile_ids_array[i] +"").html('');
+						}
+					}
+				}
+
+		    	}
+		    	else{
+		    		$("#"+ t_id +"").attr('style',' background:'+m_player.color+'');
+		    		var img = "<img src='../static/"+ id +"-1.png' />";
+					$("#"+ t_id +"").html(img);
+					tile_img = img;
+		    	}
+		    }
+		    
+		    	
+		    });
+		    
+		    
+		    socket.on('g_over_tv', function(winner){
+			    $('#game_data').append("<div>"+ winner +"是贏家</div>");
+			    count_p =0;//數人數的歸零
+			    all_points = [];
+			    
+		    });
+		    
+		    socket.on('not_enough_tv', function(tv_guid, game_guid, g_name){
+				$('#game_data').hide();
+				$('#memory_board').hide();
+			    $('#game').hide();
+			    $('#finish').hide();
+			    $('#banner').empty();
+			    $('#dice_infor').empty();
+			    $('#player_name').empty();
+			    var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http%3A//192.168.43.153%3A8000%3Finning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";         	
+          	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />' );
+			    
+		    })
+
+
+
+		    
+		    
+		    
+		    //以下是剪刀石頭布	    
+		    socket.on('paper_game_start_tv', function(all_player){
+		    	
+		    	//顯示兩個空格
+			  $('#all_qrcode').hide();
+          	  $('#qrcode').hide();
+          	  $('#banner').empty();
+          	  $('#player_name').empty();
+
+	          	  for(k=0; k<all_player.length; k++){
+					$('#player_name').append('<span class="player" style="background:#99FF99">'+ all_player[k].name +'</span>');//每個人的名稱與分數
+					}
+					
+				
+
+					
+
+			var board = $('<table/>').addClass('b')
+											 .attr('style', 'border: 5px double rgb(109, 2, 107);background-color: rgb(255, 255, 255);  width:100%; height:80%;  background:black; align=left cellpadding=5 cellspacing=5 frame=border rules=all');
+			
+			var body = $('<tbody/>').addClass('b');
+			var tr = $('<tr/>').addClass('b');
+			for(var i=0; i<2; i++){
+			
+				if(i == 0){
+				var td = $('<td/>').addClass('b')
+								   .html(all_player[0].name)
+								   .attr('id', all_player[0].guid)
+								   .attr('style','width:500px;height:300px; float:left;margin:10px;padding:20px;font-size:60px; background:#F7A7EF; text-align:center;');				
+				//兩個td,裡面要放這個人的名字
+				
+					
+						var p = $('<p/>').addClass('b');
+						td.append(p);
+
+						var span = $('<span/>').addClass('b')
+								   
+								   .attr('id', (all_player[0].guid+"0"))
+								   .attr('style','width:500px;height:300px;');
+					td.append(span);
+										   
+
+			
+				tr.append(td);
+				}
+				
+				if(i == 1){
+					var td = $('<td/>').addClass('b')
+								   .html(all_player[1].name)
+								   .attr('id', all_player[1].guid)
+								   .attr('style','width:500px;height:300px; float:left;margin:10px;padding:20px;font-size:60px; background:#8BF6DB; text-align:center;');
+			    
+
+					var p = $('<p/>').addClass('b');
+						td.append(p);
+
+					var span = $('<span/>').addClass('b')
+								   
+								   .attr('id', (all_player[1].guid+"1"))
+								   .attr('style','width:500px;height:300px;');
+					td.append(span);					   
+
+
+			    tr.append(td);
+
+
+				}
+				
+				
+			}
+				body.append(tr);
+				board.append(body);
+					$('#banner').append('<br><br>');
+                    $('#banner').append(board);
+			
+			
+											 
+			          	  					    
+		    });
+			
+			
+			
+			socket.on('update_paper_tv', function(guid){
+				//顯示有人已經出了
+				console.log('有收到');
+
+				$("#"+ guid +"").append('<span id="sel">已選擇</span>');
+				all_points = [];
+				
+			})
+
+			socket.on('final_end_paper_tv', function(win_p, players){
+				$('#player_name').empty();
+				
+	          	  for(k=0; k<players.length; k++){
+
+	          	  	$('#player_name').append('<span class="player" id="'+ players[k].name +'" style="background:#99FF99">'+ players[k].name +'分數'+players[k].calculate+'</span>');//每個人的名稱與分數
+
+
+	          	  	for(j=0; j< players[k].pic.length; j++){
+	          	  			img = '<img src="'+ players[k].pic[j] +'" height="50" width="50"/>';
+							console.log(img);
+							
+							$('#'+ players[k].name).append(img);						
+	          	  		}
+
+					}
+
+				$('#banner').empty();
+
+			  all_points = [];
+
+			})
+			
+			socket.on('end_paper_tv', function(win_p, players){//全部的玩家資料
+				$('#sel').empty();
+				$('#player_name').empty();
+				var img;
+	          	  for(k=0; k<players.length; k++){
+
+	          	  	$('#player_name').append('<span class="player" id="'+ players[k].name +'" style="background:#99FF99">'+ players[k].name +'分數'+players[k].calculate+'</span>');//每個人的名稱與分數
+	          	  	if(k==0){
+	          	  		$("#"+ (players[k].guid+'0') +"").empty();
+	          	  		for(j=0; j< players[0].pic.length; j++){
+	          	  			img = '<img src="'+ players[0].pic[j] +'" height="50" width="50"/>';
+							console.log(img);
+							
+							$('#'+ players[0].name).append(img);
+							$("#"+ (players[0].guid+'0') +"").append(img);
+	          	  		}
+	          	  	}
+	          	  	else if(k==1){
+	          	  		$("#"+ (players[1].guid+'1') +"").empty();
+	          	  		for(j=0; j< players[1].pic.length; j++){
+	          	  			img = '<img src="'+ players[1].pic[j] +'" height="50" width="50"/>';
+							console.log(img);
+							
+							$('#'+ players[1].name).append(img);
+							$("#"+ (players[1].guid+'1') +"").append(img);
+	          	  		}
+
+	          	  	}
+
+					}
+
+
+			
+				for(var i=0; i<2; i++){
+					
+					//$("#"+ players[i].guid +"").html('');
+					//$("#"+ players[i].guid+"").append(players[i].name);
+					//$("#"+ (players[1].guid+'1') +"").append(img);
+
+			  }
+			  all_points = [];
+					
+				})
+
+
+
+
+				
+				
+			
+			//以下是大富翁的電視部分  全部25格（從0開始）
+			socket.on('mono_game_start_tv', function(all_player, str_p){
+				$('#dice_infor').empty();
+				$('#dice_number').hide();
+				$('#dice_infor').append('<span><img src="../flags/dice.gif" height="200" width="200"></span>');
+				$('#dice_infor').append('<span><img src="../flags/dice.gif" height="200" width="200"></span>');
+				$('#dice_infor').show();
+				$('#score').empty();
+				$('#all_qrcode').hide();
+          	  $('#qrcode').hide();
+          	  $('#banner').empty();
+          	  $('#player_name').empty();
+          	  //$('#dice_infor').show();
+          	  
+          	  for(var i=0; i<all_player.length; i++){
+
+          	  	if(all_player[i].guid == str_p.guid){
+          	  		var img = "<img src='"+ str_p.toy +"' height='30' width='30'/>";
+
+				$('#player_name').append('<span class="player" style="background:'+ str_p.color +'; border-style:solid;border-color:red;">'+ img + str_p.name +'＄'+str_p.money +'</span>');
+
+				}
+				else{ 
+					var img = "<img src='"+ all_player[i].toy +"' height='30' width='30'/>";
+
+					$('#player_name').append('<span class="player" style="background:'+ all_player[i].color +' ">'+ img + all_player[i].name +'＄'+all_player[i].money +'</span>');
+				}
+			}
+			
+			
+
+			
+			
+						var board = $('<table/>').addClass('b')
+											 .attr('style', 'width:100%; height:100%;  background:white; align=left cellpadding=1 cellspacing=1 frame=border rules=all');
+			
+			var body = $('<tbody/>').addClass('b');//1
+			var tr1 = $('<tr/>').addClass('b');
+			for(var i=0; i<8; i++){
+			
+				if(i == 0){
+				var td = $('<td/>').addClass('b')
+								   //.html('START：GET $2000')
+								   .attr ('id', i)
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/start.png"); background-repeat: no-repeat; border: 5px solid;');				//src="../flags/dice.gif"
+				//兩個td,裡面要放這個人的名字
+				tr1.append(td);
+				}
+				
+				if(i ==1){
+					var td = $('<td/>').addClass('b')
+								  // .html('China$600')
+								   .attr('id', i)
+								   .attr('style','height:100px;width:150px;  background-color:#E8CCFF; background-image: url("../flags/china.png"); background-repeat: no-repeat; border: 5px solid;');
+
+
+			    tr1.append(td);	
+				}
+				
+				if(i ==2){
+					var td = $('<td/>').addClass('b')
+								  // .html('Japan$600')
+								   .attr('id', i)
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/japan.png"); background-repeat: no-repeat; border: 5px solid;');
+
+			    tr1.append(td);
+				}
+				
+				
+				if(i ==3){
+					var td = $('<td/>').addClass('b')
+								   //.html('DESTINY！')
+								   .attr('id', i)
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/destiny.png"); background-repeat: no-repeat; border: 5px solid;');								   
+			    tr1.append(td);
+				}
+				
+				if(i ==4){
+					var td = $('<td/>').addClass('b')
+								  // .html('Thailand$1000')
+								   .attr('id', i)
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/tailand.png"); background-repeat: no-repeat; border: 5px solid;');								   
+			    tr1.append(td);
+				}
+				
+				
+				if(i ==5){
+					var td = $('<td/>').addClass('b')
+								   //.html('München Airport$2000')
+								   .attr('id', i)
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/airport.png"); background-repeat: no-repeat; border: 5px solid;');							   
+			    tr1.append(td);
+				}
+				
+				if(i ==6){
+					var td = $('<td/>').addClass('b')
+								   //.html('Taipei$1000')
+								   .attr('id', i)
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/taipei.png"); background-repeat: no-repeat; border: 5px solid;');								   
+			    tr1.append(td);
+				}
+				
+				
+				if(i ==7){
+					var td = $('<td/>').addClass('b')
+								   //.html('Maldives$2000')
+								   .attr('id', i)
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/maldives.png"); background-repeat: no-repeat; border: 5px solid;');							   
+			    tr1.append(td);
+				}	
+				
+			}
+			
+			var tr2 = $('<tr/>').addClass('b');//2
+			for(var j=0; j<8; j++){
+				if(j == 0){
+				var td = $('<td/>').addClass('b')
+								   //.html('Zürich Airport$2000')
+								   .attr('id', '19')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/airport.png"); background-repeat: no-repeat; border: 5px solid;');				
+				//兩個td,裡面要放這個人的名字
+				tr2.append(td);
+				}
+				
+				
+				if(j>1 && j<8){
+					var td = $('<td/>').addClass('b');
+								 	   							   						  
+			    tr2.append(td);
+				}
+
+
+				
+				if(j == 7){
+					var td = $('<td/>').addClass('b')
+								   //.html('America$1400')
+								   .attr('id', '8')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/usa.png"); background-repeat: no-repeat; border: 5px solid; ');
+				tr2.append(td);
+				}				
+			}
+			
+			
+			
+			var tr6 = $('<tr/>').addClass('b');//6
+			for(var w=0; w<8; w++){
+				if(w == 0){
+				var td = $('<td/>').addClass('b')
+								   //.html('France$2200')
+								   .attr('id', '18')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/france.png"); background-repeat: no-repeat; border: 5px solid;'); 			
+				//兩個td,裡面要放這個人的名字
+				tr6.append(td);
+				}
+				
+				
+				if(w>1 && w<8){
+					var td = $('<td/>').addClass('b');
+								 	  // .attr('style','bgcolor="#000000"');  								   						  
+			    tr6.append(td);
+				}
+				
+				if(w == 7){
+					var td = $('<td/>').addClass('b')
+								  // .html('DESTINY！')
+								   .attr('id', '9')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/destiny.png"); background-repeat: no-repeat; border: 5px solid;');	
+				tr6.append(td);
+				}
+			}
+			
+			
+			
+			var tr7 = $('<tr/>').addClass('b');//7
+			for(var d=0; d<8; d++){
+			
+				if(d == 0){
+				var td = $('<td/>').addClass('b')
+								   //.html('Cambodia$1000')
+								   .attr('id', '17')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/cambodia.png"); background-repeat: no-repeat; border: 5px solid;');			
+				//兩個td,裡面要放這個人的名字
+				tr7.append(td);
+				}
+				
+				if(d ==1){
+					var td = $('<td/>').addClass('b')
+								   //.html('Germany$2400')
+								   .attr('id', '16')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/germany.png"); background-repeat: no-repeat; border: 5px solid;');							   
+			    tr7.append(td);	
+				}
+				
+				if(d ==2){
+					var td = $('<td/>').addClass('b')
+								   //.html('Australia$2600')
+								   .attr('id', '15')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/astralia.png"); background-repeat: no-repeat; border: 5px solid;');							   
+			    tr7.append(td);
+				}
+				
+				
+				if(d ==3){
+					var td = $('<td/>').addClass('b')
+								   //.html('Netherland$2800')
+								   .attr('id', '14')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/netherland.png"); background-repeat: no-repeat; border: 5px solid;');								   
+			    tr7.append(td);
+				}
+				
+				if(d ==4){
+					var td = $('<td/>').addClass('b')
+								   //.html('Hungary Airport$2000')
+								   .attr('id', '13')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/airport.png"); background-repeat: no-repeat; border: 5px solid;');								   
+			    tr7.append(td);
+				}
+				
+				
+				if(d ==5){
+					var td = $('<td/>').addClass('b')
+								   //.html('Egypt$3000')
+								   .attr('id', '12')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/egypt.png"); background-repeat: no-repeat; border: 5px solid;');							   
+			    tr7.append(td);
+				}
+				
+				if(d ==6){
+					var td = $('<td/>').addClass('b')
+								   //.html('Russia$3600')
+								   .attr('id', '11')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/russia.png"); background-repeat: no-repeat; border: 5px solid;');								   
+			    tr7.append(td);
+				}
+				
+				
+				if(d ==7){
+					var td = $('<td/>').addClass('b')
+								   //.html('Malaysia$2000')
+								   .attr('id', '10')
+								   .attr('style','height:100px;width:150px; background-color:#E8CCFF; background-image: url("../flags/malysia.png"); background-repeat: no-repeat; border: 5px solid;');							   
+			    tr7.append(td);
+				}	
+
+			}
+				body.append(tr1);
+				body.append(tr2);
+				//body.append(tr3);
+				//body.append(tr4);
+				//body.append(tr5);
+				body.append(tr6);
+				body.append(tr7);
+				board.append(body);
+					$('#banner').append('<br><br>');
+                    $('#banner').append(board);                    
+                    
+                    for(var y=0; y<  all_player.length; y++){
+	                   $("#"+all_player[y].position+"").append('<span id= '+all_player[y].name+'><img id= '+all_player[y].name+' src="'+all_player[y].toy+'" height="60" width="60"></span>');//放一個方形的圖案表示是這個人
+                    }
+                    
+				
+			})
+			
+			
+
+			socket.on('show_dice_tv', function(dots){//顯示現在的點數
+				
+					$('#dice_infor').hide();					
+					$('#dice_number'+ dots).show()									
+			})
+
+			socket.on('dice_change_tv', function(){//改變顯示dice的資料
+				$('#dice_infor').hide();
+				$('#dice_number').hide();
+
+			})
+
+
+			socket.on('number_tv', function(walk_number){//顯示點數
+
+				
+
+			})
+
+
+
+
+			socket.on('toy_move_tv', function(p, position, walk_number){
+				//console.log('toy_move_tv');
+					$("#"+p.name+"").remove();						
+					//$('#dice_number').show();
+	                $("#"+position+"").append('<div id= '+p.name+'><img id= '+p.name+' src="'+p.toy+'" height="60" width="60"></div>');//放一個方形的圖案表示是這個人                    
+			})//顯示動畫
+
+
+
+
+
+
+			socket.on('mono_game_newboard_tv', function(players, p, script, price, p_before){
+
+				$('#infor').empty();
+				//$('#dice_number').empty();
+				for(var i=2; i<13; i++){
+        			$('#dice_number'+ i).hide();
+        		}
+				$('#dice_number').hide();
+				$('#infor').append('<span><img src='+ p.toy +' ></span>');
+				$('#infor').append('<span style=" font-size: 30pt;  font-weight: bold;">是否要購買'+ script +'</span>');
+				$('#infor').append('<span style=" font-size: 30pt;  font-weight: bold;">價格'+ price +'</span>');
+				$('#infor').show();
+				for(var i=0; i<players.length; i++){
+					$("#"+players[i].name+"").remove();						
+				}
+
+				
+				for(var y=0; y<  players.length; y++){
+	                   $("#"+players[y].position+"").append('<div id= '+players[y].name+'><img id= '+players[y].name+' src="'+players[y].toy+'" height="60" width="60"></div>');//放一個方形的圖案表示是這個人
+                    }
+				})
+
+
+
+
+
+
+
+
+
+
+				
+				socket.on('buy_already_tv', function(players, number, p){
+					for(var i=2; i<13; i++){
+        				$('#dice_number'+ i).hide();
+        			}
+					$('#dice_infor').hide();
+					$('#dice_number').hide();
+					$('#infor').hide();
+					$('#player_name').empty();
+					$("#"+ number +"").css("background-color", p.color);
+					for(var i=0; i<players.length; i++){
+						var img = "<img src='"+ players[i].toy +"' height='30' width='30'/>";
+
+						$('#player_name').append('<span class="player" style="background:'+ players[i].color +'">'+img+ players[i].name +'＄'+players[i].money +'</span>');
+						
+					}
+						
+				for(var i=0; i<players.length; i++){
+					$("#"+players[i].name+"").remove();	
+					
+				}
+				
+				for(var y=0; y<  players.length; y++){
+	                   $("#"+players[y].position+"").append('<div id= '+players[y].name+'><img id= '+players[y].name+'  src="'+players[y].toy+'" height="60" width="60"></div>');//放一個方形的圖案表示是這個人
+                    }
+						
+						
+				})
+				
+				
+	
+			socket.on('chance_tv', function(players, p, chance){
+				  	for(var i=2; i<13; i++){
+        				$('#dice_number'+ i).hide();
+        			}
+				$('#dice_infor').hide();
+				
+				$('#infor').hide();
+				$('#player_name').empty();
+				$('#infor').empty();
+				$('#infor').append('<span><img src='+ p.toy +' ></span>');
+				$('#infor').append('<span style=" font-size: 30pt;  font-weight: bold;">'+ chance.c +'</span>');
+				$('#infor').show();
+					for(var i=0; i<players.length; i++){
+						var img = "<img src='"+ players[i].toy +"' height='30' width='30'/>";
+							$('#player_name').append('<span class="player" style="background:'+ players[i].color +'">'+img+ players[i].name +'＄'+players[i].money +'</span>');
+						
+						
+						}
+						
+						
+					for(var i=0; i<players.length; i++){
+						$("#"+players[i].name+"").remove();	
+					}
+				
+				for(var y=0; y<  players.length; y++){
+	                   $("#"+players[y].position+"").append('<div id= '+players[y].name+'><img id= '+players[y].name+'  src="'+players[y].toy+'" height="60" width="60"></div>');//
+                    }
+						
+			})
+
+
+			socket.on('mono_game_lucky_tv', function(players, p, position, script){
+			for(var i=2; i<13; i++){
+        		$('#dice_number'+ i).hide();
+        	}
+				$('#dice_infor').hide();
+				//$('#dice_number').hide();
+				$('#infor').hide();
+				$('#player_name').empty();
+				$('#infor').empty();
+				$('infor').append('<span><img src='+ p.toy +' ></span>');
+				$('infor').append('<span style=" font-size: 30pt;  font-weight: bold;">'+ script +'</span>');
+				$('#infor').show();
+					for(var i=0; i<players.length; i++){
+						
+						 var img = "<img src='"+ players[i].toy +"' height='30' width='30'/>";
+
+						 $('#player_name').append('<span class="player" style="background:'+ players[i].color +'">'+img+ players[i].name +'＄'+players[i].money +'</span>');
+
+
+						
+					}
+						
+						
+					for(var i=0; i<players.length; i++){
+						$("#"+players[i].name+"").remove();	
+					}
+				
+				for(var y=0; y<  players.length; y++){
+	                   $("#"+players[y].position+"").append('<div id= '+players[y].name+'><img id= '+players[y].name+'  src="'+players[y].toy+'" height="60" width="60"></div>');//
+                    }
+
+			})
+
+
+
+			
+			
+			socket.on('more_h_tv', function(players, p, script){
+				 for(var i=2; i<13; i++){
+        		$('#dice_number'+ i).hide();
+        		}
+				$('#dice_infor').hide();
+				$('#dice_number').hide();
+				$('#infor').hide();
+				$('#player_name').empty();
+				$('#infor').empty();
+				$('#infor').append('<span><img src='+ p.toy +' ></span>');
+				$('#infor').append('<span style=" font-size: 30pt;  font-weight: bold;">可以花600蓋一棟房子</span>');
+				//$('#infor').append('<span style=" font-size: 30pt;  font-weight: bold;">一棟房子！！！</span>');
+				$('#infor').show();
+					for(var i=0; i<players.length; i++){
+						
+						var img = "<img src='"+ players[i].toy +"' height='30' width='30'/>";
+
+						 $('#player_name').append('<span class="player" style="background:'+ players[i].color +' ">'+img+ players[i].name +'＄'+players[i].money +'</span>');
+						
+					}
+						
+						
+					for(var i=0; i<players.length; i++){
+					$("#"+players[i].name+"").remove();	
+					
+				}
+				
+				for(var y=0; y<  players.length; y++){
+	                   $("#"+players[y].position+"").append('<div id= '+players[y].name+'><img id= '+players[y].name+'  src="'+players[y].toy+'" height="60" width="60"></div>');//放一個方形的圖案表示是這個人
+                    }                  			 
+			})
+
+			
+			
+			socket.on('house_tv', function(players, p){
+				for(var i=2; i<13; i++){
+        		$('#dice_number'+ i).hide();
+        		}
+				$('#dice_infor').hide();
+				$('#dice_number').hide();
+				$('#player_name').empty();
+				for(var i=0; i<players.length; i++){
+					var img = "<img src='"+ players[i].toy +"' height='30' width='30'/>";
+
+					 $('#player_name').append('<span class="player" style="background:'+ players[i].color +'">'+img+ players[i].name +'＄'+players[i].money +'</span>');
+					}
+
+				for(var k=0; k< players.length; k++){
+					 if(p.guid == players[k].guid){
+						$("#"+players[k].position+"").append('<span id= "house"><img src="'+ players[k].h +'" height="30" width="30"></span>'); 
+
+						}
+							 
+					 }
+
+
+			})
+			
+			
+			socket.on('end_g_tv', function(players, win_p){
+				for(var i=2; i<13; i++){
+        		$('#dice_number'+ i).hide();
+        		}
+				$('#dice_infor').hide();
+				$('#dice_number').hide();
+				$('#infor').hide();
+				$('#player_name').empty();
+				$('#banner').empty();
+				
+				for(var i=0; i<players.length; i++){
+					if(players[i].guid == win_p.guid){
+
+					var img = "<img src='"+ players[i].toy +"' height='30' width='30'/>";	
+
+ $('#player_name').append('<span class="player" style="background:'+ players[i].color +'; border-style:solid;border-color:red;">'+img+ players[i].name +'＄'+players[i].money +'是贏家</span>');
+
+
+					}
+					else{
+						var img = "<img src='"+ players[i].toy +"' height='30' width='30'/>";
+
+						 $('#player_name').append('<span class="player" style="background:'+ players[i].color +'">'+img+ players[i].name +'＄'+players[i].money +'</span>');
+
+						}
+					}
+				
+			})
+
+			socket.on('infor_tv', function(){
+			for(var i=2; i<13; i++){
+        		$('#dice_number'+ i).hide();
+        	}
+				$('#infor').empty();
+				$('#infor').hide();
+				//顯示骰子
+
+				$('#dice_infor').show();
+				$('#dice_number').hide();
+
+
+			})
+
+			socket.on('infor1_tv', function(players, p){
+			for(var i=2; i<13; i++){
+        		$('#dice_number'+ i).hide();
+        	}
+				$('#player_name').empty();
+				$('#dice_infor').hide();
+				$('#dice_number').hide();
+				$('#infor').empty();
+				$('#infor').hide();
+
+					for(var i=0; i<players.length; i++){
+						var img = "<img src='"+ players[i].toy +"' height='30' width='30'/>";
+
+
+						 $('#player_name').append('<span class="player" style="background:'+ players[i].color +'">'+img+ players[i].name +'＄'+players[i].money +'</span>');
+
+						}
+			})
+
+
+			
+			
+			socket.on('mono_game_pay_tv', function(players, p, pay){
+				for(var i=2; i<13; i++){
+        		$('#dice_number'+ i).hide();
+        		}
+				$('#dice_infor').hide();
+				$('#dice_number').hide();
+				$('#infor').hide();
+				$('#player_name').empty();
+				//用一個div
+				$('#infor').empty();
+				$('#infor').append('<span><img src='+ p.toy +'></span>');
+				$('#infor').append('<span style=" font-size: 30pt;  font-weight: bold;">需要付'+ pay.pay +'錢給</span>');
+				$('#infor').append('<span><img src='+ pay.owner.toy +'></span>');
+				$('#infor').show();
+				$('#play').append('<p id="temp">這是'+ pay.owner.name +'的地,要付多少錢'+pay.pay+'</p>');
+
+					for(var i=0; i<players.length; i++){						
+						var img = "<img src='"+ players[i].toy +"' height='30' width='30'/>";
+
+						 $('#player_name').append('<span class="player" style="background:'+ players[i].color +'">'+img+ players[i].name +'＄'+players[i].money +'</span>');
+						
+						}
+						
+					for(var i=0; i<players.length; i++){
+						$("#"+players[i].name+"").remove();						
+					}
+				
+				for(var y=0; y<  players.length; y++){
+	                   $("#"+players[y].position+"").append('<div id= '+players[y].name+'><img id= '+players[y].name+'  src="'+players[y].toy+'" height="60" width="60"></div>');//放一個方形的圖案表示是這個人
+                    }
+						
+			})
+
+
+			//下面是排七撲克
+			socket.on('seven_game_start_tv', function(all_player, str_p){
+			  $('#score').empty();
+			  $('#all_qrcode').hide();
+          	  $('#qrcode').hide();
+          	  $('#banner').empty();
+          	  $('#player_name').empty();
+				
+				 for(var j=0; j< all_player.length; j++){
+				if(str_p.guid == all_player[j].guid){
+					$('#player_name').append('<span class="player" style="background:#FF0088 ">'+ all_player[j].name +'蓋牌點數'+all_player[j].score+'</span>');
+				}
+				else{
+					$('#player_name').append('<span class="player" style="background:#99FF99 ">'+ all_player[j].name +'蓋牌點數'+all_player[j].score+'</span>');
+					}	
+			  }
+			  //四條線, id 都是名稱
+
+			  var board = $('<table/>').addClass('b')
+											 .attr('style', 'border: 0px double rgb(109, 2, 107);background-color: rgb(142,229,238);  width:100%; height:30%;	align=left cellpadding=4 cellspacing=4 frame=border rules=all');
+					var body = $('<tbody/>').addClass('b');
+						var tr0 = $('<tr/>').addClass('b');
+						var tr1 = $('<tr/>').addClass('b');
+						var tr2 = $('<tr/>').addClass('b');
+						var tr3 = $('<tr/>').addClass('b');
+
+						for(var i=1; i<14; i++){
+								var td = $('<td/>').addClass('b')
+												   .attr('style','width:70px;height:120px; float:left;font-size:60px;text-align:center;')
+												   .attr('id', 'S'+i);
+
+ 		   	   
+							    tr0.append(td); 												
+							}
+
+						for(var j=1; j<14; j++){
+								var td = $('<td/>').addClass('b')
+												   .attr('style','width:70px;height:120px; float:left;font-size:60px;text-align:center;')
+												   .attr('id', 'H'+j);
+
+ 		   	   
+							    tr1.append(td); 												
+							}
+
+						for(var m=1; m<14; m++){
+								var td = $('<td/>').addClass('b')
+												   .attr('style','width:70px;height:120px; float:left;font-size:60px;text-align:center;')
+												   .attr('id', 'D'+m);
+
+ 		   	   
+							    tr2.append(td); 												
+							}
+
+						for(var k=1; k<14; k++){
+								var td = $('<td/>').addClass('b')
+												   .attr('style','width:70px;height:120px; float:left;font-size:60px;text-align:center;')
+												   .attr('id', 'C'+k);
+
+ 		   	   
+							    tr3.append(td); 												
+							}
+
+					body.append(tr0);
+					body.append(tr1);
+					body.append(tr2);
+					body.append(tr3);
+					board.append(body);
+					$('#banner').append('<br><br>');
+                    $('#banner').append(board);			
+
+			})
+
+
+
+
+
+			socket.on('new_seven_board_tv', function(all_player, card){
+				
+
+				var img = "<img src='../static/bg_" + card + ".png' height='90' width='60'/>";
+				$('#'+ card).append('<p>'+ img +'</p>');
+				 
+				//以下是重新
+
+
+			})
+
+
+			socket.on('tv_score', function(all_player,p, score, new_p_g){
+			$('#player_name').empty();
+			for(var j=0; j< all_player.length; j++){
+				//console.log('這個人的成績'+ score);
+				console.log('new_p的guid：'+ new_p_g);
+				console.log('現在all_player的guid:'+ all_player[j].guid);
+				console.log('這個人蓋幾張牌'+all_player[j].backcount);
+				if(p.guid == all_player[j].guid ){
+					if(all_player[j].backcount!=0){
+						$('#player_name').append('<span class="player" id="'+ all_player[j].name +'" style="background:#99FF99 ">'+ all_player[j].name +'</span>');
+						var sp = document.createTextNode(" "); 
+						$('#'+ all_player[j].name).append(sp);
+						var img = "<img src='../static/back_"+ all_player[j].backcount +".jpg' />";
+						$('#'+ all_player[j].name).append('<span>'+ img +'</span>');
+					}
+					else{
+						$('#player_name').append('<span class="player"  style="background:#99FF99 ">'+ all_player[j].name +'</span>');	
+					}
+					
+				}
+				if(new_p_g == all_player[j].guid){
+					if(all_player[j].backcount!=0){
+						$('#player_name').append('<span class="player" id="'+ all_player[j].name +'" style="background:#FF0088 ">'+ all_player[j].name +'</span>');
+						var img = "<img src='../static/back_"+ all_player[j].backcount +".jpg' />";
+						var sp = document.createTextNode(" "); 
+						$('#'+ all_player[j].name).append(sp);
+						$('#'+ all_player[j].name).append('<span>'+ img +'</span>');
+					}
+					else{
+						$('#player_name').append('<span class="player" style="background:#FF0088 ">'+ all_player[j].name +'</span>');
+					}
+					
+				}
+				if(all_player[j].guid!= p.guid && all_player[j].guid!= new_p_g){
+					if(all_player[j].backcount!=0){
+						$('#player_name').append('<span class="player" id="'+ all_player[j].name +'" style="background:#99FF99 ">'+ all_player[j].name +'</span>');
+						var img = "<img src='../static/back_"+ all_player[j].backcount +".jpg' />";
+						var sp = document.createTextNode(" "); 
+						$('#'+ all_player[j].name).append(sp);
+						$('#'+ all_player[j].name).append('<span>'+ img +'</span>');
+					}
+					else{
+						$('#player_name').append('<span class="player" style="background:#99FF99 ">'+ all_player[j].name +'</span>');
+					}	
+					
+					}	
+			  }
+			})
+
+
+
+			socket.on('seven_end_tv', function(players, win_p){
+				$('#player_name').empty();
+				
+				
+				for(var i=0; i<players.length; i++){
+					if(i == 2){
+						$('#player_name').append('</br>');
+					}
+					if(players[i].guid == win_p.guid){
+						$('#player_name').append('<span class="player" id ="'+ players[i].name +'" style="background:#99FF99" align="center">'+ players[i].name +'蓋牌點數'+players[i].score+'是贏家</span>');
+						for(var a=0; a< players[i].back.length;a++){
+							var img = "<img src='../static/bg_" + players[i].back[a] + ".png' height='54' width='40'/>";
+							console.log(img);
+							$('#'+ players[i].name).append(img);
+						}
+					}
+					else{
+						$('#player_name').append('<span class="player"  id ="'+ players[i].name +'" style="background:#99FF99" align="center">'+ players[i].name +'蓋牌點數'+players[i].score+'</span>');//每個人的名稱與分數
+
+							for(var b=0; b< players[i].back.length;b++){
+								var img = "<img src='../static/bg_" + players[i].back[b] + ".png' height='54' width='40'/>";
+								console.log(img);
+								$('#'+ players[i].name).append(img);
+							}
+
+						}
+					}
+				
+			})
+			
+			
+							
+			
+			
+
+        
+        });
+                                            
+
+    </script>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="header-bg">
+	<div class="wrap"> 
+		<div class="total-box">
+				<div class="total">
+					<div class="header_top">
+				     	<div class="menu">
+				     		<ul>
+						    	
+
+						    	<div class="clear"></div>
+			     			</ul>
+				     	</div>
+				     
+		     			<div class="clear"></div>
+		     	</div>
+			     <div class="header-bottom">
+					 <div class="logo" id="logo">
+						<h1><a >Game Center</a></h1>
+						
+					 </div>
+
+					<div class="clear"></div> 
+					
+				</div>
+			</div>	
+		</div>
+	 </div>
+</div>
+	<div class="banner-box">
+		
+			<div class="main-top">
+				<div class="main">
+					<div class="banner" id="player_name"></div>
+					
+					<div class="banner" id="banner">
+						<img src="images/game.jpg" alt=""/>
+					</div>
+					<div class="center" id="infor" style=" background-color: yellow">					
+					</div>
+					<div class="center" id="dice_infor" background-color: "white">
+					</div>	
+					<div class="center" id="dice_number2" >
+						<span><img src="../flags/2.png" height="200" width="400"></span>
+					</div>
+					<div class="center" id="dice_number3" >
+						<span><img src="../flags/3.png" height="200" width="400"></span>
+					</div>
+					<div class="center" id="dice_number4" >
+						<span><img src="../flags/4.png" height="200" width="400"></span>
+					</div>
+					<div class="center" id="dice_number5" >
+						<span><img src="../flags/5.png" height="200" width="400"></span>
+					</div>
+					<div class="center" id="dice_number6" >
+						<span><img src="../flags/6.png" height="200" width="400"></span>
+					</div>
+					<div class="center" id="dice_number7" >
+						<span><img src="../flags/7.png" height="200" width="400"></span>
+					</div>
+					<div class="center" id="dice_number8" >
+						<span><img src="../flags/8.png" height="200" width="400"></span>
+					</div>
+					<div class="center" id="dice_number9" >
+						<span><img src="../flags/9.png" height="200" width="400"></span>
+					</div>
+					<div class="center" id="dice_number10" >
+						<span><img src="../flags/10.png" height="200" width="400"></span>
+					</div>	
+					<div class="center" id="dice_number11" >
+						<span><img src="../flags/11.png" height="200" width="400"></span>
+					</div>
+					<div class="center" id="dice_number12" >
+						<span><img src="../flags/12.png" height="200" width="400"></span>
+					</div>
+					
+
+				
+
+					<div id="score"></div>
+					<div class="section-top" id="all-qrcode">
+					
+						
+					</div>
+				</div>
+			</div>
+		
+		<div class="main-bottom">
+			<div class="wrap">
+					
+				</div>
+				
+			</div>
+			</div>
+		</div>
+	    <div class="wrap">
+		   <div class="copy-right" id="all_score">
+
+				<p>Design by JoanneWu</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+    	
+    	
+            
