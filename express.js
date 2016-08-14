@@ -19,35 +19,44 @@ var Game = require('./ox_game'),
     player_i = '';
 var dbconfig = require('./dbConfig');
 var jade = require('jade');
+var sequelize = require('sequelize');
 var host =  utilObj.util('config.json','host');
-console.log(dbconfig.host);
+var routerCtrl = require('./modules/routerCtrl');
+//var socketCtrl = require('./modules/socketCtrl');
+//var dbAccessModule = require('./modules/dbAccessModule');
+
+// 取得url 判斷進入哪個遊戲
+routerCtrl.routerCtrl(app,player_g);
+
+
+//console.log(dbconfig.host);
 //取得url 判斷進入哪個遊戲
-app.get('/?', function(req, res) {
-  console.log(req.query.game);
-  if (req.query.game == undefined) {
-    res.sendfile(__dirname + '/index.html');
-  } else {
-    player_g = req.query.game.split("?")[0];
-    player_i = req.query.inning;
-    console.log('這是這個遊戲的guid:' + player_g);
-    console.log('這是這個遊戲的局guid:' + player_i);
-    if (player_g == 'aea3d281-a111-4272-b4a4-77863c090fef') { //圈叉
-      res.sendfile(__dirname + '/index_oxx.htm');
-    }
-    if (player_g == '313d4029-7bc5-454d-ac2b-a3d5dee5e60b') { //配對遊戲
-      res.sendfile(__dirname + '/index_flip.htm');
-    }
-    if (player_g == '67af5ab1-a004-41a2-b9e4-74733f0c765f') { //剪刀石頭佈
-      res.sendfile(__dirname + '/index_paper.htm');
-    }
-    if (player_g == '27b38a5bde-89fd-44ba-9cf4-c3cf76866f95') { //大富翁
-      res.sendfile(__dirname + '/index_mono.htm');
-    }
-    if (player_g == '0c4aecb4-da19-4ece-b40e-e48c3f3d7bc2') { //撲克排七
-      res.sendfile(__dirname + '/index_seven.htm');
-    }
-  }
-});
+// app.get('/?', function(req, res) {
+//   console.log(req.query.game);
+//   if (req.query.game == undefined) {
+//     res.sendfile(__dirname + '/index.html');
+//   } else {
+//     player_g = req.query.game.split("?")[0];
+//     player_i = req.query.inning;
+//     console.log('這是這個遊戲的guid:' + player_g);
+//     console.log('這是這個遊戲的局guid:' + player_i);
+//     if (player_g == 'aea3d281-a111-4272-b4a4-77863c090fef') { //圈叉
+//       res.sendfile(__dirname + '/index_oxx.htm');
+//     }
+//     if (player_g == '313d4029-7bc5-454d-ac2b-a3d5dee5e60b') { //配對遊戲
+//       res.sendfile(__dirname + '/index_flip.htm');
+//     }
+//     if (player_g == '67af5ab1-a004-41a2-b9e4-74733f0c765f') { //剪刀石頭佈
+//       res.sendfile(__dirname + '/index_paper.htm');
+//     }
+//     if (player_g == '27b38a5bde-89fd-44ba-9cf4-c3cf76866f95') { //大富翁
+//       res.sendfile(__dirname + '/index_mono.htm');
+//     }
+//     if (player_g == '0c4aecb4-da19-4ece-b40e-e48c3f3d7bc2') { //撲克排七
+//       res.sendfile(__dirname + '/index_seven.htm');
+//     }
+//   }
+// });
 
 //使用的資料夾
 app.use('/css', express.static(__dirname + '/css'));
@@ -65,19 +74,19 @@ app.get('/test',function(req,res){
   res.render('index.jade',{'host':dbconfig.host});
 });
 
-//+++++撈資料
-var select_Useer = 'SELECT * FROM User';
-sqlQuery(select_Useer, function(err, result){
-console.log('select_Useer')
-console.log(result)
-});
+// //+++++撈資料
+// var select_Useer = 'SELECT * FROM User';
+// sqlQuery(select_Useer, function(err, result){
+// console.log('select_Useer')
+// console.log(result)
+// });
 
 //+++++++測試
-db.query('SELECT g_name,game_guid FROM ' + 'Game', function(err, results, fields) {
-  if (err) throw err;
-  var all_gamename = results;
-  console.log(results);
-});
+// db.query('SELECT g_name,game_guid FROM ' + 'Game', function(err, results, fields) {
+//   if (err) throw err;
+//   var all_gamename = results;
+//   console.log(results);
+// });
 
   var flip_select_number = '';
   var walk_number = '';
@@ -416,7 +425,7 @@ io.sockets.on('connection', function(socket) {
       socket.emit('qrcode', result, key);
       all_socket[key] = tv_s;
 /*if(all_game_guid.length == 5){
-        socket.emit('qrcode', all_game_guid, key);
+   socket.emit('qrcode', all_game_guid, key);
       all_socket[key] = tv_s;
 }*/
 
@@ -1425,3 +1434,4 @@ io.sockets.on('connection', function(socket) {
   })
 
 });
+//socketCtrl.socketOn(io,uuid, all_inning, db, dbAccessModule);

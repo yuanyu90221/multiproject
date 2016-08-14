@@ -6,11 +6,12 @@
   "dependencies": {
     "bootstrap": "^3.3.4",
     "express": "^3.3.1",
-    "node-mysql": "^0.4.2",
-    "mysql": "^2.11.1",
-    "passport-google-oauth-master": "^0.1.5",
-    "node-uuid": "^1.4.1",
     "jade": "^1.11.0",
+    "mysql": "^2.11.1",
+    "node-mysql": "^0.4.2",
+    "node-uuid": "^1.4.1",
+    "passport-google-oauth-master": "^0.1.5",
+    "sequelize": "^3.24.0",
     "socket.io": "^0.9.16"
   },
   "devDependencies": {},
