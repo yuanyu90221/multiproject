@@ -19,8 +19,9 @@ module.exports = {
 
 		    var key = uuid.v4();//產生key
 		    all_inning.push(key);//所有電視的key
+		    var user_key = uuid.v4();
 
-		    dbAccessModule.sqlQuery("INSERT INTO Inning(inning_guid, iu_guid) VALUES('" + key + "','"+key+"')", function(err, result){
+		    dbAccessModule.sqlQuery("INSERT INTO Inning(inning_guid, iu_guid) VALUES('" + key + "','"+user_key+"')", function(err, result){
 		      console.log(err || result)
 		    }, db); //new inning
 		    
