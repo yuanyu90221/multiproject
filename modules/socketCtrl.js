@@ -1,9 +1,12 @@
+//var dbAccessModule = require('./dbAccessModule');
 module.exports = {
-	'socketOn': function(io, uuid, all_inning, db, dbAccessModule){
-		console.log(dbAccessModule);
-		console.log(db);
+	'socketOn': function(io, uuid, all_inning, db, all_game_guid, all_socket, player_g, player_i ,dbAccessModule){
+		console.log("start");
+		//console.log(dbAccessModule);
+		//console.log(db);
 				//連線開始 
 		io.sockets.on('connection', function(socket) {
+		  //console.log(dbAccessModule);
 		  console.log('connection');
 		  //console.log(app);
 		  //電視連線
@@ -17,9 +20,9 @@ module.exports = {
 		    var key = uuid.v4();//產生key
 		    all_inning.push(key);//所有電視的key
 
-		    dbAccessModule.sqlQuery("INSERT INTO Inning(inning_guid) VALUES('" + key + "')", function(err, result){
+		    dbAccessModule.sqlQuery("INSERT INTO Inning(inning_guid, iu_guid) VALUES('" + key + "','"+key+"')", function(err, result){
 		      console.log(err || result)
-		    }); //new inning
+		    }, db); //new inning
 		    
 		    /*dbAccessModule.sqlQuery("UPDATE Inning SET t_time ='" + date + "' WHERE inning_guid ='" + key + "'", function(err, result){
 		      console.log(err || result)
@@ -43,7 +46,7 @@ module.exports = {
 		      all_socket[key] = tv_s;
 		}*/
 
-		    });//取出所有遊戲
+		    }, db);//取出所有遊戲
 		    
 		  })
 
@@ -55,7 +58,7 @@ module.exports = {
 		    console.log("玩家的連線" + u_s);
 
 		    //刪掉目前offline的人
-		    dbAccessModule.sqlQuery("DELETE from Inning_user where online ='" + 0 + "'");
+		    dbAccessModule.sqlQuery("DELETE from Inning_user where online ='" + 0 + "'", null , db);
 
 		    //此局的名字
 		    var g_name = '';
