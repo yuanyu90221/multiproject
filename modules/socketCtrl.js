@@ -14,14 +14,14 @@ module.exports = {
 		    var tv_s = socket;
 		    console.log("新的ㄧ台電視連線");
 
-		    var date = new Date().toISOString().slice(0, 19).replace('T', ' '); //現在的時間
+		    var date = new Date().toLocaleString(); //現在的時間
 		    console.log('現在的時間' + date);
 
 		    var key = uuid.v4();//產生key
 		    all_inning.push(key);//所有電視的key
-		    var user_key = uuid.v4();
+		    //var user_key = uuid.v4();
 
-		    dbAccessModule.sqlQuery("INSERT INTO Inning(inning_guid, iu_guid) VALUES('" + key + "','"+user_key+"')", function(err, result){
+		    dbAccessModule.sqlQuery("INSERT INTO Inning(inning_guid) VALUES('" + key + "')", function(err, result){
 		      console.log(err || result)
 		    }, db); //new inning
 		    

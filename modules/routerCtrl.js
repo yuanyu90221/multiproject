@@ -1,11 +1,6 @@
 module.exports.routerCtrl = function(app, player_g){
-	app.get('/test',function(req, res){
-		
-		res.writeHead(200, {'Context-Type':'text/html'});
-		res.write('redirect');
-		res.end();
-	});
-
+	console.log('test');
+	console.log('====================================');
 	app.get('/?', function(req, res) {
 	  console.log('first page');
 	  console.log(req.query.game);
