@@ -56,8 +56,8 @@ hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </scri
 		var inning='';//新的一局的uuid
 		var allthe_guid ='';//所有遊戲的名字
 
-      	var socket = io.connect('http://192.168.43.153:8000');
-        	
+      	//var socket = io.connect('http://192.168.43.153:8000');
+         var socket = io.connect("http://{{host}}:{{port}}");		
         	
         	$('#yes_me').click(function(){
 	        	socket.emit('client', p_name, p_pic);
