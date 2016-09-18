@@ -16,33 +16,38 @@ var Game = require('./ox_game'),
     all_game_guid = [],//所有遊戲的guid
     all_socket = {}, //MAP OBJECT 所有的socket
     player_g = '',
-    player_i = '';
+    player_i = '',
+    path = require('path');
 var dbconfig = require('./dbConfig');
-var jade = require('jade');
 var sequelize = require('sequelize');
 var host =  utilObj.util('config.json','host');
+var port = utilObj.util('config.json','port');
 var routerCtrl = require('./modules/routerCtrl');
+var hbs = require('hbs');
+app.set('views', path.join(__dirname, '/'));
+app.set('view engine','htm');
+app.engine('htm', hbs.__express);
 //var socketCtrl = require('./modules/socketCtrl');
 //var dbAccessModule = require('./modules/dbAccessModule');
 
 // 取得url 判斷進入哪個遊戲
-routerCtrl.routerCtrl(app,player_g);
+routerCtrl.routerCtrl(app,player_g, host, port);
 //使用的資料夾
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/static', express.static(__dirname + '/public'));
 app.use('/images', express.static(__dirname + '/images'));
 app.use('/flags', express.static(__dirname + '/all_flag'));
-app.get('/test',function(req,res){
-  res.render = function(template, options){
-    var str = require('fs').readFileSync(template, 'utf8');
-    var fn = jade.compile(str, {filename:template, pretty: true});
-    var page = fn(options);
-    res.writeHead(200, {'Content-Type':'text/html'});
-    res.end(page);
-  };
+// app.get('/test',function(req,res){
+//   res.render = function(template, options){
+//     var str = require('fs').readFileSync(template, 'utf8');
+//     var fn = jade.compile(str, {filename:template, pretty: true});
+//     var page = fn(options);
+//     res.writeHead(200, {'Content-Type':'text/html'});
+//     res.end(page);
+//   };
   
-  res.render('index.jade',{'host':dbconfig.host});
-});
+//   res.render('index.jade',{'host':dbconfig.host});
+// });
 
   var flip_select_number = '';
   var walk_number = '';

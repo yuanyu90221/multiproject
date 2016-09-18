@@ -990,10 +990,6 @@ module.exports = {
 		        }
 		        console.log(result);
 		      });
-
-
-
-
 		    });
 
 
@@ -1017,8 +1013,6 @@ module.exports = {
 		          console.log(err);
 		          return;
 		        }
-
-
 		        var g_data = result;
 		        var g_name = g_data[0].g_name;
 		        console.log("名字是：" + g_name);

@@ -84,8 +84,7 @@
         	$('#score').hide();
         	var host = '127.0.0.1';
         	//var socket = io.connect('http://192.168.43.153:8000');
-		    var socket = io.connect('http://'+host+":8000")
-		    
+		     var socket = io.connect("http://{{host}}:{{port}}");	
 		    $('#yes_me').click(function(){
 		    
 	        	socket.emit('client', p_name, p_pic);
