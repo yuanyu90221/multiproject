@@ -10,20 +10,21 @@
     "mysql": "^2.11.1",
     "node-mysql": "^0.4.2",
     "node-uuid": "^1.4.1",
-    "passport-google-oauth-master": "^0.1.5",
+    "passport-google-oauth-2": "^0.1.1",
     "pg": "^6.1.0",
     "sequelize": "^3.24.0",
     "socket.io": "^0.9.16"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node express.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yuanyu90221/multiproject.git"
   },
-  "author": "",
+  "author": "yuanyu",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yuanyu90221/multiproject/issues"
