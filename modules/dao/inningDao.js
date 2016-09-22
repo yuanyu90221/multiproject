@@ -24,8 +24,19 @@ module.exports = {
 			collection.insert(inning, function(err, result){
 				if(err)
 					throw err;
-				callback(err,inning);
-				db.close();
+				callback(err,inning, db);
+				//db.close();
+			});
+		});
+	},
+	'updateByCriteria': function(callback, criteria, updateAttributes){
+		mongoDBUtil.useConnction('Inning', function(collection, db) {
+			collection.updateOne(criteria, {$set: updateAttributes},
+			function(err, result){
+				if(err)
+					throw err;
+				callback(err, result, db);
+				//db.close();
 			});
 		});
 	}

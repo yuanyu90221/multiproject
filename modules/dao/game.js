@@ -9,7 +9,7 @@ Game.prototype.getGame = function() {
 };
 
 Game.prototype.setGame = function(game){
-	this.game_uuid = game.game_uuid;
+	this.game_guid = game.game_guid;
 	this.g_p_less = game.g_p_less;
 	this.g_p_more = game.g_p_more;
 	this.g_name = game.g_name;
@@ -18,12 +18,12 @@ Game.prototype.setGame = function(game){
 	}
 };
 
-Game.prototype.setUUID = function(game_uuid){
-	this.game_uuid = game_uuid;
+Game.prototype.setGUID = function(game_guid){
+	this.game_guid = game_guid;
 };
 
-Game.prototype.getUUID = function(){
-	return this.game_uuid;
+Game.prototype.getGUID = function(){
+	return this.game_guid;
 };
 
 Game.prototype.setG_p_less = function(g_p_less){
