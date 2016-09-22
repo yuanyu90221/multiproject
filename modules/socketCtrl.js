@@ -1,10 +1,16 @@
 //var dbAccessModule = require('./dbAccessModule');
+var GameDao = require('./dao/gameDao');
+var InningDao = require('./dao/inningDao');
+var InningVo = require('./dao/inning');
+var Inning_UserDao = require('./dao/inning_UserDao');
+var UserVo = require('./dao/user');
+var UserDao = require('./dao/userDao');
 module.exports = {
 	'socketOn': function(io, uuid, all_inning, db, all_game_guid, all_socket, player_g, player_i ,dbAccessModule){
 		console.log("start");
 		//console.log(dbAccessModule);
 		//console.log(db);
-				//連線開始 
+				//連線開始
 		io.sockets.on('connection', function(socket) {
 		  //console.log(dbAccessModule);
 		  console.log('connection');
@@ -19,145 +25,260 @@ module.exports = {
 
 		    var key = uuid.v4();//產生key
 		    all_inning.push(key);//所有電視的key
-		    //var user_key = uuid.v4();
 
-		    dbAccessModule.sqlQuery("INSERT INTO Inning(inning_guid) VALUES('" + key + "')", function(err, result){
-		      console.log(err || result)
-		    }, db); //new inning
-		    
+		    var inning = new InningVo();
+		    inning.setInning_guid(key);
+		    InningDao.insertInning(inning, function(err, result, db){
+		    	 console.log(err || result);
+		    	 db.close();
+		    	 GameDao.queryByCriteria({},function(err, result){
+					    if(err)
+					        throw err;
+					    console.log('all_game');
+					    console.log(result);
+
+					    for(var i =0; i < result.length; i++){
+					        all_game_guid.push(result[i].game_guid);
+					    }
+					    console.log('all_game_guid');
+					    socket.emit('qrcode', result, key);
+			      		all_socket[key] = tv_s;
+					}
+			    );//取出所有遊戲
+		    });// new inning
 		    /*dbAccessModule.sqlQuery("UPDATE Inning SET t_time ='" + date + "' WHERE inning_guid ='" + key + "'", function(err, result){
 		      console.log(err || result)
 		    });//set time*/
-		    
-		    dbAccessModule.sqlQuery('SELECT g_name,game_guid FROM Game', function(err, result){//joanne 20160718
-		      console.log('all_game')
-		      console.log(result)
-		      for(var i =0; i < result.length; i++){
-		        all_game_guid.push(result[i].game_guid);
-		      }
-		      //all_game_guid.push(result);
-		      //all_game_guid = result;
-		      console.log(result)
-		      console.log('all_game_guid')  
-		      //console.log(all_game_guid)
-		      socket.emit('qrcode', result, key);
-		      all_socket[key] = tv_s;
-		/*if(all_game_guid.length == 5){
-		   socket.emit('qrcode', all_game_guid, key);
-		      all_socket[key] = tv_s;
-		}*/
 
-		    }, db);//取出所有遊戲
-		    
+
+
+
 		  })
 
-		  //使用者連線	
+		  //使用者連線
 		  socket.on('client', function(p_name, pic) {
 		    var key;//uuid
-		    var u_s = socket;//socket 
+		    var u_s = socket;//socket
 		    console.log('這個人的名字：' + p_name + '這個人的照片' + pic);
 		    console.log("玩家的連線" + u_s);
 
 		    //刪掉目前offline的人
-		    dbAccessModule.sqlQuery("DELETE from Inning_user where online ='" + 0 + "'", null , db);
-
+		    // dbAccessModule.sqlQuery("DELETE from Inning_user where online ='" + 0 + "'", null , db);
+		    Inning_UserDao.deleteByCriteria({online:0},function(err, result){
+		    	console.log(err||result);
+		    });
 		    //此局的名字
-		    var g_name = '';
-		    var g_data = dbAccessModule.sqlQuery("SELECT * from Game where game_guid ='" + player_g + "'");
-		        g_name = g_data[0].g_name;
-		        console.log("名字是：" + g_name);
-		        console.log("這是遊戲的最少人數" + g_data[0].g_p_less);
+		    // var g_name = '';
+		    // var g_data = dbAccessModule.sqlQuery("SELECT * from Game where game_guid ='" + player_g + "'");
+		    //     g_name = g_data[0].g_name;
+		     // console.log("名字是：" + g_name);
+		     // console.log("這是遊戲的最少人數" + g_data[0].g_p_less);
+		    GameDao.queryByCriteria({game_guid:player_g},function(err, g_data){
+				    if(err)
+				        throw err;
+				    console.log('all_game');
+				    console.log(g_data);
+				    if(g_data.length > 0){
+                    	console.log("名字是：" + g_data[0].g_name);
+                    	console.log("這是遊戲的最少人數" + g_data[0].g_p_less);
+                	}
 
-		    //找資料庫有沒有這個人，不然就新增 *先判斷inning_user 在判斷user
-		    var result = dbAccessModule.sqlQuery("SELECT * from Inning_user where user_account ='" + p_name + "' AND user_pic = '" + pic + "' AND online='1' ");
-		    if(result[0] == undefined && p_name != ''){//這個人不在inning_user資料表中
-		      console.log('這個人不在inning_user資料表中')
-		      var result_1 = dbAccessModule.sqlQuery("SELECT * from User where account ='" + p_name + "'");
-		      if(result_1[0] == undefined && p_name != ''){//這個人不在user資料表中
-		        console.log('這個人不在user資料表中')
-		        key = uuid.v4();
-		        var insert_u = dbAccessModule.sqlQuery("INSERT INTO User(user_guid,account,pic) VALUES('" + key + "','" + p_name + "','" + pic + "')");
-		        console.log(player_g);
-		        console.log(player_i);
+                	//找資料庫有沒有這個人，不然就新增 *先判斷inning_user 在判斷user
+				    // var result = dbAccessModule.sqlQuery("SELECT * from Inning_user where user_account ='" + p_name + "' AND user_pic = '" + pic + "' AND online='1' ");
+				    Inning_UserDao.queryByCriteria({user_account:p_name,user_pic:pic,online:1},function(err, result){
+				    	    if(result[0] == undefined && p_name != ''){//這個人不在inning_user資料表中
+				      			console.log('這個人不在inning_user資料表中');
+				      			UserDao.queryByCriteria({account:p_name}, function(err, result_list){
+				      				if(result_list[0] == undefined && p_name != ''){//這個人不在user資料表中
+				      					 console.log('這個人不在user資料表中');
+				      					  var key_iu = uuid.v4();
+				      					  var nUser = new UserVo();
+				      					  nUser.setUser_guid(key);
+				      					  nUser.setAccount(p_name);
+				      					  nUser.setPic(pic);
+				      					  UserDao.insertUser(nUser,function(err, result){
+				      					  	console.log(result);
+				      					  });
+				      				}
+				      				else{//此人加入inning_user資料表
+				      					 var key_iu = uuid.v4();
+				      					 var inning_1 = new InningVo({iu_guid:key_iu,
+				      					 	                          inning_gref:player_i,
+				      					 	                          game_guid:player_g,
+				      					 	                          user_gref:key,
+				      					 	                          user_account:p_name,
+				      					 	                          user_pic:pic
+				      					 	                       });
+
+				      					 Inning_UserDao.insertInning(inning_1, function(err, result){
+				      					 	socket.emit('client_change', p_name, key, player_i, g_data, sum);
+				        					all_socket[player_i].emit('tv_newplayer', p_name, key);
+				        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+				      					 });
+
+				      				}//else end
+				      				all_socket[key] = u_s;//把這個人的socket存起來
+				     				console.log("所有的all_socket：" + all_socket);
+				      			});
+
+				      	    }
+				      	    else{//這個人在inning_user資料表中
+				       			//把資料庫的這個人刪掉，新增這個人
+				       			Inning_UserDao.deleteByCriteria({account:p_name}, function(err, result){
+				       				//query
+				       				UserDao.queryByCriteria({account:p_name},function(err, userList){
+				       					key = userList[0].user_guid;
+
+				       					Inning_UserDao.queryByCriteria({inning_gref:player_i,game_guid:player_g,online:1},function(err, sumList){
+				       						var sum = 0;
+				       						sum = sumList.length;
+				       						console.log("總人數：" + sum);
+
+				       						if(sum == 0){//判斷遊戲內人數
+												socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+												//把此人選的遊戲guid放入此局
+												Inning_UserDao.updateByCriteria(function(err, result, db){
+													db.close();
+													var key_iu = uuid.v4();
+													var inning_2 = new InningVo({iu_guid:key_iu,
+						      					 	                          inning_gref:player_i,
+						      					 	                          game_guid:player_g,
+						      					 	                          user_gref:key,
+						      					 	                          user_account:p_name,
+						      					 	                          user_pic:pic
+						      					 	                       });
+													Inning_UserDao.insertInning(inning_2, function(err, result){
+						      					 		socket.emit('client_change', p_name, key, player_i, g_data, sum);
+						        						all_socket[player_i].emit('tv_newplayer', p_name, key);
+						        						socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+						      						});
+
+												},{inning_guid:player_i},{g_gref:player_g});
+				       						} else if((sum + 1) >= g_data[0].g_p_less && (sum + 1) < g_data[0].g_p_more) {//答到開始遊戲人數最低標準
+												socket.emit('client_change', p_name, key, player_i, g_data, sum);
+												all_socket[player_i].emit('tv_newplayer', p_name);
+												socket.emit('decide'); //問他要不要開始
+				       						} else if((sum + 1) == g_data[0].g_p_more){//人數剛好
+												game_start(key, p_name, pic); //開始遊戲
+												socket.emit('client_change', p_name, key, player_i, g_data, sum);
+												all_socket[player_i].emit('tv_newplayer', p_name);
+				       						}else if(sum >= g_data[0].g_p_more){//人數超過
+									          socket.emit('join_failed');//無法加入遊戲
+									        } else{//此人加入inning_user資料表
+									        	var key_iu = uuid.v4();
+						      					var inning_1 = new InningVo({iu_guid:key_iu,
+						      					 	                          inning_gref:player_i,
+						      					 	                          game_guid:player_g,
+						      					 	                          user_gref:key,
+						      					 	                          user_account:p_name,
+						      					 	                          user_pic:pic
+						      					 	                       });
+
+						      					Inning_UserDao.insertInning(inning_1, function(err, result){
+						      					 	socket.emit('client_change', p_name, key, player_i, g_data, sum);
+						        					all_socket[player_i].emit('tv_newplayer', p_name, key);
+						        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+						      					});
+									        }
+
+				       					});
+				       				});
+				       			});//deleteEnd
+				      	    }
+				    });
+				}
+		    );//取出遊戲
 
 
-		        var sum = '';//遊戲目前總人數
-		        var result_2 = dbAccessModule.sqlQuery("SELECT COUNT(*) as sum from inning_user where inning_gref='" + player_i + "'AND game_guid='" + player_g + "'AND online=1");
-		            sum = result_2[0].sum;
-		        console.log("總人數：" + sum);
-		        if(sum == 0){//判斷遊戲內人數
-		          socket.broadcast.emit('tv_change', player_i, player_g, g_name);
-		          //把此人選的遊戲guid放入此局
-		          var sql_u = dbAccessModule.sqlQuery("UPDATE Inning SET g_gref ='" + player_g + "' WHERE inning_guid ='" + player_i + "'");
-		          var key_iu = uuid.v4();
-		          //把此人加入inning_user 資料表
-		          var sql_iu = dbAccessModule.sqlQuery("INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + key + "','" + p_name + "','" + pic + "')");
-		          socket.emit('client_change', p_name, key, player_i, g_data, sum);
-		          console.log('電視連線：' + all_socket[player_i]);
-		          all_socket[player_i].emit('tv_newplayer', p_name);
-		        } else if((sum + 1) >= g_data[0].g_p_less && (sum + 1) < g_data[0].g_p_more) {//答到開始遊戲人數最低標準
-		          socket.emit('client_change', p_name, key, player_i, g_data, sum);
-		          all_socket[player_i].emit('tv_newplayer', p_name);
-		          socket.emit('decide'); //問他要不要開始
-		        } else if((sum + 1) == g_data[0].g_p_more){//人數剛好
-		          game_start(key, p_name, pic); //開始遊戲
-		          socket.emit('client_change', p_name, key, player_i, g_data, sum);
-		          all_socket[player_i].emit('tv_newplayer', p_name);
-		        } else if(sum >= g_data[0].g_p_more){//人數超過
-		          socket.emit('join_failed');//無法加入遊戲
-		        }
 
-		      } else{//此人加入inning_user資料表 
-		        var key_iu = uuid.v4();
-		        var sql_iu = dbAccessModule.sqlQuery("INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + key + "','" + p_name + "','" + pic + "')");
-		        socket.emit('client_change', p_name, key, player_i, g_data, sum);
-		        all_socket[player_i].emit('tv_newplayer', p_name, key);
-		        socket.broadcast.emit('tv_change', player_i, player_g, g_name);
-		      }
-		      all_socket[key] = u_s;//把這個人的socket存起來
-		      console.log("所有的all_socket：" + all_socket);
+		    // if(result[0] == undefined && p_name != ''){//這個人不在inning_user資料表中
+		    //   console.log('這個人不在inning_user資料表中')
+		    //   var result_1 = dbAccessModule.sqlQuery("SELECT * from User where account ='" + p_name + "'");
+		    //   if(result_1[0] == undefined && p_name != ''){//這個人不在user資料表中
+		    //     console.log('這個人不在user資料表中')
+		    //     key = uuid.v4();
+		    //     var insert_u = dbAccessModule.sqlQuery("INSERT INTO User(user_guid,account,pic) VALUES('" + key + "','" + p_name + "','" + pic + "')");
+		    //     console.log(player_g);
+		    //     console.log(player_i);
 
-		    } else{//這個人在inning_user資料表中
-		       //把資料庫的這個人刪掉，新增這個人
-		      var del = dbAccessModule.sqlQuery("DELETE from Inning_user where user_account ='" + p_name + "'");//delete
-		      var this_user = dbAccessModule.sqlQuery("SELECT * from User where account ='" + p_name + "'");//這人在線上
-		      key = this_user[0].user_guid;
-		      
 
-		        var sum = '';//遊戲目前總人數
-		        var result_2 = dbAccessModule.sqlQuery("SELECT COUNT(*) as sum from inning_user where inning_gref='" + player_i + "'AND game_guid='" + player_g + "'AND online=1");
-		            sum = result_2[0].sum;
-		        console.log("總人數：" + sum);
-		        if(sum == 0){//判斷遊戲內人數
-		          socket.broadcast.emit('tv_change', player_i, player_g, g_name);
-		          //把此人選的遊戲guid放入此局
-		          var sql_u = dbAccessModule.sqlQuery("UPDATE Inning SET g_gref ='" + player_g + "' WHERE inning_guid ='" + player_i + "'");
-		          var key_iu = uuid.v4();
-		          //把此人加入inning_user 資料表
-		          var sql_iu = dbAccessModule.sqlQuery("INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + key + "','" + p_name + "','" + pic + "')");
-		          socket.emit('client_change', p_name, key, player_i, g_data, sum);
-		          console.log('電視連線：' + all_socket[player_i]);
-		          all_socket[player_i].emit('tv_newplayer', p_name);
-		        } else if((sum + 1) >= g_data[0].g_p_less && (sum + 1) < g_data[0].g_p_more) {//答到開始遊戲人數最低標準
-		          socket.emit('client_change', p_name, key, player_i, g_data, sum);
-		          all_socket[player_i].emit('tv_newplayer', p_name);
-		          socket.emit('decide'); //問他要不要開始
-		        } else if((sum + 1) == g_data[0].g_p_more){//人數剛好
-		          game_start(key, p_name, pic); //開始遊戲
-		          socket.emit('client_change', p_name, key, player_i, g_data, sum);
-		          all_socket[player_i].emit('tv_newplayer', p_name);
-		        } else if(sum >= g_data[0].g_p_more){//人數超過
-		          socket.emit('join_failed');//無法加入遊戲
-		        } else{//此人加入inning_user資料表 
-		        var key_iu = uuid.v4();
-		        var sql_iu = dbAccessModule.sqlQuery("INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + key + "','" + p_name + "','" + pic + "')");
-		        socket.emit('client_change', p_name, key, player_i, g_data, sum);
-		        all_socket[player_i].emit('tv_newplayer', p_name, key);
-		        socket.broadcast.emit('tv_change', player_i, player_g, g_name);
-		      }
-		      all_socket[key] = u_s;//把這個人的socket存起來
-		      console.log("所有的all_socket：" + all_socket);
-		    }
+		    //     var sum = '';//遊戲目前總人數
+		    //     var result_2 = dbAccessModule.sqlQuery("SELECT COUNT(*) as sum from inning_user where inning_gref='" + player_i + "'AND game_guid='" + player_g + "'AND online=1");
+		    //         sum = result_2[0].sum;
+		    //     console.log("總人數：" + sum);
+		    //     if(sum == 0){//判斷遊戲內人數
+		    //       socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+		    //       //把此人選的遊戲guid放入此局
+		    //       var sql_u = dbAccessModule.sqlQuery("UPDATE Inning SET g_gref ='" + player_g + "' WHERE inning_guid ='" + player_i + "'");
+		    //       var key_iu = uuid.v4();
+		    //       //把此人加入inning_user 資料表
+		    //       var sql_iu = dbAccessModule.sqlQuery("INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + key + "','" + p_name + "','" + pic + "')");
+		    //       socket.emit('client_change', p_name, key, player_i, g_data, sum);
+		    //       console.log('電視連線：' + all_socket[player_i]);
+		    //       all_socket[player_i].emit('tv_newplayer', p_name);
+		    //     } else if((sum + 1) >= g_data[0].g_p_less && (sum + 1) < g_data[0].g_p_more) {//答到開始遊戲人數最低標準
+		    //       socket.emit('client_change', p_name, key, player_i, g_data, sum);
+		    //       all_socket[player_i].emit('tv_newplayer', p_name);
+		    //       socket.emit('decide'); //問他要不要開始
+		    //     } else if((sum + 1) == g_data[0].g_p_more){//人數剛好
+		    //       game_start(key, p_name, pic); //開始遊戲
+		    //       socket.emit('client_change', p_name, key, player_i, g_data, sum);
+		    //       all_socket[player_i].emit('tv_newplayer', p_name);
+		    //     } else if(sum >= g_data[0].g_p_more){//人數超過
+		    //       socket.emit('join_failed');//無法加入遊戲
+		    //     }
+
+		    //   } else{//此人加入inning_user資料表
+		    //     var key_iu = uuid.v4();
+		    //     var sql_iu = dbAccessModule.sqlQuery("INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + key + "','" + p_name + "','" + pic + "')");
+		    //     socket.emit('client_change', p_name, key, player_i, g_data, sum);
+		    //     all_socket[player_i].emit('tv_newplayer', p_name, key);
+		    //     socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+		    //   }
+		    //   all_socket[key] = u_s;//把這個人的socket存起來
+		    //   console.log("所有的all_socket：" + all_socket);
+
+		    // } else{//這個人在inning_user資料表中
+		    //    //把資料庫的這個人刪掉，新增這個人
+		    //   var del = dbAccessModule.sqlQuery("DELETE from Inning_user where user_account ='" + p_name + "'");//delete
+		    //   var this_user = dbAccessModule.sqlQuery("SELECT * from User where account ='" + p_name + "'");//這人在線上
+		    //   key = this_user[0].user_guid;
+
+
+		    //     var sum = '';//遊戲目前總人數
+		    //     var result_2 = dbAccessModule.sqlQuery("SELECT COUNT(*) as sum from inning_user where inning_gref='" + player_i + "'AND game_guid='" + player_g + "'AND online=1");
+		    //         sum = result_2[0].sum;
+		    //     console.log("總人數：" + sum);
+		    //     if(sum == 0){//判斷遊戲內人數
+		    //       socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+		    //       //把此人選的遊戲guid放入此局
+		    //       var sql_u = dbAccessModule.sqlQuery("UPDATE Inning SET g_gref ='" + player_g + "' WHERE inning_guid ='" + player_i + "'");
+		    //       var key_iu = uuid.v4();
+		    //       //把此人加入inning_user 資料表
+		    //       var sql_iu = dbAccessModule.sqlQuery("INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + key + "','" + p_name + "','" + pic + "')");
+		    //       socket.emit('client_change', p_name, key, player_i, g_data, sum);
+		    //       console.log('電視連線：' + all_socket[player_i]);
+		    //       all_socket[player_i].emit('tv_newplayer', p_name);
+		    //     } else if((sum + 1) >= g_data[0].g_p_less && (sum + 1) < g_data[0].g_p_more) {//答到開始遊戲人數最低標準
+		    //       socket.emit('client_change', p_name, key, player_i, g_data, sum);
+		    //       all_socket[player_i].emit('tv_newplayer', p_name);
+		    //       socket.emit('decide'); //問他要不要開始
+		    //     } else if((sum + 1) == g_data[0].g_p_more){//人數剛好
+		    //       game_start(key, p_name, pic); //開始遊戲
+		    //       socket.emit('client_change', p_name, key, player_i, g_data, sum);
+		    //       all_socket[player_i].emit('tv_newplayer', p_name);
+		    //     } else if(sum >= g_data[0].g_p_more){//人數超過
+		    //       socket.emit('join_failed');//無法加入遊戲
+		    //     } else{//此人加入inning_user資料表
+		    //     var key_iu = uuid.v4();
+		    //     var sql_iu = dbAccessModule.sqlQuery("INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + key + "','" + p_name + "','" + pic + "')");
+		    //     socket.emit('client_change', p_name, key, player_i, g_data, sum);
+		    //     all_socket[player_i].emit('tv_newplayer', p_name, key);
+		    //     socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+		    //   }
+		    //   all_socket[key] = u_s;//把這個人的socket存起來
+		    //   console.log("所有的all_socket：" + all_socket);
+		    // }
 		  })
 
 		  //斷線處理
@@ -315,7 +436,7 @@ module.exports = {
 		          all_guid.push(all_game[i].game_guid);
 		          all_name.push(all_game[i].g_name);
 		        }
-		        //socket.emit('qrcode',all_game,key);				
+		        //socket.emit('qrcode',all_game,key);
 		        console.log('所有遊戲名稱' + all_guid);
 		        console.log('所有遊戲名稱' + all_name);
 
@@ -555,7 +676,7 @@ module.exports = {
 		          all_guid.push(all_game[i].game_guid);
 		          all_name.push(all_game[i].g_name);
 		        }
-		        //socket.emit('qrcode',all_game,key);				
+		        //socket.emit('qrcode',all_game,key);
 		        console.log('所有遊戲名稱' + all_guid);
 		        console.log('所有遊戲名稱' + all_name);
 
@@ -608,7 +729,7 @@ module.exports = {
 		      all_socket[new_data.p.guid].emit('buy_already', new_data.players);
 		      console.log('現在new_data這個人的位置' + new_data.p.position);
 		      all_socket[player_i].emit('buy_already_tv', new_data.players, walk_number, new_data.p);
-		      all_socket[player_i].emit('infor_tv'); //改變tv畫面 
+		      all_socket[player_i].emit('infor_tv'); //改變tv畫面
 		    } else {
 		      console.log('這個人的金錢不能買');
 		    }
@@ -658,7 +779,7 @@ module.exports = {
 		            all_guid.push(all_game[i].game_guid);
 		            all_name.push(all_game[i].g_name);
 		          }
-		          //socket.emit('qrcode',all_game,key);				
+		          //socket.emit('qrcode',all_game,key);
 		          console.log('所有遊戲名稱' + all_guid);
 		          console.log('所有遊戲名稱' + all_name);
 
@@ -712,7 +833,7 @@ module.exports = {
 		  })
 
 		  socket.on('play_again', function() {
-		    //去資料庫找出在這個菊裡面的兩個人，在叫他們去呼叫一次selecter(players,player_i)		
+		    //去資料庫找出在這個菊裡面的兩個人，在叫他們去呼叫一次selecter(players,player_i)
 		    var now_players = [];
 		    var players_name = [];
 		    var sql_g_name = "SELECT user_gref, user_account from Inning_user where inning_gref ='" + player_i + "'";
@@ -768,7 +889,7 @@ module.exports = {
 		          all_guid.push(all_game[i].game_guid);
 		          all_name.push(all_game[i].g_name);
 		        }
-		        //socket.emit('qrcode',all_game,key);				
+		        //socket.emit('qrcode',all_game,key);
 		        console.log('所有遊戲名稱' + all_guid);
 		        console.log('所有遊戲名稱' + all_name);
 
@@ -807,7 +928,7 @@ module.exports = {
 
 
 		    } else {
-		      //console.log('這是贏家的分數：'+ win_total_score);		
+		      //console.log('這是贏家的分數：'+ win_total_score);
 		      console.log('這是新的牌局長度:' + new_board.board.length + '牌局' + new_board.board);
 		      for (var i = 0; i < new_board.players.length; i++) {
 		        all_socket[new_board.players[i].guid].emit('new_board', new_board.board);
@@ -850,7 +971,7 @@ module.exports = {
 		            all_guid.push(all_game[i].game_guid);
 		            all_name.push(all_game[i].g_name);
 		          }
-		          //socket.emit('qrcode',all_game,key);				
+		          //socket.emit('qrcode',all_game,key);
 		          console.log('所有遊戲名稱' + all_guid);
 		          console.log('所有遊戲名稱' + all_name);
 
@@ -878,7 +999,7 @@ module.exports = {
 		            all_guid.push(all_game[i].game_guid);
 		            all_name.push(all_game[i].g_name);
 		          }
-		          //socket.emit('qrcode',all_game,key);				
+		          //socket.emit('qrcode',all_game,key);
 		          console.log('所有遊戲名稱' + all_guid);
 		          console.log('所有遊戲名稱' + all_name);
 
@@ -946,7 +1067,7 @@ module.exports = {
 		        }
 		        console.log(result);
 		      });
-		  }) 
+		  })
 
 		  socket.on('exit', function(u_guid) {
 		    //刪除這個人
@@ -974,7 +1095,7 @@ module.exports = {
 		        }
 		        for (var s = 0; s < result.length; s++) {
 		          console.log('這是要退出的所有人之一' + result[s].user_gref);
-		          all_socket[result[s].user_gref].emit('do_exit'); //退出那個人	
+		          all_socket[result[s].user_gref].emit('do_exit'); //退出那個人
 		        }
 		        var tv_sent = over();
 
@@ -995,7 +1116,7 @@ module.exports = {
 
 
 
-		    //確認人數夠不夠繼續玩					
+		    //確認人數夠不夠繼續玩
 		    var sql_count = "SELECT COUNT(*) as sum from inning_user where inning_gref='" + player_i + "'AND game_guid='" + player_g + "'";
 		    console.log(sql_count);
 		    db.query(sql_count, function(err, result) {
@@ -1031,10 +1152,10 @@ module.exports = {
 		              all_socket[result[i].user_gref].emit('exit_hide'); //隱藏那個人的退出資訊
 		            }
 		          });
-		          all_socket[u_guid].emit('do_exit'); //退出那個人	
-		          all_socket[player_i].emit('not_enough_tv', player_i, player_g, g_name); //電視			
+		          all_socket[u_guid].emit('do_exit'); //退出那個人
+		          all_socket[player_i].emit('not_enough_tv', player_i, player_g, g_name); //電視
 		        }
-		        //人數夠就可以繼續玩	
+		        //人數夠就可以繼續玩
 		        else {
 
 		          all_socket[u_guid].emit('do_exit'); //退出那個人

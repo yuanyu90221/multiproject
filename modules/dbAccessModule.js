@@ -1,5 +1,5 @@
 module.exports = {
-	
+
 	sqlQuery: function(str, callback, db){//joanne 20160718
       db.query(str, function(err, result) {
         if (err) {
@@ -89,7 +89,7 @@ module.exports = {
 	},
 
 	game_start: function(key, p_name, pic, db) { //遊戲開始呼叫的function
-	    //此人加入inning_user資料表    
+	    //此人加入inning_user資料表
 	    var key_iu = uuid.v4();
 	    console.log(key_iu);
 	    var sql_iu = "INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic, online) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + key + "','" + p_name + "','" + pic + "', '" + 1 + "')";
@@ -139,7 +139,7 @@ module.exports = {
 	        console.log('這個人目前成績' + result[0].score);
 	        all_socket[player_i].emit('score_before_tv', result[0].score);
 
-	      }); //+++++++++++++++++++++++++++++++     
+	      }); //+++++++++++++++++++++++++++++++
 	    }
 	},
 
