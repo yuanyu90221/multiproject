@@ -43,6 +43,8 @@ module.exports = {
 					    console.log('all_game_guid');
 					    socket.emit('qrcode', result, key);
 			      		all_socket[key] = tv_s;
+			      		console.log('key', key);
+			      		console.log(all_socket[key]);
 					}
 			    );//取出所有遊戲
 		    });// new inning
@@ -83,7 +85,7 @@ module.exports = {
 					      					 console.log('這個人不在user資料表中');
 					      					  var key_iu = uuid.v4();
 					      					  var nUser = new UserVo();
-					      					  nUser.setUser_guid(key);
+					      					  nUser.setUser_guid(key_iu);
 					      					  nUser.setAccount(p_name);
 					      					  nUser.setPic(pic);
 					      					  UserDao.insertUser(nUser,function(err, result){
@@ -102,14 +104,14 @@ module.exports = {
 															var inning_2 = new InningVo({iu_guid:key_iu,
 								      					 	                          inning_gref:player_i,
 								      					 	                          game_guid:player_g,
-								      					 	                          user_gref:key,
+								      					 	                          user_gref:key_iu,
 								      					 	                          user_account:p_name,
 								      					 	                          user_pic:pic
 								      					 	                       });
 															Inning_UserDao.insertInning(inning_2, function(err, result){
-								      					 		socket.emit('client_change', p_name, key, player_i, g_data, sum);
+								      					 		socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
 								      					 		console.log('電視連線：' + all_socket[player_i]);
-								        						all_socket[player_i].emit('tv_newplayer', p_name, key);
+								        						all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
 								        						// socket.broadcast.emit('tv_change', player_i, player_g, g_name);
 								      						});
 
@@ -129,14 +131,14 @@ module.exports = {
 								      					var inning_1 = new InningVo({iu_guid:key_iu,
 								      					 	                          inning_gref:player_i,
 								      					 	                          game_guid:player_g,
-								      					 	                          user_gref:key,
+								      					 	                          user_gref:key_iu,
 								      					 	                          user_account:p_name,
 								      					 	                          user_pic:pic
 								      					 	                       });
 
 								      					Inning_UserDao.insertInning(inning_1, function(err, result){
-								      					 	socket.emit('client_change', p_name, key, player_i, g_data, sum);
-								        					all_socket[player_i].emit('tv_newplayer', p_name, key);
+								      					 	socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
+								        					all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
 								        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
 								      					});
 											        }
@@ -146,22 +148,29 @@ module.exports = {
 					      				}
 					      				else{//此人加入inning_user資料表
 					      					 var key_iu = uuid.v4();
-					      					 var inning_1 = new InningVo({iu_guid:key_iu,
-					      					 	                          inning_gref:player_i,
-					      					 	                          game_guid:player_g,
-					      					 	                          user_gref:key,
-					      					 	                          user_account:p_name,
-					      					 	                          user_pic:pic
-					      					 	                       });
+					      					 	Inning_UserDao.queryByCriteria({inning_gref:player_i,game_guid:player_g,online:1},function(err, sumList){
+						       						var sum = 0;
+						       						sum = sumList.length;
+						       						console.log("總人數：" + sum);
+							      					 var inning_1 = new InningVo({iu_guid:key_iu,
+							      					 	                          inning_gref:player_i,
+							      					 	                          game_guid:player_g,
+							      					 	                          user_gref:key_iu,
+							      					 	                          user_account:p_name,
+							      					 	                          user_pic:pic
+							      					 	                       });
 
-					      					 Inning_UserDao.insertInning(inning_1, function(err, result){
-					      					 	socket.emit('client_change', p_name, key, player_i, g_data, sum);
-					        					all_socket[player_i].emit('tv_newplayer', p_name, key);
-					        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
-					      					 });
+							      					 Inning_UserDao.insertInningUser(inning_1, function(err, result){
+							      					 	socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
+							      					 	console.log(player_i);
+							      					 	console.log(all_socket[player_i]);
+							        					all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
+							        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+							      					 });
+					      						});
 
 					      				}//else end
-					      				all_socket[key] = u_s;//把這個人的socket存起來
+					      				all_socket[key_iu] = u_s;//把這個人的socket存起來
 					     				console.log("所有的all_socket：" + all_socket);
 					      			});
 
