@@ -518,7 +518,6 @@ module.exports = {
 							all_score.push(resultUser[i].score_sum);
 							//all_score.push(resultUser[i].score_sum);//把guid都放在陣列裡面
 
-
 							console.log(all_name);
 							console.log(all_score);
 
@@ -526,7 +525,6 @@ module.exports = {
 							//console.log(all_score);
 						}
 						all_socket[player_i].emit('all_score_tv', all_name, all_score);
-
 
 		        	});
 		        }
@@ -619,23 +617,20 @@ module.exports = {
 
 		    var end_g = Game_f.check_end();
 
-		    if (end_g != undefined && new_board != undefined) {
-
+		    if (end_g != undefined && new_board != undefined) {// first case
 
 		      for (var k = 0; k < end_g.all_score.length; k++) { //存入成績
 
 		        add_score(end_g.all_score[k].fliped, new_board.player_obj[k].guid);
 		      }
-
-		      var win_name = "SELECT user_account from Inning_user where score ='" + end_g.winner + "'";
-		      console.log(win_name);
-		      db.query(win_name, function(err, result) {
-		        if (err) {
+		      Inning_UserDao.queryByCriteria({score:end_g.winner}, function(err, result){
+		      	 if (err) {
 		          console.log(err);
 		          return;
 		        }
 		        console.log(result);
-
+		        if(result.length==0)
+		        	return;
 		        var win_n = []; //存目前贏的人的名字
 		        for (var m = 0; m < result.length; m++) { //可能不止一個人贏
 		          win_n.push(result[m].user_account);
@@ -644,28 +639,27 @@ module.exports = {
 		        var all_name = [];
 		        var all_guid = [];
 		        //所有遊戲名稱
-		        db.query('SELECT g_name,game_guid FROM ' + 'Game', function(err, results, fields) {
-		          if (err) throw err;
-		          var all_game = results;
-		          console.log(all_game);
-		          for (var i = 0; i < all_game.length; i++) {
-		            all_guid.push(all_game[i].game_guid);
-		            all_name.push(all_game[i].g_name);
-		          }
-		          //socket.emit('qrcode',all_game,key);
-		          console.log('所有遊戲名稱' + all_guid);
-		          console.log('所有遊戲名稱' + all_name);
+		        GameDao.queryByCriteria({}, function(err, results){
+					if (err) throw err;
+					if (all_game.length == 0) return;
+					var all_game = results;
+					console.log(all_game);
+					for (var i = 0; i < all_game.length; i++) {
+						all_guid.push(all_game[i].game_guid);
+						all_name.push(all_game[i].g_name);
+					}
+					//socket.emit('qrcode',all_game,key);
+					console.log('所有遊戲名稱' + all_guid);
+					console.log('所有遊戲名稱' + all_name);
 
-		          for (var j = 0; j < new_board.player_obj.length; j++) {
-		            all_socket[new_board.player_obj[j].guid].emit('g_over', win_n);
-		            all_socket[new_board.player_obj[j].guid].emit('g_button', new_board.player_obj[j], all_name, all_guid, player_i);
-		          }
-		          all_socket[player_i].emit('g_over_tv', win_n);
+					for (var j = 0; j < new_board.player_obj.length; j++) {
+						all_socket[new_board.player_obj[j].guid].emit('g_over', win_n);
+						all_socket[new_board.player_obj[j].guid].emit('g_button', new_board.player_obj[j], all_name, all_guid, player_i);
+					}
 
-		        })
-
-
-		      });
+					all_socket[player_i].emit('g_over_tv', win_n);
+		        });// game query
+		      });// InningUser query
 		    }
 
 		    if (new_board != undefined && new_board.fliped != null) {
@@ -814,59 +808,34 @@ module.exports = {
 		      console.log('贏的人成績是：' + win.win_p.score);
 		      console.log('所有玩家' + win.players);
 
-		      if (win.win_p.score == 10 && win.inning == 8) { //表示有人贏了
+		      if ((win.win_p.score == 10 && win.inning == 8) || (win.win_p.score == 5 && win.inning == 8) ) { //表示有人贏了
 		        add_score(10, win.win_p.guid);
 
 		        var all_name = [];
 		        var all_guid = [];
 		        //所有遊戲名稱
-		        db.query('SELECT g_name,game_guid FROM ' + 'Game', function(err, results, fields) {
-		          if (err) throw err;
-		          var all_game = results;
-		          console.log(all_game);
-		          for (var i = 0; i < all_game.length; i++) {
-		            all_guid.push(all_game[i].game_guid);
-		            all_name.push(all_game[i].g_name);
-		          }
-		          //socket.emit('qrcode',all_game,key);
-		          console.log('所有遊戲名稱' + all_guid);
-		          console.log('所有遊戲名稱' + all_name);
+		        GameDao.queryByCriteria({}, function(err, results){
+					if (err) throw err;
+					if(results.length==0) return;
+					var all_game = results;
+					console.log(all_game);
+					for (var i = 0; i < all_game.length; i++) {
+						all_guid.push(all_game[i].game_guid);
+						all_name.push(all_game[i].g_name);
+					}
+					//socket.emit('qrcode',all_game,key);
+					console.log('所有遊戲名稱' + all_guid);
+					console.log('所有遊戲名稱' + all_name);
 
-		          for (var k = 0; k < win.players.length; k++) {
-		            all_socket[win.players[k].guid].emit('end_paper');
-		            all_socket[win.players[k].guid].emit('g_button', all_name, all_guid, player_i);
-		          }
-		          all_socket[player_i].emit('final_end_paper_tv', win.win_p, win.players);
+					for (var k = 0; k < win.players.length; k++) {
+						all_socket[win.players[k].guid].emit('end_paper');
+						all_socket[win.players[k].guid].emit('g_button', all_name, all_guid, player_i);
+					}
 
-		        })
-		      }
+					all_socket[player_i].emit('final_end_paper_tv', win.win_p, win.players);
+		        });// query game
+		      }// winner
 
-		      if (win.win_p.score == 5 && win.inning == 8) {
-
-		        var all_name = [];
-		        var all_guid = [];
-		        //所有遊戲名稱
-		        db.query('SELECT g_name,game_guid FROM ' + 'Game', function(err, results, fields) {
-		          if (err) throw err;
-		          var all_game = results;
-		          console.log(all_game);
-		          for (var i = 0; i < all_game.length; i++) {
-		            all_guid.push(all_game[i].game_guid);
-		            all_name.push(all_game[i].g_name);
-		          }
-		          //socket.emit('qrcode',all_game,key);
-		          console.log('所有遊戲名稱' + all_guid);
-		          console.log('所有遊戲名稱' + all_name);
-
-		          for (var d = 0; d < win.players.length; d++) {
-		            add_score(5, win.players[d].guid);
-		            all_socket[win.players[d].guid].emit('end_paper');
-		            all_socket[win.players[d].guid].emit('g_button', all_name, all_guid, player_i);
-		          }
-
-		          all_socket[player_i].emit('final_end_paper_tv', win.win_p, win.players);
-		        })
-		      }
 
 		      if (win.win_p.score == 5 && win.inning < 8) {
 		        for (var d = 0; d < win.players.length; d++) {
@@ -888,7 +857,7 @@ module.exports = {
 
 
 		    }
-		  })
+		  });//btn_click
 
 		  socket.on('leave_g', function(tv_guid, u_guid, name, game_guid) { //離開遊戲
 		      console.log('要離開這個人的guid是：' + u_guid);
