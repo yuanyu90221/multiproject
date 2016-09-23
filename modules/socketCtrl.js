@@ -791,7 +791,7 @@ module.exports = {
 
 		      all_socket[player_i].emit('new_board_tv', new_board.board, new_board.players);
 		    }
-		  })
+		  })//b_click
 
 		  socket.on('btn_click', function(b_id, b_val, u_guid, i_d) {
 		    console.log('這個人的編號' + b_id + '這個人的資訊' + u_guid + '這個按鈕的值' + b_val + '這麼按鈕的編號' + i_d);
@@ -855,7 +855,6 @@ module.exports = {
 		        all_socket[player_i].emit('end_paper_tv', win.win_p, win.players);
 		      }
 
-
 		    }
 		  });//btn_click
 
@@ -886,96 +885,76 @@ module.exports = {
 		    //刪除這個人
 		    console.log('要離開這個人的guid是：' + u_guid);
 
-		    var sql_p_name = "SELECT user_account, game_guid from Inning_user where user_gref ='" + u_guid + "'";
-		    console.log(sql_p_name);
-		    db.query(sql_p_name, function(err, result) {
-		      if (err) {
-		        console.log(err);
-		        return;
+		    Inning_UserDao.queryByCriteria({user_gref:u_guid}, function(err, result){
+		    	if (err) {
+			        console.log(err);
+			        return;
+				}
+				console.log('這是要退出的名字' + result[0].user_account);
+				console.log('這是要退出的局' + result[0].game_guid); //這個局的名字
+				all_socket[player_i].emit('tv_name_split', result[0].user_account); //電視
+				//找出這局的所有人
+				Inning_UserDao.queryByCriteria({game_guid:result[0].game_guid}, function(err, result_1){
+					 if (err) {
+			          console.log(err);
+			          return;
+			        }
+			        for (var s = 0; s < result_1.length; s++) {
+			          console.log('這是要退出的所有人之一' + result_1[s].user_gref);
+			          all_socket[result_1[s].user_gref].emit('do_exit'); //退出那個人
+			        }
+			        var tv_sent = over();
+			        //把這個局裡面的人都刪掉
+					Inning_UserDao.deleteByCriteria({game_guid:result[0].game_guid},function(err, result_2){
+						if (err) {
+				          console.log(err);
+				          return;
+				        }
+				        console.log(result_2)
+				        //確認人數夠不夠繼續玩
+				        Inning_UserDao.queryByCriteria({inning_gref:player_i,game_guid:player_g}, function(err, sumList){
+				        	 if (err) {
+						        console.log(err);
+						        return;
+						     }
+						     var sum = sumList.length;
+						     console.log("這個人退出之後的總人數：" + sum);
+						     GameDao.queryByCriteria({game_guid:player_g}, function(err, remainList){
+						     	if (err) {
+						          console.log(err);
+						          return;
+						        }
+						        if(remainList.length==0)
+						        	return;
+						        var g_data = remainList;
+						        var g_name = g_data[0].g_name;
+						        console.log("名字是：" + g_name);
+		        				console.log("這是遊戲的最少人數" + g_data[0].g_p_less);
+		        				 //找出這個遊戲需要多少人玩
+		        				if (g_data[0].g_p_less > sum) {
+		        					Inning_UserDao.queryByCriteria({inning_gref:player_i},function(err, lastResult){
+		        						 if (err) {
+							              console.log(err);
+							              return;
+							            }
 
-		      }
-		      console.log('這是要退出的名字' + result[0].user_account);
-		      console.log('這是要退出的局' + result[0].game_guid); //這個局的名字
-		      all_socket[player_i].emit('tv_name_split', result[0].user_account); //電視
+							            for (var i = 0; i < lastResult.length; i++) {
+							              console.log(lastResult[i].user_gref);
+							              all_socket[lastResult[i].user_gref].emit('exit_hide'); //隱藏那個人的退出資訊
+							            }
+		        					});
 
-		      //找出這局的所有人
-		      var all_name = "SELECT user_gref from Inning_user where game_guid ='" + result[0].game_guid + "'";
-		      console.log(all_name);
-		      db.query(all_name, function(err, result) {
-		        if (err) {
-		          console.log(err);
-		          return;
-		        }
-		        for (var s = 0; s < result.length; s++) {
-		          console.log('這是要退出的所有人之一' + result[s].user_gref);
-		          all_socket[result[s].user_gref].emit('do_exit'); //退出那個人
-		        }
-		        var tv_sent = over();
+		        					all_socket[player_i].emit('not_enough_tv', player_i, player_g, g_name); //電視
+		        				}
+		        				all_socket[u_guid].emit('do_exit'); //退出那個人
+						     });
+				        });//
+					});//delete end
+				});//query end
 
-		      });
+		    });//
+		  });
 
-		      //把這個局裡面的人都刪掉
-		      var sql_de = "DELETE FROM Inning_user WHERE game_guid ='" + result[0].game_guid + "'";
-		      console.log(sql_de);
-		      db.query(sql_de, function(err, result) {
-		        if (err) {
-		          console.log(err);
-		          return;
-		        }
-		        console.log(result);
-		      });
-		    });
-
-		    //確認人數夠不夠繼續玩
-		    var sql_count = "SELECT COUNT(*) as sum from inning_user where inning_gref='" + player_i + "'AND game_guid='" + player_g + "'";
-		    console.log(sql_count);
-		    db.query(sql_count, function(err, result) {
-		      if (err) {
-		        console.log(err);
-		        return;
-		      }
-		      console.log(result);
-		      var sum = result[0].sum;
-		      console.log("這個人退出之後的總人數：" + sum);
-
-		      var sql_g_name = "SELECT * from Game where game_guid ='" + player_g + "'";
-		      db.query(sql_g_name, function(err, result) {
-		        if (err) {
-		          console.log(err);
-		          return;
-		        }
-		        var g_data = result;
-		        var g_name = g_data[0].g_name;
-		        console.log("名字是：" + g_name);
-		        console.log("這是遊戲的最少人數" + g_data[0].g_p_less);
-		        //找出這個遊戲需要多少人玩
-		        if (g_data[0].g_p_less > sum) {
-		          var sql_g_name = "SELECT * from Inning_user where inning_gref ='" + player_i + "'";
-		          db.query(sql_g_name, function(err, result) {
-		            if (err) {
-		              console.log(err);
-		              return;
-		            }
-
-		            for (var i = 0; i < result.length; i++) {
-		              console.log(result[i].user_gref);
-		              all_socket[result[i].user_gref].emit('exit_hide'); //隱藏那個人的退出資訊
-		            }
-		          });
-		          all_socket[u_guid].emit('do_exit'); //退出那個人
-		          all_socket[player_i].emit('not_enough_tv', player_i, player_g, g_name); //電視
-		        }
-		        //人數夠就可以繼續玩
-		        else {
-
-		          all_socket[u_guid].emit('do_exit'); //退出那個人
-
-		        }
-		      });
-
-		    });
-		  })
-
-		});
+		});//exit
 	}
 };
