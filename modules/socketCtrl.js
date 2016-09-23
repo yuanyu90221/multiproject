@@ -863,31 +863,24 @@ module.exports = {
 		      console.log('要離開這個人的guid是：' + u_guid);
 		      console.log('要換的遊戲名稱是：' + name);
 		      console.log('新遊戲的guid是：' + game_guid);
-
-		      var sql_p_name = "SELECT user_account from Inning_user where user_gref ='" + u_guid + "'";
-		      console.log(sql_p_name);
-		      db.query(sql_p_name, function(err, result) {
-		        if (err) {
+		      Inning_UserDao.queryByCriteria({user_gref:u_guid}, function(err, result){
+		      	 if (err) {
 		          console.log(err);
 		          return;
 
 		        }
 		        console.log('這是要退出的名字' + result[0].user_account);
 		        all_socket[player_i].emit('tv_name_split', result[0].user_account); //電視
-
 		      });
-
-		      var sql_score = "UPDATE Inning_user SET online='" + 0 + "' WHERE user_gref ='" + u_guid + "'";
-
-		      console.log(sql_score);
-		      db.query(sql_score, function(err, result) {
-		        if (err) {
+		      Inning_UserDao.updateByCriteria(function(err, result, db){
+		      	 db.close();
+		      	 if (err) {
 		          console.log(err);
 		          return;
 		        }
 		        console.log(result);
-		      });
-		  })
+		      },{user_guid:u_guid},{online:0});
+		  });// leave_g
 
 		  socket.on('exit', function(u_guid) {
 		    //刪除這個人
