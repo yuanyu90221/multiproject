@@ -36,5 +36,16 @@ module.exports = {
 				db.close();
 			});
 		});
+	},
+	'updateByCriteria': function(callback, criteria, updateAttributes){
+		mongoDBUtil.useConnction('Inning_user', function(collection, db) {
+			collection.updateOne(criteria, {$set: updateAttributes},
+			function(err, result){
+				if(err)
+					throw err;
+				callback(err, result, db);
+				//db.close();
+			});
+		});
 	}
 };
