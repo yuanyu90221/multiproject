@@ -248,6 +248,9 @@ module.exports = {
 					console.log(err);
 					return;
 				}
+				if(result.length==0)
+					return;
+
 				var g_data = result;
 				var g_name = g_data[0].g_name;
 				console.log("名字是：" + g_name);
@@ -289,36 +292,29 @@ module.exports = {
 		  socket.on('wait_other', function(u_guid, u_name, pic) { //把這個人加進遊戲中
 		    //如果這個人已經在user_guid裡面了 而且在線上了，就不用加
 		    console.log('等待別人的資料：' + u_guid, u_name, pic);
-		    var sql_iu = "SELECT user_account from Inning_user where inning_gref ='" + player_i + "' AND online ='" + 1 + "' AND game_guid='" + player_g + "' AND user_gref='" + u_guid + "'";
-		    console.log(sql_iu);
-		    db.query(sql_iu, function(err, result) {
-		      if (err) {
-		        console.log(err);
-		        return;
-		      }
-		      console.log(result);
 
-		      if (result[0] == undefined) {
-		        var key_iu = uuid.v4();
-		        console.log(key_iu);
-		        var sql_iu = "INSERT INTO Inning_user(iu_guid,inning_gref,game_guid, user_gref,user_account,user_pic, online) VALUES('" + key_iu + "','" + player_i + "','" + player_g + "','" + u_guid + "','" + u_name + "','" + pic + "','" + 1 + "')";
-		        console.log(sql_iu);
-		        db.query(sql_iu, function(err, result) {
-		          if (err) {
-		            console.log(err);
-		            return;
-		          }
-		          console.log(result);
-		        });
-		        socket.emit('div_hide');
-		        all_socket[player_i].emit('tv_newplayer', u_name, u_guid, player_i, player_g);
-		      } else {
-		        socket.emit('div_hide');
-		        all_socket[player_i].emit('tv_newplayer', u_name, u_guid, player_i, player_g);
-		      }
+		    Inning_UserDao.queryByCriteria({inning_gref:player_i,online:1,game_guid:player_g,user_gref:u_guid},function(err, result){
+		    	if (err) {
+			        console.log(err);
+			        return;
+				}
+				console.log(result);
+				if (result[0] == undefined) {
+					var key_iu = uuid.v4();
+		        	console.log(key_iu);
+		        	Inning_UserDao.insertInningUser({iu_guid:key_iu,inning_gref:player_i,game_guid:player_g,user_gref:u_guid,user_account:u_name,user_pic:pic,online:1},function(err, result1){
+		        		if(err){
+		        			console.log(err);
+		        			return;
+		        		}
+		        		console.log(result1);
 
+		        	});
+				}
+		      	socket.emit('div_hide');
+			    all_socket[player_i].emit('tv_newplayer', u_name, u_guid, player_i, player_g);
 		    });
-		  })
+		  });// wait_other
 
 		  socket.on('sendID', function(players, p, card_id, dealcard) {
 		    console.log('可以出的牌' + dealcard);
@@ -966,8 +962,6 @@ module.exports = {
 
 		      });
 
-
-
 		      var sql_score = "UPDATE Inning_user SET online='" + 0 + "' WHERE user_gref ='" + u_guid + "'";
 
 		      console.log(sql_score);
@@ -1023,9 +1017,6 @@ module.exports = {
 		        console.log(result);
 		      });
 		    });
-
-
-
 
 		    //確認人數夠不夠繼續玩
 		    var sql_count = "SELECT COUNT(*) as sum from inning_user where inning_gref='" + player_i + "'AND game_guid='" + player_g + "'";
