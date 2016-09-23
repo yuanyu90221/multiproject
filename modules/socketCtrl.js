@@ -50,10 +50,7 @@ module.exports = {
 		      console.log(err || result)
 		    });//set time*/
 
-
-
-
-		  })
+		});
 
 		  //使用者連線
 		  socket.on('client', function(p_name, pic) {
@@ -242,89 +239,45 @@ module.exports = {
 		  //斷線處理
 		  socket.on('disconnect', function() { //是誰斷線了？哪一局 哪個遊戲 的 哪個人？
 		    console.log('獲得斷線事件receive disconnect event');
-
-
-
 		    console.log('這個人的socket是：' + socket);
 		    console.log('必須作處理');
-
-
-
-
 		    var g_name = '';
 		    var g_data = '';
-		    var sql_g_name = "SELECT * from Game where game_guid ='" + player_g + "'";
-
-		    db.query(sql_g_name, function(err, result) {
-		      if (err) {
-		        console.log(err);
-		        return;
-		      }
-
-		      g_data = result;
-		      //g_name = g_data[0].g_name;
-		      console.log("名字是：" + g_name);
-		      //console.log("這是遊戲的最少人數"+g_data[0].g_p_less);
+		    GameDao.queryByCriteria({game_guid:player_g}, function(err, result){
+				if(err){
+					console.log(err);
+					return;
+				}
+				var g_data = result;
+				var g_name = g_data[0].g_name;
+				console.log("名字是：" + g_name);
+				Inning_UserDao.queryByCriteria({inning_gref:player_i,game_guid:player_g}, function(err, inningList){
+					console.log(inningList);
+					var d = '';
+					for (var i = 0; i < inningList.length; i++) {
+						if (all_socket[inningList[i].user_gref] == socket) {
+							console.log('找到斷線的人，他的guid是：' + inningList[i].user_gref + '名字是：' + inningList[i].user_account);
+							d = inningList[i].user_gref; // 這個人的gref
+							//更新這個人的online狀態為false
+							Inning_UserDao.updateByCriteria(function(err, result, db){
+								db.close();
+								if(err){
+									console.log(err);
+									return;
+								}
+								Inning_UserDao.queryByCriteria({inning_gref:player_i,game_guid:player_g,online:1},function(err,currentList){
+									var sum = currentList.length;
+									console.log("斷線之後的總人數：" + sum);
+									if (sum < g_data[0].g_p_less) {
+										var people_guid = over();
+									}
+								});
+							},{user_gref:d},{online:0});
+						}
+					}
+				});
 		    });
-
-
-
-
-		    var sql_p = "SELECT * from inning_user where inning_gref='" + player_i + "'AND game_guid='" + player_g + "'";
-
-		    console.log(sql_p);
-		    db.query(sql_p, function(err, result) {
-		      if (err) {
-		        console.log(err);
-		        return;
-		      }
-		      console.log(result);
-		      var d = '';
-		      for (var i = 0; i < result.length; i++) {
-		        if (all_socket[result[i].user_gref] == socket) {
-		          console.log('找到斷線的人，他的guid是：' + result[i].user_gref + '名字是：' + result[i].user_account);
-		          d = result[i].user_gref; // 這個人的gref
-
-		          //更新這個人的online狀態為false
-		          var sql_score = "UPDATE Inning_user SET online='" + 0 + "' WHERE user_gref ='" + d + "'";
-
-		          console.log(sql_score);
-		          db.query(sql_score, function(err, result) {
-		            if (err) {
-		              console.log(err);
-		              return;
-		            }
-		            console.log(result);
-		          });
-
-		          var sql_p_sum = "SELECT COUNT(*) as sum from inning_user where inning_gref='" + player_i + "'AND game_guid='" + player_g + "'AND online=1";
-		          console.log(sql_p_sum);
-		          db.query(sql_p_sum, function(err, result) {
-		            if (err) {
-		              console.log(err);
-		              return;
-		            }
-		            console.log(result);
-		            sum = result[0].sum;
-		            console.log("斷線之後的總人數：" + sum);
-
-
-
-		            if (sum < g_data[0].g_p_less) {
-		              var people_guid = over();
-
-		            }
-
-
-
-		          });
-
-		        }
-		      }
-
-
-		    });
-		  })
+		  });// disconnect
 
 		  socket.on('g_start', function(u_guid, u_name, pic, number) { //直接開始
 		    flip_select_number = number;
