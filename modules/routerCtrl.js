@@ -38,7 +38,7 @@ module.exports.routerCtrl = function(app, player_g, host, port){
 		              '</head>'+
 		              '<body><h1>測試</h1></body>'
 		           '</html>';
-		sendmail.sendMail('yuanyu90221@gmail.com', 'multiproject@issue',html,function(err, info){
+		sendmail.sendMail('Kking426g@gmail.com', 'multiproject@issue',html,function(err, info){
 			if(err)
 				console.log(err);
 			else{
