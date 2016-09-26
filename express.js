@@ -10,7 +10,7 @@ var Game = require('./ox_game'),
     Game_s = require('./seven_game'),
     config = require("./mysql_config"),//連到mysql
     db = config.db,
-    uuid = require('node-uuid'),// 用來產生類似 GUID 的字串  
+    uuid = require('node-uuid'),// 用來產生類似 GUID 的字串
     utilObj = require('./util'),
     all_inning = [],//所有電視的guid
     all_game_guid = [],//所有遊戲的guid
@@ -45,14 +45,14 @@ app.use('/flags', express.static(__dirname + '/all_flag'));
 //     res.writeHead(200, {'Content-Type':'text/html'});
 //     res.end(page);
 //   };
-  
+
 //   res.render('index.jade',{'host':dbconfig.host});
 // });
 
   var flip_select_number = '';
   var walk_number = '';
 
- 
+
 var dbAccessModule = require('./modules/dbAccessModule');
 //console.log(dbAccessModule);
 var socketCtrl = require('./modules/socketCtrl');

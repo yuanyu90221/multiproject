@@ -1,10 +1,11 @@
 module.exports.routerCtrl = function(app, player_g, host, port){
+	var sendmail = require('./sendMail');
 	console.log('test');
 	console.log('====================================');
 	app.get('/?', function(req, res) {
 	  console.log('first page');
 	  console.log(req.query.game);
-	
+
 	  if (req.query.game == undefined) {
 	    res.render('index',{'host':host,'port':port});
 	  } else {
@@ -28,5 +29,22 @@ module.exports.routerCtrl = function(app, player_g, host, port){
 	      res.render('index_seven',{'host':host,'port':port});
 	    }
 	  }
+	});
+
+	app.get('/sendmail', function(req, res){
+		console.log('sendmail');
+		var html = '<html>' +
+		              '<head><meta charset="utf-8" />' +
+		              '</head>'+
+		              '<body><h1>測試</h1></body>'
+		           '</html>';
+		sendmail.sendMail('yuanyu90221@gmail.com', 'multiproject@issue',html,function(err, info){
+			if(err)
+				console.log(err);
+			else{
+				console.log(info);
+				//alert(info);
+			}
+		});
 	});
 }

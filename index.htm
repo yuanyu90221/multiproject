@@ -155,7 +155,7 @@ div#banner > button{
             		var gn = all_game[i].g_name;
 					var gg = all_game[i].game_guid;
 					var game_inning = $('<div/>').addClass('game');
-					var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http%3A//192.168.43.153%3A8000%3Finning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
+					var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://{{host}}:{{port}}?inning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
 					//var u = 'http://192.168.43.153:8000/?inning='+ tv_guid + '&game='+ gg+'?';
 					var u = 'http://{{host}}:{{port}}/?inning='+ tv_guid + '&game='+ gg+'?';
 					if(i == 2){
@@ -192,7 +192,7 @@ div#banner > button{
           	$('#all-qrcode').empty();//把之前的移除
           	$('#banner').empty();//刪除之前的資料
           	$('#logo').empty();
-          	var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http%3A//192.168.43.153%3A8000%3Finning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
+          	var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://{{host}}:{{port}}?inning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
           	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />');
           	$('#logo').append('<h1><a >'+ g_name +'</a></h1><div>');
 
@@ -642,7 +642,7 @@ var flip_kind ='';//哪一種（簡單還是困難）
 			    $('#banner').empty();
 			    $('#dice_infor').empty();
 			    $('#player_name').empty();
-			    var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http%3A//192.168.43.153%3A8000%3Finning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
+			    var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http:/{{host}}:{{port}}?inning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
           	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />' );
 
 		    })
