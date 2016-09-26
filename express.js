@@ -37,6 +37,7 @@ app.use('/css', express.static(__dirname + '/css'));
 app.use('/static', express.static(__dirname + '/public'));
 app.use('/images', express.static(__dirname + '/images'));
 app.use('/flags', express.static(__dirname + '/all_flag'));
+
 // app.get('/test',function(req,res){
 //   res.render = function(template, options){
 //     var str = require('fs').readFileSync(template, 'utf8');
@@ -48,10 +49,6 @@ app.use('/flags', express.static(__dirname + '/all_flag'));
 
 //   res.render('index.jade',{'host':dbconfig.host});
 // });
-
-  var flip_select_number = '';
-  var walk_number = '';
-
 
 var dbAccessModule = require('./modules/dbAccessModule');
 //console.log(dbAccessModule);
