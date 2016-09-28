@@ -45,7 +45,7 @@ var Game = require('./ox_game'),
 var dbconfig = require('./dbConfig');
 var sequelize = require('sequelize');
 var host =  utilObj.util('config.json','host');
-var port = utilObj.util('config.json','port');
+// var port = utilObj.util('config.json','port');
 var routerCtrl = require('./modules/routerCtrl');
 var hbs = require('hbs');
 app.set('views', path.join(__dirname, '/'));
