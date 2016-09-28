@@ -29,7 +29,7 @@ module.exports ={
 			from: 'server@multiproject.com',
 			to: _recipient,
 			subject: _subject,
-			text: "Hello world ✔",
+			// text: "Hello world ✔",
 			html: _html
 		}, function(err, info){
 			_callback(err, info);

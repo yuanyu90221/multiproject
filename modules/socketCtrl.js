@@ -5,9 +5,11 @@ var InningVo = require('./dao/inning');
 var Inning_UserDao = require('./dao/inning_UserDao');
 var UserVo = require('./dao/user');
 var UserDao = require('./dao/userDao');
+var all_socket  = {};
 module.exports = {
-	'socketOn': function(io, uuid, all_inning, db, all_game_guid, all_socket, player_g, player_i ,dbAccessModule){
+	'socketOn': function(io, uuid, all_inning, db, all_game_guid,dbAccessModule){
 		console.log("start");
+
 		//console.log(dbAccessModule);
 		//console.log(db);
 				//連線開始
@@ -29,6 +31,7 @@ module.exports = {
 		    var inning = new InningVo();
 		    inning.setInning_guid(key);
 		    InningDao.insertInning(inning, function(err, result, db){
+
 		    	 console.log(err || result);
 		    	 db.close();
 		    	 GameDao.queryByCriteria({},function(err, result){
@@ -42,6 +45,9 @@ module.exports = {
 					    }
 					    console.log('all_game_guid');
 					    socket.emit('qrcode', result, key);
+					    console.log(key);
+					    console.log(all_socket);
+					    console.log(tv_s);
 			      		all_socket[key] = tv_s;
 			      		console.log('key', key);
 			      		console.log(all_socket[key]);
@@ -65,6 +71,7 @@ module.exports = {
 		    // dbAccessModule.sqlQuery("DELETE from Inning_user where online ='" + 0 + "'", null , db);
 		    Inning_UserDao.deleteByCriteria({online:0},function(err, result){
 		    	console.log(err||result);
+		    		var g_name;
 	    		    GameDao.queryByCriteria({game_guid:player_g},function(err, g_data){
 					    if(err)
 					        throw err;
@@ -162,10 +169,11 @@ module.exports = {
 
 							      					 Inning_UserDao.insertInningUser(inning_1, function(err, result){
 							      					 	socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
+							      					 	console.log("player_i: ");
 							      					 	console.log(player_i);
 							      					 	console.log(all_socket[player_i]);
 							        					all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
-							        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+							        					socket.broadcast.emit('tv_change', player_i, player_g, g_data[0].g_name);
 							      					 });
 					      						});
 
