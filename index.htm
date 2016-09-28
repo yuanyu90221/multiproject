@@ -158,9 +158,9 @@ div#banner > button{
             		var gn = all_game[i].g_name;
 					var gg = all_game[i].game_guid;
 					var game_inning = $('<div/>').addClass('game');
-					var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=https://"+window.location.hostname+"?inning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
+					var url = "https://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=https://"+window.location.hostname+"?inning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
 					//var u = 'http://192.168.43.153:8000/?inning='+ tv_guid + '&game='+ gg+'?';
-					var u = 'http://{{host}}:{{port}}/?inning='+ tv_guid + '&game='+ gg+'?';
+					var u = 'https://'+window.location.hostname+'?inning='+ tv_guid + '&game='+ gg+'?';
 					if(i == 2){
 						$('#all-qrcode').append('<div class="col_1_of_3 span_1_of_3"><div class="title-img2"><div class="title"><img src="images/books.png" alt=""/></div><div class="title-desc"><p>'+ gn +'</p></div> <div class="clear"></div> </div><p class="desc1"><img  src="' + url + '" /></p></div><div class="clear"></div>'+'<p>'+ u +'</p>');
 
