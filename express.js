@@ -33,7 +33,7 @@ var Game = require('./ox_game'),
     Game_m = require('./mono_game'),
     Game_s = require('./seven_game'),
     config = require("./mysql_config"),//連到mysql
-    db = config.db,
+    //db = config.db,
     uuid = require('node-uuid'),// 用來產生類似 GUID 的字串
     utilObj = require('./util'),
     all_inning = [],//所有電視的guid
@@ -74,8 +74,8 @@ app.use('/js', express.static(__dirname + '/js'));
 //   res.render('index.jade',{'host':dbconfig.host});
 // });
 
-var dbAccessModule = require('./modules/dbAccessModule');
+// var dbAccessModule = require('./modules/dbAccessModule');
 //console.log(dbAccessModule);
 var socketCtrl = require('./modules/socketCtrl');
 
-socketCtrl.socketOn(io,uuid, all_inning, db, all_game_guid ,dbAccessModule);
+socketCtrl.socketOn(io,uuid, all_inning, all_game_guid);
