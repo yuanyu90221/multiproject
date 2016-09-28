@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/yuanyu90221/multiproject/issues"
   },
-  "homepage": "https://github.com/yuanyu90221/multiproject#readme"
+  "homepage": "https://github.com/yuanyu90221/multiproject#readme",
+  "engines": {
+    "node": "4.4.7"
+  }
 }
