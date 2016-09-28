@@ -1,4 +1,4 @@
-module.exports.routerCtrl = function(app, player_g, host, port){
+module.exports.routerCtrl = function(app, host, port){
 	var sendmail = require('./sendMail');
 	console.log('test');
 	console.log('====================================');
@@ -36,9 +36,9 @@ module.exports.routerCtrl = function(app, player_g, host, port){
 		var html = '<html>' +
 		              '<head><meta charset="utf-8" />' +
 		              '</head>'+
-		              '<body><h1>測試</h1></body>'
+		              '<body><h1>hi!, Tommy 測試</h1></body>'
 		           '</html>';
-		sendmail.sendMail('Kking426g@gmail.com', 'multiproject@issue',html,function(err, info){
+		sendmail.sendMail('tommy.yeh1112@gmail.com', 'multiproject@issue',html,function(err, info){
 			if(err)
 				console.log(err);
 			else{
