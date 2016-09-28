@@ -7,7 +7,7 @@ var UserVo = require('./dao/user');
 var UserDao = require('./dao/userDao');
 var all_socket  = {};
 module.exports = {
-	'socketOn': function(io, uuid, all_inning, db, all_game_guid,dbAccessModule){
+	'socketOn': function(io, uuid, all_inning, all_game_guid){
 		console.log("start");
 
 		//console.log(dbAccessModule);

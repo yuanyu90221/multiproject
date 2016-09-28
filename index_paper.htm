@@ -61,7 +61,8 @@ hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </scri
         	$('#next').hide();
         	
         	//var socket = io.connect('http://192.168.43.153:8000');
-		    var socket = io.connect("http://{{host}}:{{port}}");		
+		    //var socket = io.connect("http://{{host}}:{{port}}");		
+		    var socket = io.connect(window.location.hostname);
 		    $('#yes_me').click(function(){
 	        	socket.emit('client', p_name, p_pic);
 	        	$('#make_sure').hide();

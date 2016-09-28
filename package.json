@@ -21,7 +21,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node express.js"
+    "start": "node express.js",
+     "web": "node express.js"
   },
   "repository": {
     "type": "git",
@@ -32,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/yuanyu90221/multiproject/issues"
   },
-  "homepage": "https://github.com/yuanyu90221/multiproject#readme"
+  "homepage": "https://github.com/yuanyu90221/multiproject#readme",
+  "engines": {
+    "node": "4.4.7"
+  }
 }
