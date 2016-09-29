@@ -163,7 +163,7 @@ div#banner > button{
 					var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+"?inning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
 					var localurl = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+":{{port}}?inning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
 					console.log(isOnHeroku);
-					url = (isOnHeroku)? url : localurl;
+					url = (isOnHeroku==true)? url : localurl;
 					//var u = 'http://192.168.43.153:8000/?inning='+ tv_guid + '&game='+ gg+'?';
 					var u = 'http://'+window.location.hostname+':{{port}}?inning='+ tv_guid + '&game='+ gg+'?';
 					if(i == 2){
@@ -202,7 +202,7 @@ div#banner > button{
           	$('#logo').empty();
           	var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+"?inning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
           	var localurl = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+":{{port}}?inning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
-          	url = (isOnHeroku)? url : localurl;
+          	url = (isOnHeroku==true)? url : localurl;
           	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />');
           	$('#logo').append('<h1><a >'+ g_name +'</a></h1><div>');
 
@@ -306,7 +306,7 @@ div#banner > button{
           	$('#player_name').empty();
 	      		var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+"?inning%3D"+ tv_key +"%26game%3D"+ game_guid +"%3F&chld=H|0";
 	      		var localurl = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+":{{port}}?inning%3D"+ tv_key +"%26game%3D"+ game_guid +"%3F&chld=H|0";
-	      		url = (isOnHeroku)? url : localurl;
+	      		url = (isOnHeroku==true)? url : localurl;
 	      	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />');
           	$('#logo').append('<h1><a >'+ g_name +'</a></h1><div>');
 
