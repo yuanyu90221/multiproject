@@ -116,7 +116,7 @@ div#banner > button{
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type ="text/javascript">
 
-
+    	var isOnHeroku  = false;
 
 		var all_g_name=[];
 		var all_points = [];//累積的成績
@@ -126,7 +126,9 @@ div#banner > button{
 
 
         $(function () {
+        	var currenthost = window.location.hostname;
 
+        	isOnHeroku = currenthost.includes('heroku');
 
         	$('#remind_text').hide();
         	$('#infor').hide();
@@ -159,8 +161,13 @@ div#banner > button{
 					var gg = all_game[i].game_guid;
 					var game_inning = $('<div/>').addClass('game');
 					var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=https://"+window.location.hostname+"?inning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
+					var localurl = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+":{{port}}?inning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
+					console.log(isOnHeroku==true);
+					url = (isOnHeroku==true)? url : localurl;
 					//var u = 'http://192.168.43.153:8000/?inning='+ tv_guid + '&game='+ gg+'?';
 					var u = 'https://'+window.location.hostname+'?inning='+ tv_guid + '&game='+ gg+'?';
+					var u_local = 'http://'+window.location.hostname+':{{port}}?inning='+ tv_guid + '&game='+ gg+'?';
+					u = (isOnHeroku==true)? u : u_local;
 					if(i == 2){
 						$('#all-qrcode').append('<div class="col_1_of_3 span_1_of_3"><div class="title-img2"><div class="title"><img src="images/books.png" alt=""/></div><div class="title-desc"><p>'+ gn +'</p></div> <div class="clear"></div> </div><p class="desc1"><img  src="' + url + '" /></p></div><div class="clear"></div>'+'<p>'+ u +'</p>');
 
@@ -196,6 +203,8 @@ div#banner > button{
           	$('#banner').empty();//刪除之前的資料
           	$('#logo').empty();
           	var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=https://"+window.location.hostname+"?inning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
+          	var localurl = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+":{{port}}?inning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
+          	url = (isOnHeroku==true)? url : localurl;
           	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />');
           	$('#logo').append('<h1><a >'+ g_name +'</a></h1><div>');
 
@@ -298,6 +307,8 @@ div#banner > button{
           	$('#logo').empty();
           	$('#player_name').empty();
 	      		var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=https://"+window.location.hostname+"?inning%3D"+ tv_key +"%26game%3D"+ game_guid +"%3F&chld=H|0";
+	      		var localurl = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+":{{port}}?inning%3D"+ tv_key +"%26game%3D"+ game_guid +"%3F&chld=H|0";
+	      		url = (isOnHeroku==true)? url : localurl;
 	      	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />');
           	$('#logo').append('<h1><a >'+ g_name +'</a></h1><div>');
 
@@ -645,7 +656,7 @@ var flip_kind ='';//哪一種（簡單還是困難）
 			    $('#banner').empty();
 			    $('#dice_infor').empty();
 			    $('#player_name').empty();
-			    var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=https://"+window.location.hostname+"?inning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
+			    var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+":{{port}}?inning%3D"+ tv_guid +"%26game%3D"+ game_guid +"%3F&chld=H|0";
           	$('#banner').append('<br><br><img align="middle"  src="' + url + '" />' );
 
 		    })
