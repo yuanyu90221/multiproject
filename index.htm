@@ -162,6 +162,7 @@ div#banner > button{
 					var game_inning = $('<div/>').addClass('game');
 					var url = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+"?inning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
 					var localurl = "http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=http://"+window.location.hostname+":{{port}}?inning%3D"+ tv_guid +"%26game%3D"+ gg +"%3F&chld=H|0";
+					console.log(isOnHeroku);
 					url = (isOnHeroku)? url : localurl;
 					//var u = 'http://192.168.43.153:8000/?inning='+ tv_guid + '&game='+ gg+'?';
 					var u = 'http://'+window.location.hostname+':{{port}}?inning='+ tv_guid + '&game='+ gg+'?';
