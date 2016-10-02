@@ -115,7 +115,7 @@ module.exports = {
 								      					 	                          user_account:p_name,
 								      					 	                          user_pic:pic
 								      					 	                       });
-															Inning_UserDao.insertInning(inning_2, function(err, result){
+															Inning_UserDao.insertInningUser(inning_2, function(err, result){
 								      					 		socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
 								      					 		console.log('電視連線：' + all_socket[player_i]);
 								        						all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
@@ -143,7 +143,7 @@ module.exports = {
 								      					 	                          user_pic:pic
 								      					 	                       });
 
-								      					Inning_UserDao.insertInning(inning_1, function(err, result){
+								      					Inning_UserDao.insertInningUser(inning_1, function(err, result){
 								      					 	socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
 								        					all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
 								        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
@@ -208,7 +208,7 @@ module.exports = {
 							      					 	                          user_account:p_name,
 							      					 	                          user_pic:pic
 							      					 	                       });
-														Inning_UserDao.insertInning(inning_2, function(err, result){
+														Inning_UserDao.insertInningUser(inning_2, function(err, result){
 							      					 		socket.emit('client_change', p_name, key, player_i, g_data, sum);
 							        						all_socket[player_i].emit('tv_newplayer', p_name, key);
 							        						socket.broadcast.emit('tv_change', player_i, player_g, g_name);
@@ -235,7 +235,7 @@ module.exports = {
 							      					 	                          user_pic:pic
 							      					 	                       });
 
-							      					Inning_UserDao.insertInning(inning_1, function(err, result){
+							      					Inning_UserDao.insertInningUser(inning_1, function(err, result){
 							      					 	socket.emit('client_change', p_name, key, player_i, g_data, sum);
 							        					all_socket[player_i].emit('tv_newplayer', p_name, key);
 							        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
