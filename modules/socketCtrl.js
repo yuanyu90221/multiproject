@@ -14,6 +14,26 @@ module.exports = {
 		//console.log(db);
 				//連線開始
 		io.sockets.on('connection', function(socket) {
+		   function game_start(key, p_name, pic){//遊戲開始呼叫的function
+									//此人加入inning_user資料表		
+				var key_iu=uuid.v4();
+				console.log(key_iu);
+				var inning_1 = new InningVo({iu_guid:key_iu,
+	 	                          inning_gref:player_i,
+	 	                          game_guid:player_g,
+	 	                          user_gref:key_iu,
+	 	                          user_account:p_name,
+	 	                          user_pic:pic
+	 	                       });
+
+				Inning_UserDao.insertInningUser(inning_1, function(err, result){
+					if(err){
+							console.log(err);
+							return ;
+						}
+					console.log(result);
+				});
+		   }
 		  //console.log(dbAccessModule);
 		  console.log('connection');
 		  //console.log(app);
