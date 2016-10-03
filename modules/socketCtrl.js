@@ -9,13 +9,8 @@ var all_socket  = {};
 module.exports = {
 	'socketOn': function(io, uuid, all_inning, all_game_guid){
 		console.log("start");
-
-		//console.log(dbAccessModule);
-		//console.log(db);
-				//連線開始
-		io.sockets.on('connection', function(socket) {
-		   function game_start(key, p_name, pic){//遊戲開始呼叫的function
-									//此人加入inning_user資料表		
+		function game_start(key, p_name, pic){//遊戲開始呼叫的function
+									//此人加入inning_user資料表
 				var key_iu=uuid.v4();
 				console.log(key_iu);
 				var inning_1 = new InningVo({iu_guid:key_iu,
@@ -33,7 +28,12 @@ module.exports = {
 						}
 					console.log(result);
 				});
-		   }
+		}
+		//console.log(dbAccessModule);
+		//console.log(db);
+				//連線開始
+		io.sockets.on('connection', function(socket) {
+
 		  //console.log(dbAccessModule);
 		  console.log('connection');
 		  //console.log(app);
