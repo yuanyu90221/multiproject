@@ -1,0 +1,1015 @@
+2016-10-03T09:24:04.270756+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-10-03T09:24:04.270911+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-10-03T09:24:04.271066+00:00 app[web.1]: npm ERR!     node express.js
+2016-10-03T09:24:04.271235+00:00 app[web.1]: npm ERR! You can get information on how to open an issue for this project with:
+2016-10-03T09:24:04.271541+00:00 app[web.1]: npm ERR! Or if that isn't available, you can get their info via:
+2016-10-03T09:24:04.271389+00:00 app[web.1]: npm ERR!     npm bugs multiproject
+2016-10-03T09:24:04.275227+00:00 app[web.1]: 
+2016-10-03T09:24:04.271840+00:00 app[web.1]: npm ERR!     npm owner ls multiproject
+2016-10-03T09:24:04.271991+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-10-03T09:24:04.271692+00:00 app[web.1]: npm ERR! 
+2016-10-03T09:24:04.275439+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-10-03T09:24:04.275581+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-10-03T09:24:04.234233+00:00 heroku[router]: at=info method=GET path="/socket.io/1/websocket/SXLrqLoRpO1fNYUY1dgh" host=secret-tundra-90982.herokuapp.com request_id=b022aa47-235b-4b46-b2b9-b96a71122177 fwd="118.160.100.5" dyno=web.1 connect=1ms service=77ms status=101 bytes=134
+2016-10-03T09:24:04.280370+00:00 heroku[router]: at=info method=GET path="/socket.io/1/websocket/BL1VZMqQ6X0fYINJ1dgg" host=secret-tundra-90982.herokuapp.com request_id=3c60d496-a443-4232-8af4-0f1f9f5ed914 fwd="60.248.161.28" dyno=web.1 connect=1ms service=350441ms status=101 bytes=129
+2016-10-03T09:24:04.423647+00:00 heroku[web.1]: State changed from up to crashed
+2016-10-03T09:24:04.424752+00:00 heroku[web.1]: State changed from crashed to starting
+2016-10-03T09:24:04.414369+00:00 heroku[web.1]: Process exited with status 1
+2016-10-03T09:24:06.391490+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-10-03T09:24:08.571083+00:00 app[web.1]: 
+2016-10-03T09:24:08.571105+00:00 app[web.1]: > multiproject@1.0.0 start /app
+2016-10-03T09:24:08.571106+00:00 app[web.1]: > node express.js
+2016-10-03T09:24:08.571106+00:00 app[web.1]: 
+2016-10-03T09:24:08.803632+00:00 app[web.1]: info: socket.io started
+2016-10-03T09:24:08.914070+00:00 app[web.1]: test
+2016-10-03T09:24:08.914084+00:00 app[web.1]: ====================================
+2016-10-03T09:24:09.130919+00:00 app[web.1]: { uri: 'mongodb://yuanyu:dob770407@ds035766.mlab.com:35766/multi-screen',
+2016-10-03T09:24:09.130922+00:00 app[web.1]:   domainName: 'ds035766.mlab.com',
+2016-10-03T09:24:09.130923+00:00 app[web.1]:   user: 'yuanyu',
+2016-10-03T09:24:09.130924+00:00 app[web.1]:   password: 'dob770407',
+2016-10-03T09:24:09.130925+00:00 app[web.1]:   dbname: 'multi-screen' }
+2016-10-03T09:24:09.139558+00:00 app[web.1]: start
+2016-10-03T09:24:09.130922+00:00 app[web.1]:   port: 35766,
+2016-10-03T09:24:09.063462+00:00 heroku[web.1]: State changed from starting to up
+2016-10-03T09:24:10.094669+00:00 heroku[router]: at=info method=GET path="/socket.io/1/?t=1475486544294" host=secret-tundra-90982.herokuapp.com request_id=34de7545-7fda-45df-a627-6d1ffcf1aa9a fwd="60.248.161.28" dyno=web.1 connect=1ms service=16ms status=200 bytes=211
+2016-10-03T09:24:10.091598+00:00 app[web.1]: debug: client authorized
+2016-10-03T09:24:10.095578+00:00 app[web.1]: info: handshake authorized qD9sd2xu7GFr39Em24nf
+2016-10-03T09:24:10.779389+00:00 app[web.1]: debug: setting request GET /socket.io/1/websocket/qD9sd2xu7GFr39Em24nf
+2016-10-03T09:24:10.780600+00:00 app[web.1]: debug: set heartbeat interval for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:24:10.788922+00:00 app[web.1]: debug: client authorized for 
+2016-10-03T09:24:10.790820+00:00 app[web.1]: debug: websocket writing 1::
+2016-10-03T09:24:10.795423+00:00 app[web.1]: connection
+2016-10-03T09:24:35.787295+00:00 app[web.1]: debug: emitting heartbeat for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:24:35.787640+00:00 app[web.1]: debug: websocket writing 2::
+2016-10-03T09:24:35.787895+00:00 app[web.1]: debug: set heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:24:36.027003+00:00 app[web.1]: debug: got heartbeat packet
+2016-10-03T09:24:36.027576+00:00 app[web.1]: debug: cleared heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:24:36.027750+00:00 app[web.1]: debug: set heartbeat interval for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:01.029630+00:00 app[web.1]: debug: emitting heartbeat for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:01.029844+00:00 app[web.1]: debug: websocket writing 2::
+2016-10-03T09:25:01.029984+00:00 app[web.1]: debug: set heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:01.268702+00:00 app[web.1]: debug: got heartbeat packet
+2016-10-03T09:25:01.268855+00:00 app[web.1]: debug: cleared heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:01.268956+00:00 app[web.1]: debug: set heartbeat interval for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:06.984696+00:00 heroku[api]: Set maintenance mode on by yuanyu90221@gmail.com
+2016-10-03T09:25:26.275407+00:00 app[web.1]: debug: emitting heartbeat for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:26.275596+00:00 app[web.1]: debug: websocket writing 2::
+2016-10-03T09:25:26.275761+00:00 app[web.1]: debug: set heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:26.508130+00:00 app[web.1]: debug: got heartbeat packet
+2016-10-03T09:25:26.508224+00:00 app[web.1]: debug: cleared heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:26.508375+00:00 app[web.1]: debug: set heartbeat interval for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:27.292325+00:00 heroku[router]: at=info code=H80 desc="Maintenance mode" method=GET path="/" host=secret-tundra-90982.herokuapp.com request_id=b59fb5fb-54c8-4357-834e-5c48e360e234 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:25:33.422987+00:00 heroku[api]: Set maintenance mode off by yuanyu90221@gmail.com
+2016-10-03T09:25:36.508191+00:00 app[web.1]: first page
+2016-10-03T09:25:36.508460+00:00 app[web.1]: undefined
+2016-10-03T09:25:36.731741+00:00 heroku[router]: at=info method=GET path="/" host=secret-tundra-90982.herokuapp.com request_id=7fdd0605-a06e-4773-803d-9dfb4681bc95 fwd="60.248.161.28" dyno=web.1 connect=0ms service=231ms status=200 bytes=53375
+2016-10-03T09:25:36.989663+00:00 heroku[router]: at=info method=GET path="/static/jquery.min.js" host=secret-tundra-90982.herokuapp.com request_id=cc6e3de4-a7f3-4877-8226-da82ee352354 fwd="60.248.161.28" dyno=web.1 connect=0ms service=26ms status=304 bytes=239
+2016-10-03T09:25:36.980263+00:00 heroku[router]: at=info method=GET path="/css/newstyle.css" host=secret-tundra-90982.herokuapp.com request_id=595ae31b-5250-4c7c-b6a0-54a1be719c46 fwd="60.248.161.28" dyno=web.1 connect=0ms service=18ms status=304 bytes=239
+2016-10-03T09:25:37.793190+00:00 heroku[router]: at=info method=GET path="/images/game.jpg" host=secret-tundra-90982.herokuapp.com request_id=adbda6e3-0673-4f48-8623-7e80e482cfc0 fwd="60.248.161.28" dyno=web.1 connect=0ms service=372ms status=304 bytes=240
+2016-10-03T09:25:37.788710+00:00 heroku[router]: at=info method=GET path="/socket.io/socket.io.js" host=secret-tundra-90982.herokuapp.com request_id=86acf8df-3962-4a8e-898f-e74f8babc289 fwd="60.248.161.28" dyno=web.1 connect=0ms service=818ms status=200 bytes=74883
+2016-10-03T09:25:37.785460+00:00 app[web.1]: debug: served static content /socket.io.js
+2016-10-03T09:25:38.059774+00:00 heroku[router]: at=info method=GET path="/flags/2.png" host=secret-tundra-90982.herokuapp.com request_id=92f47fd1-022c-4049-b039-891a6294d851 fwd="60.248.161.28" dyno=web.1 connect=0ms service=4ms status=304 bytes=238
+2016-10-03T09:25:38.296921+00:00 heroku[router]: at=info method=GET path="/flags/3.png" host=secret-tundra-90982.herokuapp.com request_id=66e3a5f8-f8f2-4a0b-b12a-9aef7e80eeda fwd="60.248.161.28" dyno=web.1 connect=0ms service=12ms status=304 bytes=238
+2016-10-03T09:25:38.540704+00:00 heroku[router]: at=info method=GET path="/flags/4.png" host=secret-tundra-90982.herokuapp.com request_id=a4ff126c-64c4-4c36-b2ed-52d60c636fe3 fwd="60.248.161.28" dyno=web.1 connect=0ms service=3ms status=304 bytes=238
+2016-10-03T09:25:38.785425+00:00 heroku[router]: at=info method=GET path="/flags/8.png" host=secret-tundra-90982.herokuapp.com request_id=d0698f8d-e4d4-455b-b38d-d667bd47ed03 fwd="60.248.161.28" dyno=web.1 connect=0ms service=2ms status=304 bytes=238
+2016-10-03T09:25:38.758553+00:00 heroku[router]: at=info method=GET path="/flags/7.png" host=secret-tundra-90982.herokuapp.com request_id=9f51bd5e-ff6a-481c-acad-efdd139a6d3b fwd="60.248.161.28" dyno=web.1 connect=0ms service=4ms status=304 bytes=238
+2016-10-03T09:25:38.783727+00:00 heroku[router]: at=info method=GET path="/flags/9.png" host=secret-tundra-90982.herokuapp.com request_id=f0d00d0b-32d1-4a00-957a-f2cfd4644329 fwd="60.248.161.28" dyno=web.1 connect=0ms service=5ms status=304 bytes=238
+2016-10-03T09:25:38.756574+00:00 heroku[router]: at=info method=GET path="/flags/6.png" host=secret-tundra-90982.herokuapp.com request_id=edf93411-a240-4d1f-b469-50a0d2c80528 fwd="60.248.161.28" dyno=web.1 connect=0ms service=3ms status=304 bytes=238
+2016-10-03T09:25:38.761650+00:00 heroku[router]: at=info method=GET path="/flags/5.png" host=secret-tundra-90982.herokuapp.com request_id=0cff1c19-25c6-402b-acd5-a631e643e413 fwd="60.248.161.28" dyno=web.1 connect=0ms service=1ms status=304 bytes=238
+2016-10-03T09:25:39.015114+00:00 heroku[router]: at=info method=GET path="/flags/12.png" host=secret-tundra-90982.herokuapp.com request_id=3242273a-2f65-4ca7-bd6c-31082b9d9cda fwd="60.248.161.28" dyno=web.1 connect=0ms service=3ms status=304 bytes=238
+2016-10-03T09:25:39.001856+00:00 heroku[router]: at=info method=GET path="/flags/10.png" host=secret-tundra-90982.herokuapp.com request_id=6fc776d0-5284-4ca3-ae06-ce3303658c0c fwd="60.248.161.28" dyno=web.1 connect=0ms service=3ms status=304 bytes=238
+2016-10-03T09:25:38.993720+00:00 heroku[router]: at=info method=GET path="/flags/11.png" host=secret-tundra-90982.herokuapp.com request_id=07ac495f-5da2-4b68-8012-c44c90428cd6 fwd="60.248.161.28" dyno=web.1 connect=0ms service=5ms status=304 bytes=238
+2016-10-03T09:25:51.510303+00:00 app[web.1]: debug: emitting heartbeat for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:51.510716+00:00 app[web.1]: debug: websocket writing 2::
+2016-10-03T09:25:51.511246+00:00 app[web.1]: debug: set heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:51.730853+00:00 app[web.1]: debug: got heartbeat packet
+2016-10-03T09:25:51.730955+00:00 app[web.1]: debug: cleared heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:25:51.731914+00:00 app[web.1]: debug: set heartbeat interval for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:26:08.904804+00:00 heroku[router]: at=info method=GET path="/" host=secret-tundra-90982.herokuapp.com request_id=fe1ea2ae-251c-43e5-bf9a-f2e031539f81 fwd="111.250.44.82" dyno=web.1 connect=1ms service=39ms status=200 bytes=53375
+2016-10-03T09:26:08.850883+00:00 app[web.1]: first page
+2016-10-03T09:26:08.850941+00:00 app[web.1]: undefined
+2016-10-03T09:26:09.924158+00:00 heroku[router]: at=info method=GET path="/css/newstyle.css" host=secret-tundra-90982.herokuapp.com request_id=5bd9d9af-8359-464f-a80f-231a62fa86e3 fwd="111.250.44.82" dyno=web.1 connect=0ms service=13ms status=200 bytes=20774
+2016-10-03T09:26:10.345020+00:00 heroku[router]: at=info method=GET path="/socket.io/socket.io.js" host=secret-tundra-90982.herokuapp.com request_id=262cef05-14d1-432a-86a9-1f4ae37c9f4a fwd="111.250.44.82" dyno=web.1 connect=0ms service=26ms status=200 bytes=74883
+2016-10-03T09:26:10.392904+00:00 heroku[router]: at=info method=GET path="/static/jquery.min.js" host=secret-tundra-90982.herokuapp.com request_id=0122a209-5a12-406b-b917-1bddab608a2b fwd="111.250.44.82" dyno=web.1 connect=0ms service=51ms status=200 bytes=86631
+2016-10-03T09:26:10.341484+00:00 app[web.1]: debug: served static content /socket.io.js
+2016-10-03T09:26:11.231979+00:00 heroku[router]: at=info method=GET path="/flags/2.png" host=secret-tundra-90982.herokuapp.com request_id=22580fc8-65f6-497a-863d-dd5aab0965cd fwd="111.250.44.82" dyno=web.1 connect=0ms service=28ms status=200 bytes=3616
+2016-10-03T09:26:11.221098+00:00 heroku[router]: at=info method=GET path="/flags/3.png" host=secret-tundra-90982.herokuapp.com request_id=8f1094df-8193-44d5-871c-e68303d62cb4 fwd="111.250.44.82" dyno=web.1 connect=0ms service=37ms status=200 bytes=5587
+2016-10-03T09:26:11.236094+00:00 heroku[router]: at=info method=GET path="/flags/5.png" host=secret-tundra-90982.herokuapp.com request_id=5bdb112b-0767-48aa-b023-76d51d41cb03 fwd="111.250.44.82" dyno=web.1 connect=0ms service=42ms status=200 bytes=6118
+2016-10-03T09:26:11.225176+00:00 heroku[router]: at=info method=GET path="/flags/6.png" host=secret-tundra-90982.herokuapp.com request_id=0c457cb6-d8fb-42fe-9535-e7ced418b22b fwd="111.250.44.82" dyno=web.1 connect=0ms service=37ms status=200 bytes=6344
+2016-10-03T09:26:11.234404+00:00 heroku[router]: at=info method=GET path="/flags/4.png" host=secret-tundra-90982.herokuapp.com request_id=dfd8fe25-a17b-430c-8d2f-bcc9d54b59fa fwd="111.250.44.82" dyno=web.1 connect=0ms service=43ms status=200 bytes=5864
+2016-10-03T09:26:11.279295+00:00 heroku[router]: at=info method=GET path="/images/game.jpg" host=secret-tundra-90982.herokuapp.com request_id=7408baac-f303-4e4e-bbcc-4fd7bdae81e2 fwd="111.250.44.82" dyno=web.1 connect=0ms service=62ms status=200 bytes=590100
+2016-10-03T09:26:11.449117+00:00 heroku[router]: at=info method=GET path="/flags/7.png" host=secret-tundra-90982.herokuapp.com request_id=56090a47-e9c3-43fc-9454-a801f3d4611a fwd="111.250.44.82" dyno=web.1 connect=0ms service=9ms status=200 bytes=6619
+2016-10-03T09:26:11.455464+00:00 heroku[router]: at=info method=GET path="/flags/9.png" host=secret-tundra-90982.herokuapp.com request_id=65724888-eb45-47b7-b658-dba8c9415f59 fwd="111.250.44.82" dyno=web.1 connect=0ms service=3ms status=200 bytes=6896
+2016-10-03T09:26:11.477766+00:00 heroku[router]: at=info method=GET path="/flags/10.png" host=secret-tundra-90982.herokuapp.com request_id=d5a7ad3c-d1e6-4584-8d3f-236145ed7d09 fwd="111.250.44.82" dyno=web.1 connect=0ms service=8ms status=200 bytes=4773
+2016-10-03T09:26:11.443584+00:00 heroku[router]: at=info method=GET path="/flags/8.png" host=secret-tundra-90982.herokuapp.com request_id=c20989b2-0c1b-4457-9fcc-05808864020b fwd="111.250.44.82" dyno=web.1 connect=0ms service=2ms status=200 bytes=6631
+2016-10-03T09:26:11.491250+00:00 heroku[router]: at=info method=GET path="/flags/11.png" host=secret-tundra-90982.herokuapp.com request_id=44698119-5a10-460d-b9d5-5c394139acea fwd="111.250.44.82" dyno=web.1 connect=0ms service=24ms status=200 bytes=7388
+2016-10-03T09:26:11.661322+00:00 heroku[router]: at=info method=GET path="/flags/12.png" host=secret-tundra-90982.herokuapp.com request_id=6e089d7f-b472-49c0-b3e5-acfe96146b40 fwd="111.250.44.82" dyno=web.1 connect=0ms service=3ms status=200 bytes=5042
+2016-10-03T09:26:16.736472+00:00 app[web.1]: debug: emitting heartbeat for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:26:16.737231+00:00 app[web.1]: debug: websocket writing 2::
+2016-10-03T09:26:16.737670+00:00 app[web.1]: debug: set heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:26:16.956203+00:00 app[web.1]: debug: got heartbeat packet
+2016-10-03T09:26:16.956306+00:00 app[web.1]: debug: cleared heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:26:16.956459+00:00 app[web.1]: debug: set heartbeat interval for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:26:20.557214+00:00 heroku[router]: at=info method=GET path="/images/gradient.png" host=secret-tundra-90982.herokuapp.com request_id=eaa79408-010d-4e31-b3f2-ae986a4ec59d fwd="111.250.44.82" dyno=web.1 connect=0ms service=8ms status=200 bytes=3103
+2016-10-03T09:26:20.619424+00:00 heroku[router]: at=info method=GET path="/socket.io/1/?t=1475486776977" host=secret-tundra-90982.herokuapp.com request_id=51025559-37ec-4fc7-a635-41bf20a790ee fwd="111.250.44.82" dyno=web.1 connect=0ms service=10ms status=200 bytes=211
+2016-10-03T09:26:20.527877+00:00 heroku[router]: at=info method=GET path="/images/1.png" host=secret-tundra-90982.herokuapp.com request_id=b39e8a2c-b2f6-450f-8651-62050bd2fc76 fwd="111.250.44.82" dyno=web.1 connect=0ms service=7ms status=200 bytes=3132
+2016-10-03T09:26:20.594962+00:00 app[web.1]: debug: client authorized
+2016-10-03T09:26:20.598985+00:00 app[web.1]: info: handshake authorized sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:20.807414+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=secret-tundra-90982.herokuapp.com request_id=19e7364f-a589-49ff-a41f-938f8ed57985 fwd="111.250.44.82" dyno=web.1 connect=0ms service=9ms status=404 bytes=174
+2016-10-03T09:26:21.020239+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=secret-tundra-90982.herokuapp.com request_id=f5ed8ed2-ac6e-4c50-a81f-95f4ea27e206 fwd="111.250.44.82" dyno=web.1 connect=0ms service=3ms status=404 bytes=174
+2016-10-03T09:26:21.262827+00:00 app[web.1]: debug: setting request GET /socket.io/1/websocket/sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:21.267384+00:00 app[web.1]: debug: set heartbeat interval for client sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:21.271666+00:00 app[web.1]: debug: client authorized for 
+2016-10-03T09:26:21.272444+00:00 app[web.1]: debug: websocket writing 1::
+2016-10-03T09:26:21.276810+00:00 app[web.1]: connection
+2016-10-03T09:26:21.915283+00:00 app[web.1]: 新的ㄧ台電視連線
+2016-10-03T09:26:21.951131+00:00 app[web.1]: 現在的時間10/3/2016, 9:26:21 AM
+2016-10-03T09:26:22.349280+00:00 heroku[router]: at=info method=GET path="/" host=secret-tundra-90982.herokuapp.com request_id=10bf9024-a3ea-481a-aa80-6cc7db67378f fwd="60.248.161.28" dyno=web.1 connect=0ms service=278ms status=304 bytes=128
+2016-10-03T09:26:22.344076+00:00 app[web.1]: first page
+2016-10-03T09:26:22.344275+00:00 app[web.1]: undefined
+2016-10-03T09:26:22.371149+00:00 app[web.1]: Inning {
+2016-10-03T09:26:22.371151+00:00 app[web.1]:   inning_guid: 'a6595c3b-7be3-4175-9b28-f4c791254050',
+2016-10-03T09:26:22.371152+00:00 app[web.1]:   g_gref: 0,
+2016-10-03T09:26:22.371153+00:00 app[web.1]:   _id: 57f2243ef3b7320011efe87c }
+2016-10-03T09:26:22.703947+00:00 heroku[router]: at=info method=GET path="/static/jquery.min.js" host=secret-tundra-90982.herokuapp.com request_id=bd4a89ed-af8c-4532-ab0b-0d9042eb038c fwd="60.248.161.28" dyno=web.1 connect=0ms service=85ms status=200 bytes=86631
+2016-10-03T09:26:22.696467+00:00 heroku[router]: at=info method=GET path="/socket.io/socket.io.js" host=secret-tundra-90982.herokuapp.com request_id=75e40a3d-f197-482b-aefa-c8ff8bb371d8 fwd="60.248.161.28" dyno=web.1 connect=0ms service=48ms status=200 bytes=74883
+2016-10-03T09:26:22.701155+00:00 heroku[router]: at=info method=GET path="/css/newstyle.css" host=secret-tundra-90982.herokuapp.com request_id=c4a75947-2636-472a-bb3d-208dc0447ef9 fwd="60.248.161.28" dyno=web.1 connect=0ms service=76ms status=200 bytes=20774
+2016-10-03T09:26:23.190192+00:00 heroku[router]: at=info method=GET path="/images/books.png" host=secret-tundra-90982.herokuapp.com request_id=df732e6d-49d7-4c2d-8f80-9178e3ebc96a fwd="111.250.44.82" dyno=web.1 connect=0ms service=2ms status=200 bytes=3517
+2016-10-03T09:26:23.219077+00:00 heroku[router]: at=info method=GET path="/images/cup.png" host=secret-tundra-90982.herokuapp.com request_id=b7684c53-3d47-44f1-92bf-669b9a1cd125 fwd="111.250.44.82" dyno=web.1 connect=0ms service=3ms status=200 bytes=3878
+2016-10-03T09:26:22.661272+00:00 app[web.1]: debug: served static content /socket.io.js
+2016-10-03T09:26:22.675186+00:00 app[web.1]: all_game
+2016-10-03T09:26:22.677450+00:00 app[web.1]: [ Game {
+2016-10-03T09:26:22.677453+00:00 app[web.1]:     game_guid: 'aea3d281-a111-4272-b4a4-77863c090fef',
+2016-10-03T09:26:22.677454+00:00 app[web.1]:     g_p_less: 2,
+2016-10-03T09:26:22.677455+00:00 app[web.1]:     g_p_more: 2,
+2016-10-03T09:26:22.677456+00:00 app[web.1]:     g_name: '圈圈叉叉',
+2016-10-03T09:26:22.677457+00:00 app[web.1]:     _id: 57e2421f589e8866c606cd36 },
+2016-10-03T09:26:22.677457+00:00 app[web.1]:   Game {
+2016-10-03T09:26:22.677458+00:00 app[web.1]:     game_guid: '313d4029-7bc5-454d-ac2b-a3d5dee5e60b',
+2016-10-03T09:26:22.677459+00:00 app[web.1]:     g_p_less: 2,
+2016-10-03T09:26:22.677459+00:00 app[web.1]:     g_p_more: 4,
+2016-10-03T09:26:22.677460+00:00 app[web.1]:     g_name: '配對遊戲',
+2016-10-03T09:26:22.677460+00:00 app[web.1]:     _id: 57e2445678ea1247eb88a170 },
+2016-10-03T09:26:22.677461+00:00 app[web.1]:   Game {
+2016-10-03T09:26:22.677462+00:00 app[web.1]:     game_guid: '67af5ab1-a004-41a2-b9e4-74733f0c765f',
+2016-10-03T09:26:22.677462+00:00 app[web.1]:     g_p_less: 2,
+2016-10-03T09:26:22.677463+00:00 app[web.1]:     g_p_more: 2,
+2016-10-03T09:26:22.677464+00:00 app[web.1]:     g_name: '剪刀石頭佈',
+2016-10-03T09:26:22.677464+00:00 app[web.1]:     _id: 57e2445678ea1247eb88a171 },
+2016-10-03T09:26:22.677465+00:00 app[web.1]:   Game {
+2016-10-03T09:26:22.677465+00:00 app[web.1]:     game_guid: '27b38a5bde-89fd-44ba-9cf4-c3cf76866f95',
+2016-10-03T09:26:22.677466+00:00 app[web.1]:     g_p_less: 2,
+2016-10-03T09:26:22.677467+00:00 app[web.1]:     g_p_more: 4,
+2016-10-03T09:26:22.677467+00:00 app[web.1]:     g_name: '大富翁',
+2016-10-03T09:26:22.677468+00:00 app[web.1]:     _id: 57e2445678ea1247eb88a172 },
+2016-10-03T09:26:22.677468+00:00 app[web.1]:   Game {
+2016-10-03T09:26:22.677469+00:00 app[web.1]:     game_guid: '0c4aecb4-da19-4ece-b40e-e48c3f3d7bc2',
+2016-10-03T09:26:22.677470+00:00 app[web.1]:     g_p_less: 4,
+2016-10-03T09:26:22.677470+00:00 app[web.1]:     g_p_more: 4,
+2016-10-03T09:26:22.677471+00:00 app[web.1]:     g_name: '撲克排七',
+2016-10-03T09:26:22.677471+00:00 app[web.1]:     _id: 57e2445678ea1247eb88a173 } ]
+2016-10-03T09:26:22.677514+00:00 app[web.1]: all_game_guid
+2016-10-03T09:26:22.678454+00:00 app[web.1]: debug: websocket writing 5:::{"name":"qrcode","args":[[{"game_guid":"aea3d281-a111-4272-b4a4-77863c090fef","g_p_less":2,"g_p_more":2,"g_name":"圈圈叉叉","_id":"57e2421f589e8866c606cd36"},{"game_guid":"313d4029-7bc5-454d-ac2b-a3d5dee5e60b","g_p_less":2,"g_p_more":4,"g_name":"配對遊戲","_id":"57e2445678ea1247eb88a170"},{"game_guid":"67af5ab1-a004-41a2-b9e4-74733f0c765f","g_p_less":2,"g_p_more":2,"g_name":"剪刀石頭佈","_id":"57e2445678ea1247eb88a171"},{"game_guid":"27b38a5bde-89fd-44ba-9cf4-c3cf76866f95","g_p_less":2,"g_p_more":4,"g_name":"大富翁","_id":"57e2445678ea1247eb88a172"},{"game_guid":"0c4aecb4-da19-4ece-b40e-e48c3f3d7bc2","g_p_less":4,"g_p_more":4,"g_name":"撲克排七","_id":"57e2445678ea1247eb88a173"}],"a6595c3b-7be3-4175-9b28-f4c791254050"]}
+2016-10-03T09:26:22.678496+00:00 app[web.1]: a6595c3b-7be3-4175-9b28-f4c791254050
+2016-10-03T09:26:22.678633+00:00 app[web.1]: {}
+2016-10-03T09:26:22.689948+00:00 app[web.1]: Socket {
+2016-10-03T09:26:22.689950+00:00 app[web.1]:   id: 'sXM1l_6BgVl-0Dqw24ng',
+2016-10-03T09:26:22.689951+00:00 app[web.1]:   namespace: 
+2016-10-03T09:26:22.689952+00:00 app[web.1]:    SocketNamespace {
+2016-10-03T09:26:22.689953+00:00 app[web.1]:      manager: 
+2016-10-03T09:26:22.689954+00:00 app[web.1]:       Manager {
+2016-10-03T09:26:22.689954+00:00 app[web.1]:         server: [Object],
+2016-10-03T09:26:22.689955+00:00 app[web.1]:         namespaces: [Object],
+2016-10-03T09:26:22.689956+00:00 app[web.1]:         sockets: [Circular],
+2016-10-03T09:26:22.689956+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:22.689957+00:00 app[web.1]:         _eventsCount: 5,
+2016-10-03T09:26:22.689958+00:00 app[web.1]:         settings: [Object],
+2016-10-03T09:26:22.689958+00:00 app[web.1]:         handshaken: [Object],
+2016-10-03T09:26:22.689959+00:00 app[web.1]:         connected: [Object],
+2016-10-03T09:26:22.689960+00:00 app[web.1]:         open: [Object],
+2016-10-03T09:26:22.689960+00:00 app[web.1]:         closed: {},
+2016-10-03T09:26:22.689961+00:00 app[web.1]:         rooms: [Object],
+2016-10-03T09:26:22.689961+00:00 app[web.1]:         roomClients: [Object],
+2016-10-03T09:26:22.689962+00:00 app[web.1]:         oldListeners: [Object],
+2016-10-03T09:26:22.689963+00:00 app[web.1]:         sequenceNumber: -1982101024,
+2016-10-03T09:26:22.689963+00:00 app[web.1]:         gc: [Object] },
+2016-10-03T09:26:22.689964+00:00 app[web.1]:      name: '',
+2016-10-03T09:26:22.689964+00:00 app[web.1]:      sockets: 
+2016-10-03T09:26:22.689965+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:22.689966+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Circular] },
+2016-10-03T09:26:22.689966+00:00 app[web.1]:      auth: false,
+2016-10-03T09:26:22.689967+00:00 app[web.1]:      flags: { endpoint: '', exceptions: [] },
+2016-10-03T09:26:22.689967+00:00 app[web.1]:      _events: { connection: [Object] },
+2016-10-03T09:26:22.689968+00:00 app[web.1]:      _eventsCount: 1 },
+2016-10-03T09:26:22.689969+00:00 app[web.1]:   manager: 
+2016-10-03T09:26:22.689969+00:00 app[web.1]:    Manager {
+2016-10-03T09:26:22.689970+00:00 app[web.1]:      server: 
+2016-10-03T09:26:22.689970+00:00 app[web.1]:       Server {
+2016-10-03T09:26:22.689971+00:00 app[web.1]:         domain: null,
+2016-10-03T09:26:22.689971+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:22.689972+00:00 app[web.1]:         _eventsCount: 6,
+2016-10-03T09:26:22.689973+00:00 app[web.1]:         _maxListeners: undefined,
+2016-10-03T09:26:22.689974+00:00 app[web.1]:         _connections: 4,
+2016-10-03T09:26:22.689974+00:00 app[web.1]:         _handle: [Object],
+2016-10-03T09:26:22.689975+00:00 app[web.1]:         _usingSlaves: false,
+2016-10-03T09:26:22.689975+00:00 app[web.1]:         _slaves: [],
+2016-10-03T09:26:22.689976+00:00 app[web.1]:         _unref: false,
+2016-10-03T09:26:22.689976+00:00 app[web.1]:         allowHalfOpen: true,
+2016-10-03T09:26:22.689977+00:00 app[web.1]:         pauseOnConnect: false,
+2016-10-03T09:26:22.689978+00:00 app[web.1]:         httpAllowHalfOpen: false,
+2016-10-03T09:26:22.689978+00:00 app[web.1]:         timeout: 120000,
+2016-10-03T09:26:22.689979+00:00 app[web.1]:         _pendingResponseData: 0,
+2016-10-03T09:26:22.689979+00:00 app[web.1]:         _connectionKey: '6::::49091' },
+2016-10-03T09:26:22.689980+00:00 app[web.1]:      namespaces: { '': [Object] },
+2016-10-03T09:26:22.689981+00:00 app[web.1]:      sockets: 
+2016-10-03T09:26:22.689981+00:00 app[web.1]:       SocketNamespace {
+2016-10-03T09:26:22.689982+00:00 app[web.1]:         manager: [Circular],
+2016-10-03T09:26:22.689982+00:00 app[web.1]:         name: '',
+2016-10-03T09:26:22.689983+00:00 app[web.1]:         sockets: [Object],
+2016-10-03T09:26:22.689983+00:00 app[web.1]:         auth: false,
+2016-10-03T09:26:22.689984+00:00 app[web.1]:         flags: [Object],
+2016-10-03T09:26:22.689985+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:22.689985+00:00 app[web.1]:         _eventsCount: 1 },
+2016-10-03T09:26:22.689986+00:00 app[web.1]:      _events: 
+2016-10-03T09:26:22.689986+00:00 app[web.1]:       { 'set:transports': [Object],
+2016-10-03T09:26:22.689987+00:00 app[web.1]:         'set:store': [Function],
+2016-10-03T09:26:22.689987+00:00 app[web.1]:         'set:origins': [Function],
+2016-10-03T09:26:22.689988+00:00 app[web.1]:         'set:flash policy port': [Function],
+2016-10-03T09:26:22.689989+00:00 app[web.1]:         'set:flash policy server': [Function] },
+2016-10-03T09:26:22.689989+00:00 app[web.1]:      _eventsCount: 5,
+2016-10-03T09:26:22.689990+00:00 app[web.1]:      settings: 
+2016-10-03T09:26:22.689990+00:00 app[web.1]:       { origins: '*:*',
+2016-10-03T09:26:22.689991+00:00 app[web.1]:         log: true,
+2016-10-03T09:26:22.689991+00:00 app[web.1]:         store: [Object],
+2016-10-03T09:26:22.689992+00:00 app[web.1]:         logger: [Object],
+2016-10-03T09:26:22.689993+00:00 app[web.1]:         static: [Object],
+2016-10-03T09:26:22.689993+00:00 app[web.1]:         heartbeats: true,
+2016-10-03T09:26:22.689994+00:00 app[web.1]:         resource: '/socket.io',
+2016-10-03T09:26:22.689994+00:00 app[web.1]:         transports: [Object],
+2016-10-03T09:26:22.689995+00:00 app[web.1]:         authorization: false,
+2016-10-03T09:26:22.689995+00:00 app[web.1]:         blacklist: [Object],
+2016-10-03T09:26:22.689996+00:00 app[web.1]:         'log level': 3,
+2016-10-03T09:26:22.689997+00:00 app[web.1]:         'log colors': false,
+2016-10-03T09:26:22.689997+00:00 app[web.1]:         'close timeout': 60,
+2016-10-03T09:26:22.689998+00:00 app[web.1]:         'heartbeat interval': 25,
+2016-10-03T09:26:22.689998+00:00 app[web.1]:         'heartbeat timeout': 60,
+2016-10-03T09:26:22.689999+00:00 app[web.1]:         'polling duration': 20,
+2016-10-03T09:26:22.689999+00:00 app[web.1]:         'flash policy server': true,
+2016-10-03T09:26:22.690000+00:00 app[web.1]:         'flash policy port': 10843,
+2016-10-03T09:26:22.690000+00:00 app[web.1]:         'destroy upgrade': true,
+2016-10-03T09:26:22.690001+00:00 app[web.1]:         'destroy buffer size': 100000000,
+2016-10-03T09:26:22.690002+00:00 app[web.1]:         'browser client': true,
+2016-10-03T09:26:22.690002+00:00 app[web.1]:         'browser client cache': true,
+2016-10-03T09:26:22.690003+00:00 app[web.1]:         'browser client minification': false,
+2016-10-03T09:26:22.690003+00:00 app[web.1]:         'browser client etag': false,
+2016-10-03T09:26:22.690004+00:00 app[web.1]:         'browser client expires': 315360000,
+2016-10-03T09:26:22.690004+00:00 app[web.1]:         'browser client gzip': false,
+2016-10-03T09:26:22.690005+00:00 app[web.1]:         'browser client handler': false,
+2016-10-03T09:26:22.690005+00:00 app[web.1]:         'client store expiration': 15,
+2016-10-03T09:26:22.690006+00:00 app[web.1]:         'match origin protocol': false },
+2016-10-03T09:26:22.690006+00:00 app[web.1]:      handshaken: 
+2016-10-03T09:26:22.690006+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:22.690007+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object] },
+2016-10-03T09:26:22.690008+00:00 app[web.1]:      connected: { qD9sd2xu7GFr39Em24nf: true, 'sXM1l_6BgVl-0Dqw24ng': true },
+2016-10-03T09:26:22.690008+00:00 app[web.1]:      open: { qD9sd2xu7GFr39Em24nf: true, 'sXM1l_6BgVl-0Dqw24ng': true },
+2016-10-03T09:26:22.690009+00:00 app[web.1]:      closed: {},
+2016-10-03T09:26:22.690009+00:00 app[web.1]:      rooms: { '': [Object] },
+2016-10-03T09:26:22.690010+00:00 app[web.1]:      roomClients: 
+2016-10-03T09:26:22.690011+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:22.690011+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object] },
+2016-10-03T09:26:22.690012+00:00 app[web.1]:      oldListeners: [ [Object] ],
+2016-10-03T09:26:22.690012+00:00 app[web.1]:      sequenceNumber: -1982101024,
+2016-10-03T09:26:22.690013+00:00 app[web.1]:      gc: 
+2016-10-03T09:26:22.690013+00:00 app[web.1]:       { _called: true,
+2016-10-03T09:26:22.690014+00:00 app[web.1]:         _idleTimeout: 10000,
+2016-10-03T09:26:22.690014+00:00 app[web.1]:         _idlePrev: [Object],
+2016-10-03T09:26:22.690015+00:00 app[web.1]:         _idleNext: [Object],
+2016-10-03T09:26:22.690015+00:00 app[web.1]:         _idleStart: 130634,
+2016-10-03T09:26:22.690016+00:00 app[web.1]:         _onTimeout: [Function: wrapper],
+2016-10-03T09:26:22.690016+00:00 app[web.1]:         _repeat: [Function: bound ] } },
+2016-10-03T09:26:22.690017+00:00 app[web.1]:   disconnected: false,
+2016-10-03T09:26:22.690017+00:00 app[web.1]:   ackPackets: 0,
+2016-10-03T09:26:22.690018+00:00 app[web.1]:   acks: {},
+2016-10-03T09:26:22.690018+00:00 app[web.1]:   flags: { endpoint: '', room: '' },
+2016-10-03T09:26:22.690019+00:00 app[web.1]:   readable: true,
+2016-10-03T09:26:22.690019+00:00 app[web.1]:   store: 
+2016-10-03T09:26:22.690020+00:00 app[web.1]:    Client {
+2016-10-03T09:26:22.690021+00:00 app[web.1]:      store: Memory { options: undefined, clients: [Object], manager: [Object] },
+2016-10-03T09:26:22.690022+00:00 app[web.1]:      id: 'sXM1l_6BgVl-0Dqw24ng',
+2016-10-03T09:26:22.690022+00:00 app[web.1]:      data: {} },
+2016-10-03T09:26:22.690023+00:00 app[web.1]:   _events: 
+2016-10-03T09:26:22.690023+00:00 app[web.1]:    { error: [Function],
+2016-10-03T09:26:22.690024+00:00 app[web.1]:      tv: [Function],
+2016-10-03T09:26:22.690024+00:00 app[web.1]:      client: [Function],
+2016-10-03T09:26:22.690025+00:00 app[web.1]:      disconnect: [Function],
+2016-10-03T09:26:22.690025+00:00 app[web.1]:      g_start: [Function],
+2016-10-03T09:26:22.690026+00:00 app[web.1]:      wait_other: [Function],
+2016-10-03T09:26:22.690026+00:00 app[web.1]:      sendID: [Function],
+2016-10-03T09:26:22.690027+00:00 app[web.1]:      walk: [Function],
+2016-10-03T09:26:22.690028+00:00 app[web.1]:      new_house: [Function],
+2016-10-03T09:26:22.690028+00:00 app[web.1]:      show_score: [Function],
+2016-10-03T09:26:22.690029+00:00 app[web.1]:      get_money: [Function],
+2016-10-03T09:26:22.690030+00:00 app[web.1]:      change_player: [Function],
+2016-10-03T09:26:22.690030+00:00 app[web.1]:      find_place: [Function],
+2016-10-03T09:26:22.690031+00:00 app[web.1]:      buy_city: [Function],
+2016-10-03T09:26:22.690032+00:00 app[web.1]:      tile_click: [Function],
+2016-10-03T09:26:22.690038+00:00 app[web.1]:      play_again: [Function],
+2016-10-03T09:26:22.690039+00:00 app[web.1]:      new_g: [Function],
+2016-10-03T09:26:22.690039+00:00 app[web.1]:      b_click: [Function],
+2016-10-03T09:26:22.690040+00:00 app[web.1]:      btn_click: [Function],
+2016-10-03T09:26:22.690041+00:00 app[web.1]:      leave_g: [Function],
+2016-10-03T09:26:22.690041+00:00 app[web.1]:      exit: [Function] },
+2016-10-03T09:26:22.690042+00:00 app[web.1]:   _eventsCount: 21 }
+2016-10-03T09:26:22.690042+00:00 app[web.1]: key a6595c3b-7be3-4175-9b28-f4c791254050
+2016-10-03T09:26:22.696767+00:00 app[web.1]: Socket {
+2016-10-03T09:26:22.696770+00:00 app[web.1]:   id: 'sXM1l_6BgVl-0Dqw24ng',
+2016-10-03T09:26:22.696771+00:00 app[web.1]:   namespace: 
+2016-10-03T09:26:22.696771+00:00 app[web.1]:    SocketNamespace {
+2016-10-03T09:26:22.696772+00:00 app[web.1]:      manager: 
+2016-10-03T09:26:22.696773+00:00 app[web.1]:       Manager {
+2016-10-03T09:26:22.696774+00:00 app[web.1]:         server: [Object],
+2016-10-03T09:26:22.696774+00:00 app[web.1]:         namespaces: [Object],
+2016-10-03T09:26:22.696775+00:00 app[web.1]:         sockets: [Circular],
+2016-10-03T09:26:22.696775+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:22.696776+00:00 app[web.1]:         _eventsCount: 5,
+2016-10-03T09:26:22.696777+00:00 app[web.1]:         settings: [Object],
+2016-10-03T09:26:22.696777+00:00 app[web.1]:         handshaken: [Object],
+2016-10-03T09:26:22.696778+00:00 app[web.1]:         connected: [Object],
+2016-10-03T09:26:22.696779+00:00 app[web.1]:         open: [Object],
+2016-10-03T09:26:22.696779+00:00 app[web.1]:         closed: {},
+2016-10-03T09:26:22.696780+00:00 app[web.1]:         rooms: [Object],
+2016-10-03T09:26:22.696781+00:00 app[web.1]:         roomClients: [Object],
+2016-10-03T09:26:22.696781+00:00 app[web.1]:         oldListeners: [Object],
+2016-10-03T09:26:22.696782+00:00 app[web.1]:         sequenceNumber: -1982101024,
+2016-10-03T09:26:22.696783+00:00 app[web.1]:         gc: [Object] },
+2016-10-03T09:26:22.696784+00:00 app[web.1]:      name: '',
+2016-10-03T09:26:22.696784+00:00 app[web.1]:      sockets: 
+2016-10-03T09:26:22.696785+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:22.696785+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Circular] },
+2016-10-03T09:26:22.696786+00:00 app[web.1]:      auth: false,
+2016-10-03T09:26:22.696787+00:00 app[web.1]:      flags: { endpoint: '', exceptions: [] },
+2016-10-03T09:26:22.696788+00:00 app[web.1]:      _events: { connection: [Object] },
+2016-10-03T09:26:22.696788+00:00 app[web.1]:      _eventsCount: 1 },
+2016-10-03T09:26:22.696789+00:00 app[web.1]:   manager: 
+2016-10-03T09:26:22.696789+00:00 app[web.1]:    Manager {
+2016-10-03T09:26:22.696790+00:00 app[web.1]:      server: 
+2016-10-03T09:26:22.696791+00:00 app[web.1]:       Server {
+2016-10-03T09:26:22.696791+00:00 app[web.1]:         domain: null,
+2016-10-03T09:26:22.696792+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:22.696792+00:00 app[web.1]:         _eventsCount: 6,
+2016-10-03T09:26:22.696793+00:00 app[web.1]:         _maxListeners: undefined,
+2016-10-03T09:26:22.696793+00:00 app[web.1]:         _connections: 4,
+2016-10-03T09:26:22.696794+00:00 app[web.1]:         _handle: [Object],
+2016-10-03T09:26:22.696795+00:00 app[web.1]:         _usingSlaves: false,
+2016-10-03T09:26:22.696795+00:00 app[web.1]:         _slaves: [],
+2016-10-03T09:26:22.696796+00:00 app[web.1]:         _unref: false,
+2016-10-03T09:26:22.696797+00:00 app[web.1]:         allowHalfOpen: true,
+2016-10-03T09:26:22.696797+00:00 app[web.1]:         pauseOnConnect: false,
+2016-10-03T09:26:22.696798+00:00 app[web.1]:         httpAllowHalfOpen: false,
+2016-10-03T09:26:22.696798+00:00 app[web.1]:         timeout: 120000,
+2016-10-03T09:26:22.696799+00:00 app[web.1]:         _pendingResponseData: 0,
+2016-10-03T09:26:22.696800+00:00 app[web.1]:         _connectionKey: '6::::49091' },
+2016-10-03T09:26:22.696800+00:00 app[web.1]:      namespaces: { '': [Object] },
+2016-10-03T09:26:22.696801+00:00 app[web.1]:      sockets: 
+2016-10-03T09:26:22.696802+00:00 app[web.1]:       SocketNamespace {
+2016-10-03T09:26:22.696802+00:00 app[web.1]:         manager: [Circular],
+2016-10-03T09:26:22.696803+00:00 app[web.1]:         name: '',
+2016-10-03T09:26:22.696803+00:00 app[web.1]:         sockets: [Object],
+2016-10-03T09:26:22.696804+00:00 app[web.1]:         auth: false,
+2016-10-03T09:26:22.696804+00:00 app[web.1]:         flags: [Object],
+2016-10-03T09:26:22.696805+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:22.696805+00:00 app[web.1]:         _eventsCount: 1 },
+2016-10-03T09:26:22.696806+00:00 app[web.1]:      _events: 
+2016-10-03T09:26:22.696806+00:00 app[web.1]:       { 'set:transports': [Object],
+2016-10-03T09:26:22.696807+00:00 app[web.1]:         'set:store': [Function],
+2016-10-03T09:26:22.696807+00:00 app[web.1]:         'set:origins': [Function],
+2016-10-03T09:26:22.696808+00:00 app[web.1]:         'set:flash policy port': [Function],
+2016-10-03T09:26:22.696809+00:00 app[web.1]:         'set:flash policy server': [Function] },
+2016-10-03T09:26:22.696809+00:00 app[web.1]:      _eventsCount: 5,
+2016-10-03T09:26:22.696810+00:00 app[web.1]:      settings: 
+2016-10-03T09:26:22.696813+00:00 app[web.1]:       { origins: '*:*',
+2016-10-03T09:26:22.696814+00:00 app[web.1]:         log: true,
+2016-10-03T09:26:22.696814+00:00 app[web.1]:         store: [Object],
+2016-10-03T09:26:22.696815+00:00 app[web.1]:         logger: [Object],
+2016-10-03T09:26:22.696815+00:00 app[web.1]:         static: [Object],
+2016-10-03T09:26:22.696816+00:00 app[web.1]:         heartbeats: true,
+2016-10-03T09:26:22.696816+00:00 app[web.1]:         resource: '/socket.io',
+2016-10-03T09:26:22.696817+00:00 app[web.1]:         transports: [Object],
+2016-10-03T09:26:22.696818+00:00 app[web.1]:         authorization: false,
+2016-10-03T09:26:22.696818+00:00 app[web.1]:         blacklist: [Object],
+2016-10-03T09:26:22.696818+00:00 app[web.1]:         'log level': 3,
+2016-10-03T09:26:22.696819+00:00 app[web.1]:         'log colors': false,
+2016-10-03T09:26:22.696820+00:00 app[web.1]:         'close timeout': 60,
+2016-10-03T09:26:22.696820+00:00 app[web.1]:         'heartbeat interval': 25,
+2016-10-03T09:26:22.696821+00:00 app[web.1]:         'heartbeat timeout': 60,
+2016-10-03T09:26:22.696822+00:00 app[web.1]:         'polling duration': 20,
+2016-10-03T09:26:22.696822+00:00 app[web.1]:         'flash policy server': true,
+2016-10-03T09:26:22.696823+00:00 app[web.1]:         'flash policy port': 10843,
+2016-10-03T09:26:22.696824+00:00 app[web.1]:         'destroy upgrade': true,
+2016-10-03T09:26:22.696824+00:00 app[web.1]:         'destroy buffer size': 100000000,
+2016-10-03T09:26:22.696825+00:00 app[web.1]:         'browser client': true,
+2016-10-03T09:26:22.696825+00:00 app[web.1]:         'browser client cache': true,
+2016-10-03T09:26:22.696826+00:00 app[web.1]:         'browser client minification': false,
+2016-10-03T09:26:22.696827+00:00 app[web.1]:         'browser client etag': false,
+2016-10-03T09:26:22.696827+00:00 app[web.1]:         'browser client expires': 315360000,
+2016-10-03T09:26:22.696828+00:00 app[web.1]:         'browser client gzip': false,
+2016-10-03T09:26:22.696829+00:00 app[web.1]:         'browser client handler': false,
+2016-10-03T09:26:22.696829+00:00 app[web.1]:         'client store expiration': 15,
+2016-10-03T09:26:22.696830+00:00 app[web.1]:         'match origin protocol': false },
+2016-10-03T09:26:22.696830+00:00 app[web.1]:      handshaken: 
+2016-10-03T09:26:22.696831+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:22.696831+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object] },
+2016-10-03T09:26:22.696832+00:00 app[web.1]:      connected: { qD9sd2xu7GFr39Em24nf: true, 'sXM1l_6BgVl-0Dqw24ng': true },
+2016-10-03T09:26:22.696833+00:00 app[web.1]:      open: { qD9sd2xu7GFr39Em24nf: true, 'sXM1l_6BgVl-0Dqw24ng': true },
+2016-10-03T09:26:22.696833+00:00 app[web.1]:      closed: {},
+2016-10-03T09:26:22.696834+00:00 app[web.1]:      rooms: { '': [Object] },
+2016-10-03T09:26:22.696835+00:00 app[web.1]:      roomClients: 
+2016-10-03T09:26:22.696835+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:22.696836+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object] },
+2016-10-03T09:26:22.696836+00:00 app[web.1]:      oldListeners: [ [Object] ],
+2016-10-03T09:26:22.696837+00:00 app[web.1]:      sequenceNumber: -1982101024,
+2016-10-03T09:26:22.696838+00:00 app[web.1]:      gc: 
+2016-10-03T09:26:22.696838+00:00 app[web.1]:       { _called: true,
+2016-10-03T09:26:22.696839+00:00 app[web.1]:         _idleTimeout: 10000,
+2016-10-03T09:26:22.696839+00:00 app[web.1]:         _idlePrev: [Object],
+2016-10-03T09:26:22.696840+00:00 app[web.1]:         _idleNext: [Object],
+2016-10-03T09:26:22.696840+00:00 app[web.1]:         _idleStart: 130634,
+2016-10-03T09:26:22.696841+00:00 app[web.1]:         _onTimeout: [Function: wrapper],
+2016-10-03T09:26:22.696842+00:00 app[web.1]:         _repeat: [Function: bound ] } },
+2016-10-03T09:26:22.696842+00:00 app[web.1]:   disconnected: false,
+2016-10-03T09:26:22.696843+00:00 app[web.1]:   ackPackets: 0,
+2016-10-03T09:26:22.696843+00:00 app[web.1]:   acks: {},
+2016-10-03T09:26:22.696844+00:00 app[web.1]:   flags: { endpoint: '', room: '' },
+2016-10-03T09:26:22.696845+00:00 app[web.1]:   readable: true,
+2016-10-03T09:26:22.696845+00:00 app[web.1]:   store: 
+2016-10-03T09:26:22.696846+00:00 app[web.1]:    Client {
+2016-10-03T09:26:22.696847+00:00 app[web.1]:      store: Memory { options: undefined, clients: [Object], manager: [Object] },
+2016-10-03T09:26:22.696847+00:00 app[web.1]:      id: 'sXM1l_6BgVl-0Dqw24ng',
+2016-10-03T09:26:22.696848+00:00 app[web.1]:      data: {} },
+2016-10-03T09:26:22.696849+00:00 app[web.1]:   _events: 
+2016-10-03T09:26:22.696849+00:00 app[web.1]:    { error: [Function],
+2016-10-03T09:26:22.696850+00:00 app[web.1]:      tv: [Function],
+2016-10-03T09:26:22.696851+00:00 app[web.1]:      client: [Function],
+2016-10-03T09:26:22.696851+00:00 app[web.1]:      disconnect: [Function],
+2016-10-03T09:26:22.696852+00:00 app[web.1]:      g_start: [Function],
+2016-10-03T09:26:22.696853+00:00 app[web.1]:      wait_other: [Function],
+2016-10-03T09:26:22.696853+00:00 app[web.1]:      sendID: [Function],
+2016-10-03T09:26:22.696854+00:00 app[web.1]:      walk: [Function],
+2016-10-03T09:26:22.696855+00:00 app[web.1]:      new_house: [Function],
+2016-10-03T09:26:22.696855+00:00 app[web.1]:      show_score: [Function],
+2016-10-03T09:26:22.696856+00:00 app[web.1]:      get_money: [Function],
+2016-10-03T09:26:22.696856+00:00 app[web.1]:      change_player: [Function],
+2016-10-03T09:26:22.696857+00:00 app[web.1]:      find_place: [Function],
+2016-10-03T09:26:22.696857+00:00 app[web.1]:      buy_city: [Function],
+2016-10-03T09:26:22.696858+00:00 app[web.1]:      tile_click: [Function],
+2016-10-03T09:26:22.696863+00:00 app[web.1]:      play_again: [Function],
+2016-10-03T09:26:22.696864+00:00 app[web.1]:      new_g: [Function],
+2016-10-03T09:26:22.696864+00:00 app[web.1]:      b_click: [Function],
+2016-10-03T09:26:22.696865+00:00 app[web.1]:      btn_click: [Function],
+2016-10-03T09:26:22.696866+00:00 app[web.1]:      leave_g: [Function],
+2016-10-03T09:26:22.696866+00:00 app[web.1]:      exit: [Function] },
+2016-10-03T09:26:22.696867+00:00 app[web.1]:   _eventsCount: 21 }
+2016-10-03T09:26:24.521168+00:00 heroku[router]: at=info method=GET path="/images/game.jpg" host=secret-tundra-90982.herokuapp.com request_id=900c0493-1f8e-4dfc-8e22-4fad4a9f833a fwd="60.248.161.28" dyno=web.1 connect=0ms service=20ms status=200 bytes=590100
+2016-10-03T09:26:24.897382+00:00 heroku[router]: at=info method=GET path="/flags/3.png" host=secret-tundra-90982.herokuapp.com request_id=80d4607d-bfad-4180-bd18-d3ab9cecb106 fwd="60.248.161.28" dyno=web.1 connect=0ms service=5ms status=304 bytes=238
+2016-10-03T09:26:24.874139+00:00 heroku[router]: at=info method=GET path="/flags/4.png" host=secret-tundra-90982.herokuapp.com request_id=81253d3b-5a42-4e7f-8b9b-5026577cf0ab fwd="60.248.161.28" dyno=web.1 connect=0ms service=8ms status=304 bytes=238
+2016-10-03T09:26:24.871416+00:00 heroku[router]: at=info method=GET path="/flags/5.png" host=secret-tundra-90982.herokuapp.com request_id=41f8cec0-b7a2-4402-9f4e-010377bc7a9c fwd="60.248.161.28" dyno=web.1 connect=0ms service=7ms status=304 bytes=238
+2016-10-03T09:26:24.875121+00:00 heroku[router]: at=info method=GET path="/flags/2.png" host=secret-tundra-90982.herokuapp.com request_id=5cd19ae3-d84b-40cc-8d71-a859794682bb fwd="60.248.161.28" dyno=web.1 connect=0ms service=5ms status=304 bytes=238
+2016-10-03T09:26:24.894518+00:00 heroku[router]: at=info method=GET path="/flags/6.png" host=secret-tundra-90982.herokuapp.com request_id=64627a98-d100-4ed0-89ab-841a12d983b5 fwd="60.248.161.28" dyno=web.1 connect=0ms service=5ms status=304 bytes=238
+2016-10-03T09:26:25.140107+00:00 heroku[router]: at=info method=GET path="/images/gradient.png" host=secret-tundra-90982.herokuapp.com request_id=4ec76d2c-fb39-4232-b359-d868959f4150 fwd="60.248.161.28" dyno=web.1 connect=1ms service=4ms status=304 bytes=238
+2016-10-03T09:26:25.142468+00:00 heroku[router]: at=info method=GET path="/images/1.png" host=secret-tundra-90982.herokuapp.com request_id=f88da3b2-f1ae-4068-ab4c-9d64ba594e4e fwd="60.248.161.28" dyno=web.1 connect=0ms service=6ms status=304 bytes=238
+2016-10-03T09:26:25.151501+00:00 heroku[router]: at=info method=GET path="/flags/7.png" host=secret-tundra-90982.herokuapp.com request_id=1a5ee9f2-5319-4e96-bda5-8ed4bc3b5207 fwd="60.248.161.28" dyno=web.1 connect=0ms service=9ms status=304 bytes=238
+2016-10-03T09:26:25.184205+00:00 heroku[router]: at=info method=GET path="/flags/8.png" host=secret-tundra-90982.herokuapp.com request_id=21d90ca2-4400-4e14-b611-cdcfa8752fb3 fwd="60.248.161.28" dyno=web.1 connect=0ms service=4ms status=304 bytes=238
+2016-10-03T09:26:25.158953+00:00 heroku[router]: at=info method=GET path="/socket.io/1/?t=1475486684176" host=secret-tundra-90982.herokuapp.com request_id=24d95da6-952b-44f8-9adc-d36a3d0c062e fwd="60.248.161.28" dyno=web.1 connect=0ms service=2ms status=200 bytes=211
+2016-10-03T09:26:25.126248+00:00 app[web.1]: debug: client authorized
+2016-10-03T09:26:25.126820+00:00 app[web.1]: info: handshake authorized xuy1dtzBMAIKlcrB24nh
+2016-10-03T09:26:25.409735+00:00 heroku[router]: at=info method=GET path="/flags/11.png" host=secret-tundra-90982.herokuapp.com request_id=6e13c509-6c84-4db6-a05e-14e73283d44e fwd="60.248.161.28" dyno=web.1 connect=0ms service=3ms status=304 bytes=238
+2016-10-03T09:26:25.421665+00:00 heroku[router]: at=info method=GET path="/flags/9.png" host=secret-tundra-90982.herokuapp.com request_id=c32a55f0-c36b-460e-bf4a-96aa2c1e074a fwd="60.248.161.28" dyno=web.1 connect=0ms service=4ms status=304 bytes=238
+2016-10-03T09:26:25.406292+00:00 heroku[router]: at=info method=GET path="/flags/10.png" host=secret-tundra-90982.herokuapp.com request_id=7ae4f36f-1457-4767-9726-d2193377b6d5 fwd="60.248.161.28" dyno=web.1 connect=0ms service=3ms status=304 bytes=238
+2016-10-03T09:26:25.421535+00:00 heroku[router]: at=info method=GET path="/flags/12.png" host=secret-tundra-90982.herokuapp.com request_id=44f5190d-abc3-49d4-9634-7bd1e44e9892 fwd="60.248.161.28" dyno=web.1 connect=0ms service=6ms status=304 bytes=238
+2016-10-03T09:26:26.263505+00:00 app[web.1]: debug: setting request GET /socket.io/1/websocket/xuy1dtzBMAIKlcrB24nh
+2016-10-03T09:26:26.263597+00:00 app[web.1]: debug: set heartbeat interval for client xuy1dtzBMAIKlcrB24nh
+2016-10-03T09:26:26.264219+00:00 app[web.1]: debug: client authorized for 
+2016-10-03T09:26:26.264521+00:00 app[web.1]: debug: websocket writing 1::
+2016-10-03T09:26:26.264620+00:00 app[web.1]: connection
+2016-10-03T09:26:26.527465+00:00 app[web.1]: 新的ㄧ台電視連線
+2016-10-03T09:26:26.527860+00:00 app[web.1]: 現在的時間10/3/2016, 9:26:26 AM
+2016-10-03T09:26:26.797761+00:00 app[web.1]: Inning {
+2016-10-03T09:26:26.797770+00:00 app[web.1]:   inning_guid: '38ea484e-04b7-45df-9b9b-f0a44e141cb5',
+2016-10-03T09:26:26.797771+00:00 app[web.1]:   g_gref: 0,
+2016-10-03T09:26:26.797772+00:00 app[web.1]:   _id: 57f22442f3b7320011efe87d }
+2016-10-03T09:26:27.027152+00:00 app[web.1]: all_game
+2016-10-03T09:26:27.028401+00:00 app[web.1]: [ Game {
+2016-10-03T09:26:27.028404+00:00 app[web.1]:     game_guid: 'aea3d281-a111-4272-b4a4-77863c090fef',
+2016-10-03T09:26:27.028405+00:00 app[web.1]:     g_p_less: 2,
+2016-10-03T09:26:27.028405+00:00 app[web.1]:     g_p_more: 2,
+2016-10-03T09:26:27.028406+00:00 app[web.1]:     g_name: '圈圈叉叉',
+2016-10-03T09:26:27.028407+00:00 app[web.1]:     _id: 57e2421f589e8866c606cd36 },
+2016-10-03T09:26:27.028408+00:00 app[web.1]:   Game {
+2016-10-03T09:26:27.028408+00:00 app[web.1]:     game_guid: '313d4029-7bc5-454d-ac2b-a3d5dee5e60b',
+2016-10-03T09:26:27.028409+00:00 app[web.1]:     g_p_less: 2,
+2016-10-03T09:26:27.028410+00:00 app[web.1]:     g_p_more: 4,
+2016-10-03T09:26:27.028410+00:00 app[web.1]:     g_name: '配對遊戲',
+2016-10-03T09:26:27.028411+00:00 app[web.1]:     _id: 57e2445678ea1247eb88a170 },
+2016-10-03T09:26:27.028411+00:00 app[web.1]:   Game {
+2016-10-03T09:26:27.028412+00:00 app[web.1]:     game_guid: '67af5ab1-a004-41a2-b9e4-74733f0c765f',
+2016-10-03T09:26:27.028413+00:00 app[web.1]:     g_p_less: 2,
+2016-10-03T09:26:27.028413+00:00 app[web.1]:     g_p_more: 2,
+2016-10-03T09:26:27.028414+00:00 app[web.1]:     g_name: '剪刀石頭佈',
+2016-10-03T09:26:27.028415+00:00 app[web.1]:     _id: 57e2445678ea1247eb88a171 },
+2016-10-03T09:26:27.028416+00:00 app[web.1]:   Game {
+2016-10-03T09:26:27.028417+00:00 app[web.1]:     game_guid: '27b38a5bde-89fd-44ba-9cf4-c3cf76866f95',
+2016-10-03T09:26:27.028417+00:00 app[web.1]:     g_p_less: 2,
+2016-10-03T09:26:27.028418+00:00 app[web.1]:     g_p_more: 4,
+2016-10-03T09:26:27.028418+00:00 app[web.1]:     g_name: '大富翁',
+2016-10-03T09:26:27.028419+00:00 app[web.1]:     _id: 57e2445678ea1247eb88a172 },
+2016-10-03T09:26:27.028420+00:00 app[web.1]:   Game {
+2016-10-03T09:26:27.028421+00:00 app[web.1]:     game_guid: '0c4aecb4-da19-4ece-b40e-e48c3f3d7bc2',
+2016-10-03T09:26:27.028422+00:00 app[web.1]:     g_p_less: 4,
+2016-10-03T09:26:27.028422+00:00 app[web.1]:     g_p_more: 4,
+2016-10-03T09:26:27.028423+00:00 app[web.1]:     g_name: '撲克排七',
+2016-10-03T09:26:27.028423+00:00 app[web.1]:     _id: 57e2445678ea1247eb88a173 } ]
+2016-10-03T09:26:27.028487+00:00 app[web.1]: all_game_guid
+2016-10-03T09:26:27.029000+00:00 app[web.1]: debug: websocket writing 5:::{"name":"qrcode","args":[[{"game_guid":"aea3d281-a111-4272-b4a4-77863c090fef","g_p_less":2,"g_p_more":2,"g_name":"圈圈叉叉","_id":"57e2421f589e8866c606cd36"},{"game_guid":"313d4029-7bc5-454d-ac2b-a3d5dee5e60b","g_p_less":2,"g_p_more":4,"g_name":"配對遊戲","_id":"57e2445678ea1247eb88a170"},{"game_guid":"67af5ab1-a004-41a2-b9e4-74733f0c765f","g_p_less":2,"g_p_more":2,"g_name":"剪刀石頭佈","_id":"57e2445678ea1247eb88a171"},{"game_guid":"27b38a5bde-89fd-44ba-9cf4-c3cf76866f95","g_p_less":2,"g_p_more":4,"g_name":"大富翁","_id":"57e2445678ea1247eb88a172"},{"game_guid":"0c4aecb4-da19-4ece-b40e-e48c3f3d7bc2","g_p_less":4,"g_p_more":4,"g_name":"撲克排七","_id":"57e2445678ea1247eb88a173"}],"38ea484e-04b7-45df-9b9b-f0a44e141cb5"]}
+2016-10-03T09:26:27.029097+00:00 app[web.1]: 38ea484e-04b7-45df-9b9b-f0a44e141cb5
+2016-10-03T09:26:27.037546+00:00 app[web.1]: { 'a6595c3b-7be3-4175-9b28-f4c791254050': 
+2016-10-03T09:26:27.037564+00:00 app[web.1]:    Socket {
+2016-10-03T09:26:27.037565+00:00 app[web.1]:      id: 'sXM1l_6BgVl-0Dqw24ng',
+2016-10-03T09:26:27.037566+00:00 app[web.1]:      namespace: 
+2016-10-03T09:26:27.037567+00:00 app[web.1]:       SocketNamespace {
+2016-10-03T09:26:27.037567+00:00 app[web.1]:         manager: [Object],
+2016-10-03T09:26:27.037568+00:00 app[web.1]:         name: '',
+2016-10-03T09:26:27.037569+00:00 app[web.1]:         sockets: [Object],
+2016-10-03T09:26:27.037569+00:00 app[web.1]:         auth: false,
+2016-10-03T09:26:27.037570+00:00 app[web.1]:         flags: [Object],
+2016-10-03T09:26:27.037570+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:27.037571+00:00 app[web.1]:         _eventsCount: 1 },
+2016-10-03T09:26:27.037572+00:00 app[web.1]:      manager: 
+2016-10-03T09:26:27.037572+00:00 app[web.1]:       Manager {
+2016-10-03T09:26:27.037573+00:00 app[web.1]:         server: [Object],
+2016-10-03T09:26:27.037573+00:00 app[web.1]:         namespaces: [Object],
+2016-10-03T09:26:27.037574+00:00 app[web.1]:         sockets: [Object],
+2016-10-03T09:26:27.037575+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:27.037575+00:00 app[web.1]:         _eventsCount: 5,
+2016-10-03T09:26:27.037576+00:00 app[web.1]:         settings: [Object],
+2016-10-03T09:26:27.037576+00:00 app[web.1]:         handshaken: [Object],
+2016-10-03T09:26:27.037577+00:00 app[web.1]:         connected: [Object],
+2016-10-03T09:26:27.037577+00:00 app[web.1]:         open: [Object],
+2016-10-03T09:26:27.037578+00:00 app[web.1]:         closed: {},
+2016-10-03T09:26:27.037579+00:00 app[web.1]:         rooms: [Object],
+2016-10-03T09:26:27.037579+00:00 app[web.1]:         roomClients: [Object],
+2016-10-03T09:26:27.037580+00:00 app[web.1]:         oldListeners: [Object],
+2016-10-03T09:26:27.037581+00:00 app[web.1]:         sequenceNumber: -1982101023,
+2016-10-03T09:26:27.037581+00:00 app[web.1]:         gc: [Object] },
+2016-10-03T09:26:27.037582+00:00 app[web.1]:      disconnected: false,
+2016-10-03T09:26:27.037582+00:00 app[web.1]:      ackPackets: 0,
+2016-10-03T09:26:27.037583+00:00 app[web.1]:      acks: {},
+2016-10-03T09:26:27.037584+00:00 app[web.1]:      flags: { endpoint: '', room: '' },
+2016-10-03T09:26:27.037584+00:00 app[web.1]:      readable: true,
+2016-10-03T09:26:27.037585+00:00 app[web.1]:      store: Client { store: [Object], id: 'sXM1l_6BgVl-0Dqw24ng', data: {} },
+2016-10-03T09:26:27.037586+00:00 app[web.1]:      _events: 
+2016-10-03T09:26:27.037586+00:00 app[web.1]:       { error: [Function],
+2016-10-03T09:26:27.037587+00:00 app[web.1]:         tv: [Function],
+2016-10-03T09:26:27.037588+00:00 app[web.1]:         client: [Function],
+2016-10-03T09:26:27.037588+00:00 app[web.1]:         disconnect: [Function],
+2016-10-03T09:26:27.037589+00:00 app[web.1]:         g_start: [Function],
+2016-10-03T09:26:27.037590+00:00 app[web.1]:         wait_other: [Function],
+2016-10-03T09:26:27.037590+00:00 app[web.1]:         sendID: [Function],
+2016-10-03T09:26:27.037591+00:00 app[web.1]:         walk: [Function],
+2016-10-03T09:26:27.037591+00:00 app[web.1]:         new_house: [Function],
+2016-10-03T09:26:27.037592+00:00 app[web.1]:         show_score: [Function],
+2016-10-03T09:26:27.037592+00:00 app[web.1]:         get_money: [Function],
+2016-10-03T09:26:27.037593+00:00 app[web.1]:         change_player: [Function],
+2016-10-03T09:26:27.037593+00:00 app[web.1]:         find_place: [Function],
+2016-10-03T09:26:27.037594+00:00 app[web.1]:         buy_city: [Function],
+2016-10-03T09:26:27.037594+00:00 app[web.1]:         tile_click: [Function],
+2016-10-03T09:26:27.037595+00:00 app[web.1]:         play_again: [Function],
+2016-10-03T09:26:27.037595+00:00 app[web.1]:         new_g: [Function],
+2016-10-03T09:26:27.037596+00:00 app[web.1]:         b_click: [Function],
+2016-10-03T09:26:27.037597+00:00 app[web.1]:         btn_click: [Function],
+2016-10-03T09:26:27.037597+00:00 app[web.1]:         leave_g: [Function],
+2016-10-03T09:26:27.037598+00:00 app[web.1]:         exit: [Function] },
+2016-10-03T09:26:27.037598+00:00 app[web.1]:      _eventsCount: 21 } }
+2016-10-03T09:26:27.046267+00:00 app[web.1]: Socket {
+2016-10-03T09:26:27.046269+00:00 app[web.1]:   id: 'xuy1dtzBMAIKlcrB24nh',
+2016-10-03T09:26:27.046270+00:00 app[web.1]:   namespace: 
+2016-10-03T09:26:27.046271+00:00 app[web.1]:    SocketNamespace {
+2016-10-03T09:26:27.046271+00:00 app[web.1]:      manager: 
+2016-10-03T09:26:27.046272+00:00 app[web.1]:       Manager {
+2016-10-03T09:26:27.046272+00:00 app[web.1]:         server: [Object],
+2016-10-03T09:26:27.046273+00:00 app[web.1]:         namespaces: [Object],
+2016-10-03T09:26:27.046274+00:00 app[web.1]:         sockets: [Circular],
+2016-10-03T09:26:27.046274+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:27.046275+00:00 app[web.1]:         _eventsCount: 5,
+2016-10-03T09:26:27.046276+00:00 app[web.1]:         settings: [Object],
+2016-10-03T09:26:27.046276+00:00 app[web.1]:         handshaken: [Object],
+2016-10-03T09:26:27.046277+00:00 app[web.1]:         connected: [Object],
+2016-10-03T09:26:27.046277+00:00 app[web.1]:         open: [Object],
+2016-10-03T09:26:27.046278+00:00 app[web.1]:         closed: {},
+2016-10-03T09:26:27.046278+00:00 app[web.1]:         rooms: [Object],
+2016-10-03T09:26:27.046279+00:00 app[web.1]:         roomClients: [Object],
+2016-10-03T09:26:27.046280+00:00 app[web.1]:         oldListeners: [Object],
+2016-10-03T09:26:27.046281+00:00 app[web.1]:         sequenceNumber: -1982101023,
+2016-10-03T09:26:27.046281+00:00 app[web.1]:         gc: [Object] },
+2016-10-03T09:26:27.046282+00:00 app[web.1]:      name: '',
+2016-10-03T09:26:27.046282+00:00 app[web.1]:      sockets: 
+2016-10-03T09:26:27.046283+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:27.046284+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object],
+2016-10-03T09:26:27.046284+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: [Circular] },
+2016-10-03T09:26:27.046285+00:00 app[web.1]:      auth: false,
+2016-10-03T09:26:27.046285+00:00 app[web.1]:      flags: { endpoint: '', exceptions: [] },
+2016-10-03T09:26:27.046286+00:00 app[web.1]:      _events: { connection: [Object] },
+2016-10-03T09:26:27.046287+00:00 app[web.1]:      _eventsCount: 1 },
+2016-10-03T09:26:27.046287+00:00 app[web.1]:   manager: 
+2016-10-03T09:26:27.046288+00:00 app[web.1]:    Manager {
+2016-10-03T09:26:27.046288+00:00 app[web.1]:      server: 
+2016-10-03T09:26:27.046289+00:00 app[web.1]:       Server {
+2016-10-03T09:26:27.046290+00:00 app[web.1]:         domain: null,
+2016-10-03T09:26:27.046290+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:27.046291+00:00 app[web.1]:         _eventsCount: 6,
+2016-10-03T09:26:27.046291+00:00 app[web.1]:         _maxListeners: undefined,
+2016-10-03T09:26:27.046292+00:00 app[web.1]:         _connections: 3,
+2016-10-03T09:26:27.046292+00:00 app[web.1]:         _handle: [Object],
+2016-10-03T09:26:27.046293+00:00 app[web.1]:         _usingSlaves: false,
+2016-10-03T09:26:27.046294+00:00 app[web.1]:         _slaves: [],
+2016-10-03T09:26:27.046294+00:00 app[web.1]:         _unref: false,
+2016-10-03T09:26:27.046295+00:00 app[web.1]:         allowHalfOpen: true,
+2016-10-03T09:26:27.046296+00:00 app[web.1]:         pauseOnConnect: false,
+2016-10-03T09:26:27.046296+00:00 app[web.1]:         httpAllowHalfOpen: false,
+2016-10-03T09:26:27.046297+00:00 app[web.1]:         timeout: 120000,
+2016-10-03T09:26:27.046297+00:00 app[web.1]:         _pendingResponseData: 0,
+2016-10-03T09:26:27.046298+00:00 app[web.1]:         _connectionKey: '6::::49091' },
+2016-10-03T09:26:27.046299+00:00 app[web.1]:      namespaces: { '': [Object] },
+2016-10-03T09:26:27.046299+00:00 app[web.1]:      sockets: 
+2016-10-03T09:26:27.046300+00:00 app[web.1]:       SocketNamespace {
+2016-10-03T09:26:27.046300+00:00 app[web.1]:         manager: [Circular],
+2016-10-03T09:26:27.046301+00:00 app[web.1]:         name: '',
+2016-10-03T09:26:27.046302+00:00 app[web.1]:         sockets: [Object],
+2016-10-03T09:26:27.046302+00:00 app[web.1]:         auth: false,
+2016-10-03T09:26:27.046303+00:00 app[web.1]:         flags: [Object],
+2016-10-03T09:26:27.046303+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:27.046304+00:00 app[web.1]:         _eventsCount: 1 },
+2016-10-03T09:26:27.046304+00:00 app[web.1]:      _events: 
+2016-10-03T09:26:27.046305+00:00 app[web.1]:       { 'set:transports': [Object],
+2016-10-03T09:26:27.046305+00:00 app[web.1]:         'set:store': [Function],
+2016-10-03T09:26:27.046306+00:00 app[web.1]:         'set:origins': [Function],
+2016-10-03T09:26:27.046306+00:00 app[web.1]:         'set:flash policy port': [Function],
+2016-10-03T09:26:27.046307+00:00 app[web.1]:         'set:flash policy server': [Function] },
+2016-10-03T09:26:27.046308+00:00 app[web.1]:      _eventsCount: 5,
+2016-10-03T09:26:27.046309+00:00 app[web.1]:      settings: 
+2016-10-03T09:26:27.046309+00:00 app[web.1]:       { origins: '*:*',
+2016-10-03T09:26:27.046310+00:00 app[web.1]:         log: true,
+2016-10-03T09:26:27.046310+00:00 app[web.1]:         store: [Object],
+2016-10-03T09:26:27.046311+00:00 app[web.1]:         logger: [Object],
+2016-10-03T09:26:27.046311+00:00 app[web.1]:         static: [Object],
+2016-10-03T09:26:27.046312+00:00 app[web.1]:         heartbeats: true,
+2016-10-03T09:26:27.046312+00:00 app[web.1]:         resource: '/socket.io',
+2016-10-03T09:26:27.046313+00:00 app[web.1]:         transports: [Object],
+2016-10-03T09:26:27.046314+00:00 app[web.1]:         authorization: false,
+2016-10-03T09:26:27.046314+00:00 app[web.1]:         blacklist: [Object],
+2016-10-03T09:26:27.046315+00:00 app[web.1]:         'log level': 3,
+2016-10-03T09:26:27.046315+00:00 app[web.1]:         'log colors': false,
+2016-10-03T09:26:27.046316+00:00 app[web.1]:         'close timeout': 60,
+2016-10-03T09:26:27.046317+00:00 app[web.1]:         'heartbeat interval': 25,
+2016-10-03T09:26:27.046317+00:00 app[web.1]:         'heartbeat timeout': 60,
+2016-10-03T09:26:27.046318+00:00 app[web.1]:         'polling duration': 20,
+2016-10-03T09:26:27.046319+00:00 app[web.1]:         'flash policy server': true,
+2016-10-03T09:26:27.046319+00:00 app[web.1]:         'flash policy port': 10843,
+2016-10-03T09:26:27.046321+00:00 app[web.1]:         'destroy upgrade': true,
+2016-10-03T09:26:27.046321+00:00 app[web.1]:         'destroy buffer size': 100000000,
+2016-10-03T09:26:27.046322+00:00 app[web.1]:         'browser client': true,
+2016-10-03T09:26:27.046322+00:00 app[web.1]:         'browser client cache': true,
+2016-10-03T09:26:27.046323+00:00 app[web.1]:         'browser client minification': false,
+2016-10-03T09:26:27.046324+00:00 app[web.1]:         'browser client etag': false,
+2016-10-03T09:26:27.046324+00:00 app[web.1]:         'browser client expires': 315360000,
+2016-10-03T09:26:27.046325+00:00 app[web.1]:         'browser client gzip': false,
+2016-10-03T09:26:27.046326+00:00 app[web.1]:         'browser client handler': false,
+2016-10-03T09:26:27.046326+00:00 app[web.1]:         'client store expiration': 15,
+2016-10-03T09:26:27.046327+00:00 app[web.1]:         'match origin protocol': false },
+2016-10-03T09:26:27.046328+00:00 app[web.1]:      handshaken: 
+2016-10-03T09:26:27.046328+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:27.046329+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object],
+2016-10-03T09:26:27.046329+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: [Object] },
+2016-10-03T09:26:27.046330+00:00 app[web.1]:      connected: 
+2016-10-03T09:26:27.046331+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: true,
+2016-10-03T09:26:27.046331+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': true,
+2016-10-03T09:26:27.046332+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: true },
+2016-10-03T09:26:27.046332+00:00 app[web.1]:      open: 
+2016-10-03T09:26:27.046333+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: true,
+2016-10-03T09:26:27.046334+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': true,
+2016-10-03T09:26:27.046334+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: true },
+2016-10-03T09:26:27.046335+00:00 app[web.1]:      closed: {},
+2016-10-03T09:26:27.046349+00:00 app[web.1]:      rooms: { '': [Object] },
+2016-10-03T09:26:27.046350+00:00 app[web.1]:      roomClients: 
+2016-10-03T09:26:27.046350+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:27.046351+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object],
+2016-10-03T09:26:27.046352+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: [Object] },
+2016-10-03T09:26:27.046352+00:00 app[web.1]:      oldListeners: [ [Object] ],
+2016-10-03T09:26:27.046353+00:00 app[web.1]:      sequenceNumber: -1982101023,
+2016-10-03T09:26:27.046354+00:00 app[web.1]:      gc: 
+2016-10-03T09:26:27.046354+00:00 app[web.1]:       { _called: true,
+2016-10-03T09:26:27.046355+00:00 app[web.1]:         _idleTimeout: 10000,
+2016-10-03T09:26:27.046355+00:00 app[web.1]:         _idlePrev: [Object],
+2016-10-03T09:26:27.046356+00:00 app[web.1]:         _idleNext: [Object],
+2016-10-03T09:26:27.046357+00:00 app[web.1]:         _idleStart: 130634,
+2016-10-03T09:26:27.046357+00:00 app[web.1]:         _onTimeout: [Function: wrapper],
+2016-10-03T09:26:27.046358+00:00 app[web.1]:         _repeat: [Function: bound ] } },
+2016-10-03T09:26:27.046359+00:00 app[web.1]:   disconnected: false,
+2016-10-03T09:26:27.046359+00:00 app[web.1]:   ackPackets: 0,
+2016-10-03T09:26:27.046360+00:00 app[web.1]:   acks: {},
+2016-10-03T09:26:27.046361+00:00 app[web.1]:   flags: { endpoint: '', room: '' },
+2016-10-03T09:26:27.046361+00:00 app[web.1]:   readable: true,
+2016-10-03T09:26:27.046362+00:00 app[web.1]:   store: 
+2016-10-03T09:26:27.046362+00:00 app[web.1]:    Client {
+2016-10-03T09:26:27.046363+00:00 app[web.1]:      store: Memory { options: undefined, clients: [Object], manager: [Object] },
+2016-10-03T09:26:27.046364+00:00 app[web.1]:      id: 'xuy1dtzBMAIKlcrB24nh',
+2016-10-03T09:26:27.046364+00:00 app[web.1]:      data: {} },
+2016-10-03T09:26:27.046365+00:00 app[web.1]:   _events: 
+2016-10-03T09:26:27.046365+00:00 app[web.1]:    { error: [Function],
+2016-10-03T09:26:27.046366+00:00 app[web.1]:      tv: [Function],
+2016-10-03T09:26:27.046367+00:00 app[web.1]:      client: [Function],
+2016-10-03T09:26:27.046367+00:00 app[web.1]:      disconnect: [Function],
+2016-10-03T09:26:27.046368+00:00 app[web.1]:      g_start: [Function],
+2016-10-03T09:26:27.046368+00:00 app[web.1]:      wait_other: [Function],
+2016-10-03T09:26:27.046369+00:00 app[web.1]:      sendID: [Function],
+2016-10-03T09:26:27.046369+00:00 app[web.1]:      walk: [Function],
+2016-10-03T09:26:27.046375+00:00 app[web.1]:      new_house: [Function],
+2016-10-03T09:26:27.046376+00:00 app[web.1]:      show_score: [Function],
+2016-10-03T09:26:27.046376+00:00 app[web.1]:      get_money: [Function],
+2016-10-03T09:26:27.046377+00:00 app[web.1]:      change_player: [Function],
+2016-10-03T09:26:27.046377+00:00 app[web.1]:      find_place: [Function],
+2016-10-03T09:26:27.046378+00:00 app[web.1]:      buy_city: [Function],
+2016-10-03T09:26:27.046379+00:00 app[web.1]:      tile_click: [Function],
+2016-10-03T09:26:27.046379+00:00 app[web.1]:      play_again: [Function],
+2016-10-03T09:26:27.046380+00:00 app[web.1]:      new_g: [Function],
+2016-10-03T09:26:27.046380+00:00 app[web.1]:      b_click: [Function],
+2016-10-03T09:26:27.046381+00:00 app[web.1]:      btn_click: [Function],
+2016-10-03T09:26:27.046382+00:00 app[web.1]:      leave_g: [Function],
+2016-10-03T09:26:27.046382+00:00 app[web.1]:      exit: [Function] },
+2016-10-03T09:26:27.046383+00:00 app[web.1]:   _eventsCount: 21 }
+2016-10-03T09:26:27.046498+00:00 app[web.1]: key 38ea484e-04b7-45df-9b9b-f0a44e141cb5
+2016-10-03T09:26:27.051335+00:00 app[web.1]: Socket {
+2016-10-03T09:26:27.051345+00:00 app[web.1]:   id: 'xuy1dtzBMAIKlcrB24nh',
+2016-10-03T09:26:27.051346+00:00 app[web.1]:   namespace: 
+2016-10-03T09:26:27.051346+00:00 app[web.1]:    SocketNamespace {
+2016-10-03T09:26:27.051347+00:00 app[web.1]:      manager: 
+2016-10-03T09:26:27.051347+00:00 app[web.1]:       Manager {
+2016-10-03T09:26:27.051348+00:00 app[web.1]:         server: [Object],
+2016-10-03T09:26:27.051348+00:00 app[web.1]:         namespaces: [Object],
+2016-10-03T09:26:27.051349+00:00 app[web.1]:         sockets: [Circular],
+2016-10-03T09:26:27.051349+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:27.051350+00:00 app[web.1]:         _eventsCount: 5,
+2016-10-03T09:26:27.051350+00:00 app[web.1]:         settings: [Object],
+2016-10-03T09:26:27.051351+00:00 app[web.1]:         handshaken: [Object],
+2016-10-03T09:26:27.051351+00:00 app[web.1]:         connected: [Object],
+2016-10-03T09:26:27.051352+00:00 app[web.1]:         open: [Object],
+2016-10-03T09:26:27.051352+00:00 app[web.1]:         closed: {},
+2016-10-03T09:26:27.051353+00:00 app[web.1]:         rooms: [Object],
+2016-10-03T09:26:27.051353+00:00 app[web.1]:         roomClients: [Object],
+2016-10-03T09:26:27.051354+00:00 app[web.1]:         oldListeners: [Object],
+2016-10-03T09:26:27.051355+00:00 app[web.1]:         sequenceNumber: -1982101023,
+2016-10-03T09:26:27.051355+00:00 app[web.1]:         gc: [Object] },
+2016-10-03T09:26:27.051356+00:00 app[web.1]:      name: '',
+2016-10-03T09:26:27.051356+00:00 app[web.1]:      sockets: 
+2016-10-03T09:26:27.051356+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:27.051357+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object],
+2016-10-03T09:26:27.051358+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: [Circular] },
+2016-10-03T09:26:27.051358+00:00 app[web.1]:      auth: false,
+2016-10-03T09:26:27.051359+00:00 app[web.1]:      flags: { endpoint: '', exceptions: [] },
+2016-10-03T09:26:27.051359+00:00 app[web.1]:      _events: { connection: [Object] },
+2016-10-03T09:26:27.051359+00:00 app[web.1]:      _eventsCount: 1 },
+2016-10-03T09:26:27.051360+00:00 app[web.1]:   manager: 
+2016-10-03T09:26:27.051360+00:00 app[web.1]:    Manager {
+2016-10-03T09:26:27.051361+00:00 app[web.1]:      server: 
+2016-10-03T09:26:27.051361+00:00 app[web.1]:       Server {
+2016-10-03T09:26:27.051362+00:00 app[web.1]:         domain: null,
+2016-10-03T09:26:27.051362+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:27.051363+00:00 app[web.1]:         _eventsCount: 6,
+2016-10-03T09:26:27.051364+00:00 app[web.1]:         _maxListeners: undefined,
+2016-10-03T09:26:27.051364+00:00 app[web.1]:         _connections: 3,
+2016-10-03T09:26:27.051365+00:00 app[web.1]:         _handle: [Object],
+2016-10-03T09:26:27.051365+00:00 app[web.1]:         _usingSlaves: false,
+2016-10-03T09:26:27.051366+00:00 app[web.1]:         _slaves: [],
+2016-10-03T09:26:27.051366+00:00 app[web.1]:         _unref: false,
+2016-10-03T09:26:27.051367+00:00 app[web.1]:         allowHalfOpen: true,
+2016-10-03T09:26:27.051367+00:00 app[web.1]:         pauseOnConnect: false,
+2016-10-03T09:26:27.051368+00:00 app[web.1]:         httpAllowHalfOpen: false,
+2016-10-03T09:26:27.051368+00:00 app[web.1]:         timeout: 120000,
+2016-10-03T09:26:27.051369+00:00 app[web.1]:         _pendingResponseData: 0,
+2016-10-03T09:26:27.051369+00:00 app[web.1]:         _connectionKey: '6::::49091' },
+2016-10-03T09:26:27.051370+00:00 app[web.1]:      namespaces: { '': [Object] },
+2016-10-03T09:26:27.051370+00:00 app[web.1]:      sockets: 
+2016-10-03T09:26:27.051371+00:00 app[web.1]:       SocketNamespace {
+2016-10-03T09:26:27.051371+00:00 app[web.1]:         manager: [Circular],
+2016-10-03T09:26:27.051372+00:00 app[web.1]:         name: '',
+2016-10-03T09:26:27.051372+00:00 app[web.1]:         sockets: [Object],
+2016-10-03T09:26:27.051373+00:00 app[web.1]:         auth: false,
+2016-10-03T09:26:27.051373+00:00 app[web.1]:         flags: [Object],
+2016-10-03T09:26:27.051374+00:00 app[web.1]:         _events: [Object],
+2016-10-03T09:26:27.051376+00:00 app[web.1]:         _eventsCount: 1 },
+2016-10-03T09:26:27.051377+00:00 app[web.1]:      _events: 
+2016-10-03T09:26:27.051377+00:00 app[web.1]:       { 'set:transports': [Object],
+2016-10-03T09:26:27.051378+00:00 app[web.1]:         'set:store': [Function],
+2016-10-03T09:26:27.051378+00:00 app[web.1]:         'set:origins': [Function],
+2016-10-03T09:26:27.051379+00:00 app[web.1]:         'set:flash policy port': [Function],
+2016-10-03T09:26:27.051380+00:00 app[web.1]:         'set:flash policy server': [Function] },
+2016-10-03T09:26:27.051380+00:00 app[web.1]:      _eventsCount: 5,
+2016-10-03T09:26:27.051381+00:00 app[web.1]:      settings: 
+2016-10-03T09:26:27.051381+00:00 app[web.1]:       { origins: '*:*',
+2016-10-03T09:26:27.051381+00:00 app[web.1]:         log: true,
+2016-10-03T09:26:27.051382+00:00 app[web.1]:         store: [Object],
+2016-10-03T09:26:27.051382+00:00 app[web.1]:         logger: [Object],
+2016-10-03T09:26:27.051383+00:00 app[web.1]:         static: [Object],
+2016-10-03T09:26:27.051383+00:00 app[web.1]:         heartbeats: true,
+2016-10-03T09:26:27.051384+00:00 app[web.1]:         resource: '/socket.io',
+2016-10-03T09:26:27.051384+00:00 app[web.1]:         transports: [Object],
+2016-10-03T09:26:27.051385+00:00 app[web.1]:         authorization: false,
+2016-10-03T09:26:27.051386+00:00 app[web.1]:         blacklist: [Object],
+2016-10-03T09:26:27.051386+00:00 app[web.1]:         'log level': 3,
+2016-10-03T09:26:27.051386+00:00 app[web.1]:         'log colors': false,
+2016-10-03T09:26:27.051387+00:00 app[web.1]:         'close timeout': 60,
+2016-10-03T09:26:27.051387+00:00 app[web.1]:         'heartbeat interval': 25,
+2016-10-03T09:26:27.051388+00:00 app[web.1]:         'heartbeat timeout': 60,
+2016-10-03T09:26:27.051388+00:00 app[web.1]:         'polling duration': 20,
+2016-10-03T09:26:27.051389+00:00 app[web.1]:         'flash policy server': true,
+2016-10-03T09:26:27.051390+00:00 app[web.1]:         'flash policy port': 10843,
+2016-10-03T09:26:27.051390+00:00 app[web.1]:         'destroy upgrade': true,
+2016-10-03T09:26:27.051391+00:00 app[web.1]:         'destroy buffer size': 100000000,
+2016-10-03T09:26:27.051391+00:00 app[web.1]:         'browser client': true,
+2016-10-03T09:26:27.051392+00:00 app[web.1]:         'browser client cache': true,
+2016-10-03T09:26:27.051392+00:00 app[web.1]:         'browser client minification': false,
+2016-10-03T09:26:27.051393+00:00 app[web.1]:         'browser client etag': false,
+2016-10-03T09:26:27.051393+00:00 app[web.1]:         'browser client expires': 315360000,
+2016-10-03T09:26:27.051394+00:00 app[web.1]:         'browser client gzip': false,
+2016-10-03T09:26:27.051395+00:00 app[web.1]:         'browser client handler': false,
+2016-10-03T09:26:27.051395+00:00 app[web.1]:         'client store expiration': 15,
+2016-10-03T09:26:27.051396+00:00 app[web.1]:         'match origin protocol': false },
+2016-10-03T09:26:27.051396+00:00 app[web.1]:      handshaken: 
+2016-10-03T09:26:27.051397+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:27.051397+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object],
+2016-10-03T09:26:27.051412+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: [Object] },
+2016-10-03T09:26:27.051413+00:00 app[web.1]:      connected: 
+2016-10-03T09:26:27.051413+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: true,
+2016-10-03T09:26:27.051414+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': true,
+2016-10-03T09:26:27.051414+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: true },
+2016-10-03T09:26:27.051415+00:00 app[web.1]:      open: 
+2016-10-03T09:26:27.051416+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: true,
+2016-10-03T09:26:27.051416+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': true,
+2016-10-03T09:26:27.051417+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: true },
+2016-10-03T09:26:27.051417+00:00 app[web.1]:      closed: {},
+2016-10-03T09:26:27.051417+00:00 app[web.1]:      rooms: { '': [Object] },
+2016-10-03T09:26:27.051418+00:00 app[web.1]:      roomClients: 
+2016-10-03T09:26:27.051418+00:00 app[web.1]:       { qD9sd2xu7GFr39Em24nf: [Object],
+2016-10-03T09:26:27.051419+00:00 app[web.1]:         'sXM1l_6BgVl-0Dqw24ng': [Object],
+2016-10-03T09:26:27.051419+00:00 app[web.1]:         xuy1dtzBMAIKlcrB24nh: [Object] },
+2016-10-03T09:26:27.051420+00:00 app[web.1]:      oldListeners: [ [Object] ],
+2016-10-03T09:26:27.051421+00:00 app[web.1]:      sequenceNumber: -1982101023,
+2016-10-03T09:26:27.051421+00:00 app[web.1]:      gc: 
+2016-10-03T09:26:27.051422+00:00 app[web.1]:       { _called: true,
+2016-10-03T09:26:27.051423+00:00 app[web.1]:         _idleTimeout: 10000,
+2016-10-03T09:26:27.051423+00:00 app[web.1]:         _idlePrev: [Object],
+2016-10-03T09:26:27.051424+00:00 app[web.1]:         _idleNext: [Object],
+2016-10-03T09:26:27.051424+00:00 app[web.1]:         _idleStart: 130634,
+2016-10-03T09:26:27.051425+00:00 app[web.1]:         _onTimeout: [Function: wrapper],
+2016-10-03T09:26:27.051425+00:00 app[web.1]:         _repeat: [Function: bound ] } },
+2016-10-03T09:26:27.051426+00:00 app[web.1]:   disconnected: false,
+2016-10-03T09:26:27.051426+00:00 app[web.1]:   ackPackets: 0,
+2016-10-03T09:26:27.051427+00:00 app[web.1]:   acks: {},
+2016-10-03T09:26:27.051427+00:00 app[web.1]:   flags: { endpoint: '', room: '' },
+2016-10-03T09:26:27.051428+00:00 app[web.1]:   readable: true,
+2016-10-03T09:26:27.051428+00:00 app[web.1]:   store: 
+2016-10-03T09:26:27.051429+00:00 app[web.1]:    Client {
+2016-10-03T09:26:27.051430+00:00 app[web.1]:      store: Memory { options: undefined, clients: [Object], manager: [Object] },
+2016-10-03T09:26:27.051430+00:00 app[web.1]:      id: 'xuy1dtzBMAIKlcrB24nh',
+2016-10-03T09:26:27.051431+00:00 app[web.1]:      data: {} },
+2016-10-03T09:26:27.051431+00:00 app[web.1]:   _events: 
+2016-10-03T09:26:27.051432+00:00 app[web.1]:    { error: [Function],
+2016-10-03T09:26:27.051432+00:00 app[web.1]:      tv: [Function],
+2016-10-03T09:26:27.051433+00:00 app[web.1]:      client: [Function],
+2016-10-03T09:26:27.051433+00:00 app[web.1]:      disconnect: [Function],
+2016-10-03T09:26:27.051434+00:00 app[web.1]:      g_start: [Function],
+2016-10-03T09:26:27.051434+00:00 app[web.1]:      wait_other: [Function],
+2016-10-03T09:26:27.051435+00:00 app[web.1]:      sendID: [Function],
+2016-10-03T09:26:27.051435+00:00 app[web.1]:      walk: [Function],
+2016-10-03T09:26:27.051439+00:00 app[web.1]:      new_house: [Function],
+2016-10-03T09:26:27.051440+00:00 app[web.1]:      show_score: [Function],
+2016-10-03T09:26:27.051440+00:00 app[web.1]:      get_money: [Function],
+2016-10-03T09:26:27.051441+00:00 app[web.1]:      change_player: [Function],
+2016-10-03T09:26:27.051442+00:00 app[web.1]:      find_place: [Function],
+2016-10-03T09:26:27.051442+00:00 app[web.1]:      buy_city: [Function],
+2016-10-03T09:26:27.051442+00:00 app[web.1]:      tile_click: [Function],
+2016-10-03T09:26:27.051443+00:00 app[web.1]:      play_again: [Function],
+2016-10-03T09:26:27.051443+00:00 app[web.1]:      new_g: [Function],
+2016-10-03T09:26:27.051444+00:00 app[web.1]:      b_click: [Function],
+2016-10-03T09:26:27.051445+00:00 app[web.1]:      btn_click: [Function],
+2016-10-03T09:26:27.051445+00:00 app[web.1]:      leave_g: [Function],
+2016-10-03T09:26:27.051446+00:00 app[web.1]:      exit: [Function] },
+2016-10-03T09:26:27.051446+00:00 app[web.1]:   _eventsCount: 21 }
+2016-10-03T09:26:27.310568+00:00 heroku[router]: at=info method=GET path="/images/books.png" host=secret-tundra-90982.herokuapp.com request_id=599136fb-5757-48c0-873a-82b98b5f1dc1 fwd="60.248.161.28" dyno=web.1 connect=0ms service=5ms status=304 bytes=238
+2016-10-03T09:26:27.318030+00:00 heroku[router]: at=info method=GET path="/images/cup.png" host=secret-tundra-90982.herokuapp.com request_id=79a790e1-13a9-4054-8975-969c6e9f9124 fwd="60.248.161.28" dyno=web.1 connect=0ms service=7ms status=304 bytes=238
+2016-10-03T09:26:41.958261+00:00 app[web.1]: debug: emitting heartbeat for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:26:41.958475+00:00 app[web.1]: debug: websocket writing 2::
+2016-10-03T09:26:41.958591+00:00 app[web.1]: debug: set heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:26:42.176151+00:00 app[web.1]: debug: got heartbeat packet
+2016-10-03T09:26:42.176247+00:00 app[web.1]: debug: cleared heartbeat timeout for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:26:42.176330+00:00 app[web.1]: debug: set heartbeat interval for client qD9sd2xu7GFr39Em24nf
+2016-10-03T09:26:46.270312+00:00 app[web.1]: debug: emitting heartbeat for client sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:46.270528+00:00 app[web.1]: debug: websocket writing 2::
+2016-10-03T09:26:46.270686+00:00 app[web.1]: debug: set heartbeat timeout for client sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:46.486782+00:00 app[web.1]: debug: got heartbeat packet
+2016-10-03T09:26:46.486862+00:00 app[web.1]: debug: cleared heartbeat timeout for client sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:46.486926+00:00 app[web.1]: debug: set heartbeat interval for client sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:51.266288+00:00 app[web.1]: debug: emitting heartbeat for client xuy1dtzBMAIKlcrB24nh
+2016-10-03T09:26:51.267796+00:00 app[web.1]: debug: websocket writing 2::
+2016-10-03T09:26:51.267940+00:00 app[web.1]: debug: set heartbeat timeout for client xuy1dtzBMAIKlcrB24nh
+2016-10-03T09:26:51.487138+00:00 app[web.1]: debug: got heartbeat packet
+2016-10-03T09:26:51.487225+00:00 app[web.1]: debug: cleared heartbeat timeout for client xuy1dtzBMAIKlcrB24nh
+2016-10-03T09:26:51.487285+00:00 app[web.1]: debug: set heartbeat interval for client xuy1dtzBMAIKlcrB24nh
+2016-10-03T09:26:54.656224+00:00 heroku[router]: at=info method=GET path="/socket.io/1/websocket/qD9sd2xu7GFr39Em24nf" host=secret-tundra-90982.herokuapp.com request_id=b11aeaa9-64dd-4bf1-8792-79b16e7ab951 fwd="60.248.161.28" dyno=web.1 connect=1ms service=163884ms status=101 bytes=129
+2016-10-03T09:26:54.655830+00:00 heroku[router]: at=info method=GET path="/socket.io/1/websocket/xuy1dtzBMAIKlcrB24nh" host=secret-tundra-90982.herokuapp.com request_id=d767f4d9-675b-45c4-9eaf-e5285d7f4c89 fwd="60.248.161.28" dyno=web.1 connect=0ms service=28394ms status=101 bytes=129
+2016-10-03T09:26:54.640074+00:00 app[web.1]: info: transport end (undefined)
+2016-10-03T09:26:54.640642+00:00 app[web.1]: debug: set close timeout for client sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:54.641306+00:00 app[web.1]: debug: cleared close timeout for client sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:54.641538+00:00 app[web.1]: debug: cleared heartbeat interval for client sXM1l_6BgVl-0Dqw24ng
+2016-10-03T09:26:54.643268+00:00 app[web.1]: 獲得斷線事件receive disconnect event
+2016-10-03T09:26:54.643364+00:00 app[web.1]: 這個人的socket是：[object Object]
+2016-10-03T09:26:54.643425+00:00 app[web.1]: 必須作處理
+2016-10-03T09:26:54.648901+00:00 app[web.1]: /app/modules/socketCtrl.js:409
+2016-10-03T09:26:54.648903+00:00 app[web.1]: 		    GameDao.queryByCriteria({game_guid:player_g}, function(err, result){
+2016-10-03T09:26:54.648904+00:00 app[web.1]: 		                                       ^
+2016-10-03T09:26:54.648904+00:00 app[web.1]: 
+2016-10-03T09:26:54.648908+00:00 app[web.1]: ReferenceError: player_g is not defined
+2016-10-03T09:26:54.648909+00:00 app[web.1]:     at Socket.<anonymous> (/app/modules/socketCtrl.js:409:42)
+2016-10-03T09:26:54.648910+00:00 app[web.1]:     at emitOne (events.js:77:13)
+2016-10-03T09:26:54.648910+00:00 app[web.1]:     at Socket.emit (events.js:169:7)
+2016-10-03T09:26:54.648911+00:00 app[web.1]:     at Socket.onDisconnect (/app/node_modules/socket.io/lib/socket.js:153:10)
+2016-10-03T09:26:54.648911+00:00 app[web.1]:     at SocketNamespace.handleDisconnect (/app/node_modules/socket.io/lib/namespace.js:229:46)
+2016-10-03T09:26:54.648912+00:00 app[web.1]:     at Manager.onClientDisconnect (/app/node_modules/socket.io/lib/manager.js:501:29)
+2016-10-03T09:26:54.648913+00:00 app[web.1]:     at WebSocket.Transport.end (/app/node_modules/socket.io/lib/transport.js:467:20)
+2016-10-03T09:26:54.648914+00:00 app[web.1]:     at Parser.<anonymous> (/app/node_modules/socket.io/lib/transports/websocket/hybi-16.js:52:10)
+2016-10-03T09:26:54.648914+00:00 app[web.1]:     at emitNone (events.js:67:13)
+2016-10-03T09:26:54.648915+00:00 app[web.1]:     at Parser.emit (events.js:166:7)
+2016-10-03T09:26:54.662952+00:00 app[web.1]: 
+2016-10-03T09:26:54.670568+00:00 app[web.1]: npm ERR! Linux 3.13.0-95-generic
+2016-10-03T09:26:54.670955+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-10-03T09:26:54.671202+00:00 app[web.1]: npm ERR! node v4.4.7
+2016-10-03T09:26:54.671608+00:00 app[web.1]: npm ERR! npm  v2.15.8
+2016-10-03T09:26:54.671912+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-10-03T09:26:54.672098+00:00 app[web.1]: npm ERR! multiproject@1.0.0 start: `node express.js`
+2016-10-03T09:26:54.672255+00:00 app[web.1]: npm ERR! Exit status 1
+2016-10-03T09:26:54.672431+00:00 app[web.1]: npm ERR! 
+2016-10-03T09:26:54.672595+00:00 app[web.1]: npm ERR! Failed at the multiproject@1.0.0 start script 'node express.js'.
+2016-10-03T09:26:54.672790+00:00 app[web.1]: npm ERR! This is most likely a problem with the multiproject package,
+2016-10-03T09:26:54.672965+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-10-03T09:26:54.673130+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-10-03T09:26:54.673293+00:00 app[web.1]: npm ERR!     node express.js
+2016-10-03T09:26:54.673456+00:00 app[web.1]: npm ERR! You can get information on how to open an issue for this project with:
+2016-10-03T09:26:54.673621+00:00 app[web.1]: npm ERR!     npm bugs multiproject
+2016-10-03T09:26:54.673791+00:00 app[web.1]: npm ERR! Or if that isn't available, you can get their info via:
+2016-10-03T09:26:54.673951+00:00 app[web.1]: npm ERR! 
+2016-10-03T09:26:54.674130+00:00 app[web.1]: npm ERR!     npm owner ls multiproject
+2016-10-03T09:26:54.674294+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-10-03T09:26:54.677971+00:00 app[web.1]: 
+2016-10-03T09:26:54.678248+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-10-03T09:26:54.678392+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-10-03T09:26:54.785748+00:00 heroku[web.1]: Process exited with status 1
+2016-10-03T09:26:54.823494+00:00 heroku[web.1]: State changed from up to crashed
+2016-10-03T09:26:54.655413+00:00 heroku[router]: at=info method=GET path="/socket.io/1/websocket/sXM1l_6BgVl-0Dqw24ng" host=secret-tundra-90982.herokuapp.com request_id=0c0e4e99-70e5-48b2-94df-8aa6439a26a0 fwd="111.250.44.82" dyno=web.1 connect=1ms service=33408ms status=101 bytes=129
+2016-10-03T09:26:55.427020+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486714724" host=secret-tundra-90982.herokuapp.com request_id=c69362cf-2f70-4b0d-9d96-d0a2afcd3035 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:26:56.444387+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486715726" host=secret-tundra-90982.herokuapp.com request_id=4f3837dc-a546-4eff-b29f-c7e975739d5d fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:26:58.426420+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486717727" host=secret-tundra-90982.herokuapp.com request_id=703d927b-8b98-4f10-85e7-2aa8089bfa3b fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:00.417064+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486714718" host=secret-tundra-90982.herokuapp.com request_id=7f071e00-3a57-47d8-b020-1743ce5fd557 fwd="60.248.161.28" dyno=web.1 connect=5000ms service= status=503 bytes=
+2016-10-03T09:27:01.450218+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486720725" host=secret-tundra-90982.herokuapp.com request_id=af46c7fb-fc05-4721-8a89-f348fd85d0d9 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:01.678152+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486720725" host=secret-tundra-90982.herokuapp.com request_id=59113895-24c0-490a-82b8-ee75ff2529e3 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:02.908452+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486721728" host=secret-tundra-90982.herokuapp.com request_id=02e7266c-2f01-4bf4-a958-4a4eee8faeb0 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:03.931510+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486722726" host=secret-tundra-90982.herokuapp.com request_id=67d17bd3-e0ca-416a-92ad-8e0548467d18 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:07.646799+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486726727" host=secret-tundra-90982.herokuapp.com request_id=6ad804e0-458f-4338-b190-eff17e5b165b fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:10.866957+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486729730" host=secret-tundra-90982.herokuapp.com request_id=42ad027c-dc41-46ee-ba5a-443048f6dc2c fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:15.902776+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486734728" host=secret-tundra-90982.herokuapp.com request_id=5aff3a5c-d147-4a98-a9c2-c50d7cc547b3 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:27.208910+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486745732" host=secret-tundra-90982.herokuapp.com request_id=8231e754-5ae3-48ea-95e3-1b6bc40d6c52 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:31.669036+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486750730" host=secret-tundra-90982.herokuapp.com request_id=9890ff19-5bef-4c80-9e30-1340ac433319 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:27:58.922350+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486777734" host=secret-tundra-90982.herokuapp.com request_id=8527d5cd-6315-4ffa-a5f7-92723b591e5d fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:28:03.927978+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486782733" host=secret-tundra-90982.herokuapp.com request_id=e9d4b07a-e52d-4bdd-9e0a-45eaebb5e1d5 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:29:03.335499+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486841738" host=secret-tundra-90982.herokuapp.com request_id=ae2d1ec5-9ad0-4d97-b3c3-45c9b36d522e fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:29:07.664025+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486846737" host=secret-tundra-90982.herokuapp.com request_id=c629bf32-a2d7-4e3e-8d6c-e2da1c74d458 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:31:12.546920+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486969745" host=secret-tundra-90982.herokuapp.com request_id=ca5bbf17-2f0f-477b-a3c5-5ce3fe4cd3f7 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:31:15.659844+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475486974744" host=secret-tundra-90982.herokuapp.com request_id=5a0eaf79-382c-4726-a0de-b07808e0bd31 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:35:27.256585+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475487225757" host=secret-tundra-90982.herokuapp.com request_id=06409f41-cb76-4102-be00-d05b73b0ad99 fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:35:31.698799+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/socket.io/1/?t=1475487230756" host=secret-tundra-90982.herokuapp.com request_id=219b0868-7848-4685-b909-0e20054c897d fwd="60.248.161.28" dyno= connect= service= status=503 bytes=
+2016-10-03T09:37:28.869167+00:00 heroku[web.1]: State changed from crashed to starting
+2016-10-03T09:37:31.240317+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-10-03T09:37:34.261950+00:00 app[web.1]: 
+2016-10-03T09:37:34.261965+00:00 app[web.1]: > multiproject@1.0.0 start /app
+2016-10-03T09:37:34.261966+00:00 app[web.1]: > node express.js
+2016-10-03T09:37:34.261967+00:00 app[web.1]: 
+2016-10-03T09:37:34.526414+00:00 app[web.1]: info: socket.io started
+2016-10-03T09:37:34.622374+00:00 app[web.1]: test
+2016-10-03T09:37:34.622723+00:00 app[web.1]: ====================================
+2016-10-03T09:37:34.938326+00:00 heroku[web.1]: State changed from starting to up
+2016-10-03T09:37:35.722171+00:00 app[web.1]: { uri: 'mongodb://yuanyu:dob770407@ds035766.mlab.com:35766/multi-screen',
+2016-10-03T09:37:35.722186+00:00 app[web.1]:   domainName: 'ds035766.mlab.com',
+2016-10-03T09:37:35.722187+00:00 app[web.1]:   port: 35766,
+2016-10-03T09:37:35.722188+00:00 app[web.1]:   user: 'yuanyu',
+2016-10-03T09:37:35.722189+00:00 app[web.1]:   password: 'dob770407',
+2016-10-03T09:37:35.722189+00:00 app[web.1]:   dbname: 'multi-screen' }
+2016-10-03T09:37:35.728136+00:00 app[web.1]: start
+�n�פ�妸�u�@�� (Y/N)? �n�פ�妸�u�@�� (Y/N)? 

@@ -7,6 +7,7 @@ var UserVo = require('./dao/user');
 var UserDao = require('./dao/userDao');
 var all_socket  = {};
 var flip_select_number='';
+
 module.exports = {
 	'socketOn': function(io, uuid, all_inning, all_game_guid){
 		console.log("start");
@@ -155,6 +156,46 @@ module.exports = {
 			}
   		}
 
+  		function over(){//剩下的所有玩家
+			console.log('遊戲over的function');
+
+
+			var g_name='';
+			var g_data ='';
+			GameDao.queryByCriteria({game_guid:player_g}, function(err, data_result){
+				if(err){
+					console.log(err);
+					return ;
+				}
+				g_data = data_result;
+				g_name = g_data[0].g_name;
+				console.log("名字是："+g_name);
+				Inning_UserDao.queryByCriteria({inning_gref:player_i,game_guid:player_g,online:1}, function(err, data_result_1){
+					if(err){
+						console.log(err);
+						return ;
+					}
+					console.log('現在的result是：'+ data_result_1);
+					console.log('現在的result[0]是：'+ data_result_1[0]);
+					if(data_result_1[0] == undefined ){
+						GameDao.queryByCriteria({}, function(err, cur_result){
+							if(err){
+								console.log(err);
+								return ;
+							}
+							var all_game = cur_result;
+							console.log(all_game);
+
+							all_socket[ player_i ].emit('qrcode',all_game,player_i);
+						});
+					}
+					else{
+						all_socket[ data_result_1[0].user_gref ].emit('not_enough_p'); //遊戲結束
+						all_socket[ player_i ].emit('not_enough_tv', player_i, player_g, g_name);//給電視
+					}
+				});
+			});
+		}
 		//console.log(dbAccessModule);
 		//console.log(db);
 				//連線開始
