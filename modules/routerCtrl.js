@@ -1,4 +1,5 @@
-module.exports.routerCtrl = function(app, host, port){
+module.exports.routerCtrl = function(app, port){
+	var host = '';
 	var sendmail = require('./sendMail');
 	console.log('test');
 	console.log('====================================');

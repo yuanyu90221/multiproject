@@ -55,7 +55,7 @@ app.engine('htm', hbs.__express);
 //var dbAccessModule = require('./modules/dbAccessModule');
 
 // 取得url 判斷進入哪個遊戲
-routerCtrl.routerCtrl(app, host, port);
+routerCtrl.routerCtrl(app, port);
 //使用的資料夾
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/static', express.static(__dirname + '/public'));
