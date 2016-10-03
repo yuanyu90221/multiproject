@@ -42,10 +42,6 @@ var Game = require('./ox_game'),
     player_g = '',
     player_i = '',
     path = require('path');
-// var dbconfig = require('./dbConfig');
-//var sequelize = require('sequelize');
-// var host =  utilObj.util('config.json','host');
-// var port = utilObj.util('config.json','port');
 var routerCtrl = require('./modules/routerCtrl');
 var hbs = require('hbs');
 app.set('views', path.join(__dirname, '/'));
@@ -62,20 +58,6 @@ app.use('/static', express.static(__dirname + '/public'));
 app.use('/images', express.static(__dirname + '/images'));
 app.use('/flags', express.static(__dirname + '/all_flag'));
 app.use('/js', express.static(__dirname + '/js'));
-// app.get('/test',function(req,res){
-//   res.render = function(template, options){
-//     var str = require('fs').readFileSync(template, 'utf8');
-//     var fn = jade.compile(str, {filename:template, pretty: true});
-//     var page = fn(options);
-//     res.writeHead(200, {'Content-Type':'text/html'});
-//     res.end(page);
-//   };
-
-//   res.render('index.jade',{'host':dbconfig.host});
-// });
-
-// var dbAccessModule = require('./modules/dbAccessModule');
-//console.log(dbAccessModule);
 var socketCtrl = require('./modules/socketCtrl');
 
 socketCtrl.socketOn(io,uuid, all_inning, all_game_guid);
