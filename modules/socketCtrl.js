@@ -196,8 +196,6 @@ module.exports = {
 				});
 			});
 		}
-		//console.log(dbAccessModule);
-		//console.log(db);
 				//連線開始
 		io.sockets.on('connection', function(socket) {
 
