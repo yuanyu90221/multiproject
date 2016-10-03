@@ -6,6 +6,7 @@ var Inning_UserDao = require('./dao/inning_UserDao');
 var UserVo = require('./dao/user');
 var UserDao = require('./dao/userDao');
 var all_socket  = {};
+var flip_select_number='';
 module.exports = {
 	'socketOn': function(io, uuid, all_inning, all_game_guid){
 		console.log("start");
@@ -42,9 +43,118 @@ module.exports = {
 							players_pic.push(data_result[i].user_pic);
 							console.log("玩家名稱guid與name："+ data_result[i].user_gref, data_result[i].user_account);
 						}
+
+						console.log('所有玩家的guid:'+now_players);
+						console.log('所有玩家的name:'+players_name);
+						selecter(now_players, player_i, players_name, players_pic, flip_select_number);
 					});
 				});
 		}
+
+		function selecter(players, player_i, players_name, players_pic, flip_select_number){
+
+			console.log('兩個參數'+players+'一個電視'+player_i);
+			console.log('進入selecter函數');
+
+			if(player_g =='313d4029-7bc5-454d-ac2b-a3d5dee5e60b'){
+				var data = new Game_f.newBoard(players, players_name, flip_select_number);
+				//把它設定為沒有值
+				console.log('資料陣列'+data.tiles);
+
+				points(players);
+
+				for(var i=0;i<data.players.length;i++){
+					console.log('這個玩家的guid：'+data.players[i].guid);
+					console.log('先開始的人'+data.str_p.guid + '他的名字'+ data.str_p.name);
+					all_socket[ data.players[i].guid ].emit('show_tiles', data.tiles, data.players[i].guid,data.str_p, data.str_p.name, data.players, flip_select_number);
+				}
+				all_socket[ player_i ].emit('show_tiles_tv' ,data.tiles, players[i],data.str_p, data.str_p.name, data.players, flip_select_number);
+				flip_select_number ='';
+			}
+
+
+
+			if(player_g == 'aea3d281-a111-4272-b4a4-77863c090fef'){
+				var action = new Game.set_game(players, player_i, players_name); //action 是所有的player與裡面的資料
+				console.log('接收資料'+ action);
+
+				points(players);
+
+				for(var i=0;i<action.players.length; i++){
+					console.log('這個玩家的guid：'+action.players[i].guid);
+					console.log('這個玩家的pic：'+action.players[i].pic);
+					console.log('這個遊戲誰先開始：'+action.str_p.guid);
+
+					all_socket[ action.players[i].guid ].emit('ox_game_start', action.players[i], action.str_p.guid);
+				}
+				all_socket[ player_i ].emit('ox_game_start_tv', action.str_p, action.players);
+
+			}
+
+
+			if(player_g == '67af5ab1-a004-41a2-b9e4-74733f0c765f'){
+				var action = new Game_p.set_game(players, player_i, players_name);
+				console.log('接收資料'+ action);
+				points(players);
+
+				for(var i=0;i<action.players.length; i++){
+					all_socket[ action.players[i].guid ].emit('paper_game_start',action.players[i]);
+				}
+				all_socket[ player_i ].emit('paper_game_start_tv',action.players);
+
+
+			}
+
+
+			if(player_g == '27b38a5bde-89fd-44ba-9cf4-c3cf76866f95'){
+				var action = new Game_m.set_game(players, player_i, players_name, players_pic);
+				console.log('第一個要骰子的人是'+action.str_p.name+'這個人現在的位置是'+action.str_p.position);
+
+				for(var i=0;i<action.players.length; i++){
+					all_socket[ action.players[i].guid ].emit('mono_game_start',action.players[i], action.str_p);
+				}
+
+				all_socket[ player_i ].emit('mono_game_start_tv',action.players, action.str_p);
+
+			}
+
+
+			if(player_g == '0c4aecb4-da19-4ece-b40e-e48c3f3d7bc2'){//排七
+				var action = new Game_s.newGame(players, player_i, players_name, players_pic);
+				console.log('這是排七一開始回傳的資料：' + action.players
+				+'開始得人：'+ action.start_p);
+
+				for(var j=0; j< action.start_p.card.length; j++){
+					console.log(action.start_p.card[j]);
+				}
+
+				console.log(action.card_c_deal);
+
+
+				for(var i=0; i<action.players.length; i++){//傳給所有人
+
+					all_socket[ action.players[i].guid ].emit('seven_game_start', action.players, action.players[i], action.start_p, action.card_c_deal);
+				}
+				all_socket[ action.start_p.guid ].emit('card_infro', action.card_c_deal);//是一個array
+				all_socket[ player_i ].emit('seven_game_start_tv', action.players, action.start_p);
+			}
+		}
+
+		function points(players){
+	  			for(var j=0;j< players.length; j++){
+				var all_score = [];//所有人的成績（之前的）
+				Inning_UserDao.queryByCriteria({user_gref:players[j], game_guid: player_g}, function(err, data_result){
+					if(err){
+						console.log(err);
+						return ;
+					}
+					var name = data_result[0].score;
+					console.log('這個人目前成績'+ data_result[0].score);
+					all_socket[ player_i ].emit('score_before_tv' , data_result[0].score);
+				});
+			}
+  		}
+
 		//console.log(dbAccessModule);
 		//console.log(db);
 				//連線開始
