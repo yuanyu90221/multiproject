@@ -58,20 +58,6 @@ app.use('/static', express.static(__dirname + '/public'));
 app.use('/images', express.static(__dirname + '/images'));
 app.use('/flags', express.static(__dirname + '/all_flag'));
 app.use('/js', express.static(__dirname + '/js'));
-// app.get('/test',function(req,res){
-//   res.render = function(template, options){
-//     var str = require('fs').readFileSync(template, 'utf8');
-//     var fn = jade.compile(str, {filename:template, pretty: true});
-//     var page = fn(options);
-//     res.writeHead(200, {'Content-Type':'text/html'});
-//     res.end(page);
-//   };
-
-//   res.render('index.jade',{'host':dbconfig.host});
-// });
-
-// var dbAccessModule = require('./modules/dbAccessModule');
-//console.log(dbAccessModule);
 var socketCtrl = require('./modules/socketCtrl');
 
 socketCtrl.socketOn(io,uuid, all_inning, all_game_guid);
