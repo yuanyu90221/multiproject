@@ -6,34 +6,160 @@ var Inning_UserDao = require('./dao/inning_UserDao');
 var UserVo = require('./dao/user');
 var UserDao = require('./dao/userDao');
 var all_socket  = {};
+var flip_select_number='';
 module.exports = {
 	'socketOn': function(io, uuid, all_inning, all_game_guid){
 		console.log("start");
-
-		//console.log(dbAccessModule);
-		//console.log(db);
-				//連線開始
-		io.sockets.on('connection', function(socket) {
-		   function game_start(key, p_name, pic){//遊戲開始呼叫的function
-									//此人加入inning_user資料表		
+		function game_start(key, p_name, pic){//遊戲開始呼叫的function
+									//此人加入inning_user資料表
 				var key_iu=uuid.v4();
 				console.log(key_iu);
 				var inning_1 = new InningVo({iu_guid:key_iu,
 	 	                          inning_gref:player_i,
 	 	                          game_guid:player_g,
-	 	                          user_gref:key_iu,
+	 	                          user_gref:key,
 	 	                          user_account:p_name,
 	 	                          user_pic:pic
 	 	                       });
 
 				Inning_UserDao.insertInningUser(inning_1, function(err, result){
 					if(err){
+						console.log(err);
+						return ;
+					}
+					console.log(result);
+					//找出這個遊戲的所有guid,拿出map的資料,傳給選擇器
+					var now_players =[];
+					var players_name =[];
+					var players_pic =[];
+					InningDao.queryByCriteria({inning_gref:player_i, online: 1, game_guid:player_g}, function(err, data_result){
+						if(err){
 							console.log(err);
 							return ;
 						}
-					console.log(result);
+						for(var i=0; i<data_result.length; i++){
+							now_players.push(data_result[i].user_gref);
+							players_name.push(data_result[i].user_account);
+							players_pic.push(data_result[i].user_pic);
+							console.log("玩家名稱guid與name："+ data_result[i].user_gref, data_result[i].user_account);
+						}
+
+						console.log('所有玩家的guid:'+now_players);
+						console.log('所有玩家的name:'+players_name);
+						selecter(now_players, player_i, players_name, players_pic, flip_select_number);
+					});
 				});
-		   }
+		}
+
+		function selecter(players, player_i, players_name, players_pic, flip_select_number){
+
+			console.log('兩個參數'+players+'一個電視'+player_i);
+			console.log('進入selecter函數');
+
+			if(player_g =='313d4029-7bc5-454d-ac2b-a3d5dee5e60b'){
+				var data = new Game_f.newBoard(players, players_name, flip_select_number);
+				//把它設定為沒有值
+				console.log('資料陣列'+data.tiles);
+
+				points(players);
+
+				for(var i=0;i<data.players.length;i++){
+					console.log('這個玩家的guid：'+data.players[i].guid);
+					console.log('先開始的人'+data.str_p.guid + '他的名字'+ data.str_p.name);
+					all_socket[ data.players[i].guid ].emit('show_tiles', data.tiles, data.players[i].guid,data.str_p, data.str_p.name, data.players, flip_select_number);
+				}
+				all_socket[ player_i ].emit('show_tiles_tv' ,data.tiles, players[i],data.str_p, data.str_p.name, data.players, flip_select_number);
+				flip_select_number ='';
+			}
+
+
+
+			if(player_g == 'aea3d281-a111-4272-b4a4-77863c090fef'){
+				var action = new Game.set_game(players, player_i, players_name); //action 是所有的player與裡面的資料
+				console.log('接收資料'+ action);
+
+				points(players);
+
+				for(var i=0;i<action.players.length; i++){
+					console.log('這個玩家的guid：'+action.players[i].guid);
+					console.log('這個玩家的pic：'+action.players[i].pic);
+					console.log('這個遊戲誰先開始：'+action.str_p.guid);
+
+					all_socket[ action.players[i].guid ].emit('ox_game_start', action.players[i], action.str_p.guid);
+				}
+				all_socket[ player_i ].emit('ox_game_start_tv', action.str_p, action.players);
+
+			}
+
+
+			if(player_g == '67af5ab1-a004-41a2-b9e4-74733f0c765f'){
+				var action = new Game_p.set_game(players, player_i, players_name);
+				console.log('接收資料'+ action);
+				points(players);
+
+				for(var i=0;i<action.players.length; i++){
+					all_socket[ action.players[i].guid ].emit('paper_game_start',action.players[i]);
+				}
+				all_socket[ player_i ].emit('paper_game_start_tv',action.players);
+
+
+			}
+
+
+			if(player_g == '27b38a5bde-89fd-44ba-9cf4-c3cf76866f95'){
+				var action = new Game_m.set_game(players, player_i, players_name, players_pic);
+				console.log('第一個要骰子的人是'+action.str_p.name+'這個人現在的位置是'+action.str_p.position);
+
+				for(var i=0;i<action.players.length; i++){
+					all_socket[ action.players[i].guid ].emit('mono_game_start',action.players[i], action.str_p);
+				}
+
+				all_socket[ player_i ].emit('mono_game_start_tv',action.players, action.str_p);
+
+			}
+
+
+			if(player_g == '0c4aecb4-da19-4ece-b40e-e48c3f3d7bc2'){//排七
+				var action = new Game_s.newGame(players, player_i, players_name, players_pic);
+				console.log('這是排七一開始回傳的資料：' + action.players
+				+'開始得人：'+ action.start_p);
+
+				for(var j=0; j< action.start_p.card.length; j++){
+					console.log(action.start_p.card[j]);
+				}
+
+				console.log(action.card_c_deal);
+
+
+				for(var i=0; i<action.players.length; i++){//傳給所有人
+
+					all_socket[ action.players[i].guid ].emit('seven_game_start', action.players, action.players[i], action.start_p, action.card_c_deal);
+				}
+				all_socket[ action.start_p.guid ].emit('card_infro', action.card_c_deal);//是一個array
+				all_socket[ player_i ].emit('seven_game_start_tv', action.players, action.start_p);
+			}
+		}
+
+		function points(players){
+	  			for(var j=0;j< players.length; j++){
+				var all_score = [];//所有人的成績（之前的）
+				Inning_UserDao.queryByCriteria({user_gref:players[j], game_guid: player_g}, function(err, data_result){
+					if(err){
+						console.log(err);
+						return ;
+					}
+					var name = data_result[0].score;
+					console.log('這個人目前成績'+ data_result[0].score);
+					all_socket[ player_i ].emit('score_before_tv' , data_result[0].score);
+				});
+			}
+  		}
+
+		//console.log(dbAccessModule);
+		//console.log(db);
+				//連線開始
+		io.sockets.on('connection', function(socket) {
+
 		  //console.log(dbAccessModule);
 		  console.log('connection');
 		  //console.log(app);
@@ -110,9 +236,9 @@ module.exports = {
 					      			UserDao.queryByCriteria({account:p_name}, function(err, result_list){
 					      				if(result_list[0] == undefined && p_name != ''){//這個人不在user資料表中
 					      					 console.log('這個人不在user資料表中');
-					      					  var key_iu = uuid.v4();
+					      					  var key = uuid.v4();
 					      					  var nUser = new UserVo();
-					      					  nUser.setUser_guid(key_iu);
+					      					  nUser.setUser_guid(key);
 					      					  nUser.setAccount(p_name);
 					      					  nUser.setPic(pic);
 					      					  UserDao.insertUser(nUser,function(err, result){
@@ -131,7 +257,7 @@ module.exports = {
 															var inning_2 = new InningVo({iu_guid:key_iu,
 								      					 	                          inning_gref:player_i,
 								      					 	                          game_guid:player_g,
-								      					 	                          user_gref:key_iu,
+								      					 	                          user_gref:key,
 								      					 	                          user_account:p_name,
 								      					 	                          user_pic:pic
 								      					 	                       });
@@ -158,14 +284,14 @@ module.exports = {
 								      					var inning_1 = new InningVo({iu_guid:key_iu,
 								      					 	                          inning_gref:player_i,
 								      					 	                          game_guid:player_g,
-								      					 	                          user_gref:key_iu,
+								      					 	                          user_gref:key,
 								      					 	                          user_account:p_name,
 								      					 	                          user_pic:pic
 								      					 	                       });
 
 								      					Inning_UserDao.insertInningUser(inning_1, function(err, result){
-								      					 	socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
-								        					all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
+								      					 	socket.emit('client_change', p_name, key, player_i, g_data, sum);
+								        					all_socket[player_i].emit('tv_newplayer', p_name, key);
 								        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
 								      					});
 											        }
@@ -182,7 +308,7 @@ module.exports = {
 							      					 var inning_1 = new InningVo({iu_guid:key_iu,
 							      					 	                          inning_gref:player_i,
 							      					 	                          game_guid:player_g,
-							      					 	                          user_gref:key_iu,
+							      					 	                          user_gref:key,
 							      					 	                          user_account:p_name,
 							      					 	                          user_pic:pic
 							      					 	                       });
@@ -192,7 +318,7 @@ module.exports = {
 							      					 	console.log("player_i: ");
 							      					 	console.log(player_i);
 							      					 	console.log(all_socket[player_i]);
-							        					all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
+							        					all_socket[player_i].emit('tv_newplayer', p_name, key);
 							        					socket.broadcast.emit('tv_change', player_i, player_g, g_data[0].g_name);
 							      					 });
 					      						});
