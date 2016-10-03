@@ -16,17 +16,33 @@ module.exports = {
 				var inning_1 = new InningVo({iu_guid:key_iu,
 	 	                          inning_gref:player_i,
 	 	                          game_guid:player_g,
-	 	                          user_gref:key_iu,
+	 	                          user_gref:key,
 	 	                          user_account:p_name,
 	 	                          user_pic:pic
 	 	                       });
 
 				Inning_UserDao.insertInningUser(inning_1, function(err, result){
 					if(err){
+						console.log(err);
+						return ;
+					}
+					console.log(result);
+					//找出這個遊戲的所有guid,拿出map的資料,傳給選擇器
+					var now_players =[];
+					var players_name =[];
+					var players_pic =[];
+					InningDao.queryByCriteria({inning_gref:player_i, online: 1, game_guid:player_g}, function(err, data_result){
+						if(err){
 							console.log(err);
 							return ;
 						}
-					console.log(result);
+						for(var i=0; i<data_result.length; i++){
+							now_players.push(data_result[i].user_gref);
+							players_name.push(data_result[i].user_account);
+							players_pic.push(data_result[i].user_pic);
+							console.log("玩家名稱guid與name："+ data_result[i].user_gref, data_result[i].user_account);
+						}
+					});
 				});
 		}
 		//console.log(dbAccessModule);
@@ -110,9 +126,9 @@ module.exports = {
 					      			UserDao.queryByCriteria({account:p_name}, function(err, result_list){
 					      				if(result_list[0] == undefined && p_name != ''){//這個人不在user資料表中
 					      					 console.log('這個人不在user資料表中');
-					      					  var key_iu = uuid.v4();
+					      					  var key = uuid.v4();
 					      					  var nUser = new UserVo();
-					      					  nUser.setUser_guid(key_iu);
+					      					  nUser.setUser_guid(key);
 					      					  nUser.setAccount(p_name);
 					      					  nUser.setPic(pic);
 					      					  UserDao.insertUser(nUser,function(err, result){
@@ -131,7 +147,7 @@ module.exports = {
 															var inning_2 = new InningVo({iu_guid:key_iu,
 								      					 	                          inning_gref:player_i,
 								      					 	                          game_guid:player_g,
-								      					 	                          user_gref:key_iu,
+								      					 	                          user_gref:key,
 								      					 	                          user_account:p_name,
 								      					 	                          user_pic:pic
 								      					 	                       });
@@ -158,14 +174,14 @@ module.exports = {
 								      					var inning_1 = new InningVo({iu_guid:key_iu,
 								      					 	                          inning_gref:player_i,
 								      					 	                          game_guid:player_g,
-								      					 	                          user_gref:key_iu,
+								      					 	                          user_gref:key,
 								      					 	                          user_account:p_name,
 								      					 	                          user_pic:pic
 								      					 	                       });
 
 								      					Inning_UserDao.insertInningUser(inning_1, function(err, result){
-								      					 	socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
-								        					all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
+								      					 	socket.emit('client_change', p_name, key, player_i, g_data, sum);
+								        					all_socket[player_i].emit('tv_newplayer', p_name, key);
 								        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
 								      					});
 											        }
@@ -182,7 +198,7 @@ module.exports = {
 							      					 var inning_1 = new InningVo({iu_guid:key_iu,
 							      					 	                          inning_gref:player_i,
 							      					 	                          game_guid:player_g,
-							      					 	                          user_gref:key_iu,
+							      					 	                          user_gref:key,
 							      					 	                          user_account:p_name,
 							      					 	                          user_pic:pic
 							      					 	                       });
@@ -192,7 +208,7 @@ module.exports = {
 							      					 	console.log("player_i: ");
 							      					 	console.log(player_i);
 							      					 	console.log(all_socket[player_i]);
-							        					all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
+							        					all_socket[player_i].emit('tv_newplayer', p_name, key);
 							        					socket.broadcast.emit('tv_change', player_i, player_g, g_data[0].g_name);
 							      					 });
 					      						});
