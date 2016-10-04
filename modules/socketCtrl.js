@@ -96,7 +96,6 @@ module.exports = {
 					// all_socket[ action.players[i].guid ].emit('ox_game_start', action.players[i], action.str_p.guid);
 				}
 				all_socket[ player_i ].emit('ox_game_start_tv', action.str_p, action.players);
-
 			}
 
 
