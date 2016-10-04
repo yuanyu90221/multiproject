@@ -11,6 +11,7 @@ function Inning_User(inning_user){
 		this.user_pic = inning_user.user_pic;
 		this.score = inning_user.score;
 		this.online = inning_user.online;
+		this.game_guid = inning_user.game_guid;
 	}
 	else{
 		this.iu_guid = 0;
@@ -20,6 +21,7 @@ function Inning_User(inning_user){
 		this.user_pic = '';
 		this.score = 0;
 		this.online = 0;
+		this.game_guid = 0;
 	}
 }
 
@@ -69,5 +71,13 @@ Inning_User.prototype.getOnline = function(){
 
 Inning_User.prototype.setOnline = function(online){
 	this.online = online;
+}
+
+Inning_User.prototype.setGame_guid = function(game_guid){
+	this.game_guid = game_guid;
+}
+
+Inning_User.prototype.getGame_guid = function(){
+	return this.game_guid;
 }
 module.exports = Inning_User;
