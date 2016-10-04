@@ -304,7 +304,7 @@ module.exports = {
 								      					 		socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
 								      					 		console.log('電視連線：' + all_socket[player_i]);
 								        						all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
-								        						// socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+								        						socket.broadcast.emit('tv_change', player_i, player_g, g_name);
 								      						});
 
 														},{inning_guid:player_i},{g_gref:player_g});
