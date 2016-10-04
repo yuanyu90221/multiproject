@@ -93,7 +93,8 @@ module.exports = {
 					console.log('這個玩家的pic：'+action.players[i].pic);
 					console.log('這個遊戲誰先開始：'+action.str_p.guid);
                     console.log(all_socket);
-					all_socket[ action.players[i].guid ].emit('ox_game_start', action.players[i], action.str_p.guid);
+                    if(all_socket[ action.players[i].guid ])
+						all_socket[ action.players[i].guid ].emit('ox_game_start', action.players[i], action.str_p.guid);
 				}
 				all_socket[ player_i ].emit('ox_game_start_tv', action.str_p, action.players);
 			}
