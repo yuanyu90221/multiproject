@@ -375,8 +375,7 @@ module.exports = {
 					      						});
 
 					      				}//else end
-					      				all_socket[key_iu] = u_s;//把這個人的socket存起來
-					     				console.log("所有的all_socket：" + all_socket);
+
 					      			});
 
 					      	    }
@@ -397,7 +396,7 @@ module.exports = {
 													//把此人選的遊戲guid放入此局
 													Inning_UserDao.updateByCriteria(function(err, result, db){
 														db.close();
-														var key_iu = uuid.v4();
+														key_iu = uuid.v4();
 														var inning_2 = new Inning_User({iu_guid:key_iu,
 							      					 	                          inning_gref:player_i,
 							      					 	                          game_guid:player_g,
@@ -424,7 +423,7 @@ module.exports = {
 					       						}else if(sum >= g_data[0].g_p_more){//人數超過
 										          socket.emit('join_failed');//無法加入遊戲
 										        } else{//此人加入inning_user資料表
-										        	var key_iu = uuid.v4();
+										        	key_iu = uuid.v4();
 							      					var inning_1 = new Inning_User({iu_guid:key_iu,
 							      					 	                          inning_gref:player_i,
 							      					 	                          game_guid:player_g,
@@ -444,11 +443,14 @@ module.exports = {
 				       					});//query end
 				       				});//deleteEnd
 				      	    }//else end
+				      	    all_socket[key_iu] = u_s;//把這個人的socket存起來
+					     	console.log("所有的all_socket：" + all_socket);
 					    });
 					}
 			    );//取出遊戲
 		    });
 		    //此局的名字
+
 		  });//socket.on('client') end
 
 		  //斷線處理
