@@ -331,7 +331,7 @@ module.exports = {
 								      					Inning_UserDao.insertInningUser(inning_1, function(err, result){
 								      					 	socket.emit('client_change', p_name, key, player_i, g_data, sum);
 								        					all_socket[player_i].emit('tv_newplayer', p_name, key);
-								        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
+								        					socket.broadcast.emit('tv_change', player_i, player_g, p_name);
 								      					});
 											        }
 
