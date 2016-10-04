@@ -21,7 +21,8 @@ module.exports = {
 	 	                          game_guid:player_g,
 	 	                          user_gref:key,
 	 	                          user_account:p_name,
-	 	                          user_pic:pic
+	 	                          user_pic:pic,
+	 	                          online:1
 	 	                       });
 
 				Inning_UserDao.insertInningUser(inning_1, function(err, result){
@@ -34,7 +35,7 @@ module.exports = {
 					var now_players =[];
 					var players_name =[];
 					var players_pic =[];
-					InningDao.queryByCriteria({inning_gref:player_i, online: 1, game_guid:player_g}, function(err, data_result){
+					Inning_UserDao.queryByCriteria({inning_gref:player_i,online:1, game_guid:player_g}, function(err, data_result){
 						if(err){
 							console.log(err);
 							return ;
@@ -300,7 +301,8 @@ module.exports = {
 								      					 	                          game_guid:player_g,
 								      					 	                          user_gref:key,
 								      					 	                          user_account:p_name,
-								      					 	                          user_pic:pic
+								      					 	                          user_pic:pic,
+								      					 	                          online: 1
 								      					 	                       });
 															Inning_UserDao.insertInningUser(inning_2, function(err, result){
 								      					 		socket.emit('client_change', p_name, key_iu, player_i, g_data, sum);
@@ -327,7 +329,8 @@ module.exports = {
 								      					 	                          game_guid:player_g,
 								      					 	                          user_gref:key,
 								      					 	                          user_account:p_name,
-								      					 	                          user_pic:pic
+								      					 	                          user_pic:pic,
+								      					 	                          online: 1
 								      					 	                       });
 
 								      					Inning_UserDao.insertInningUser(inning_1, function(err, result){
@@ -351,7 +354,8 @@ module.exports = {
 							      					 	                          game_guid:player_g,
 							      					 	                          user_gref:key,
 							      					 	                          user_account:p_name,
-							      					 	                          user_pic:pic
+							      					 	                          user_pic:pic,
+							      					 	                          online:1
 							      					 	                       });
 
 							      					 Inning_UserDao.insertInningUser(inning_1, function(err, result){
@@ -393,7 +397,8 @@ module.exports = {
 							      					 	                          game_guid:player_g,
 							      					 	                          user_gref:key,
 							      					 	                          user_account:p_name,
-							      					 	                          user_pic:pic
+							      					 	                          user_pic:pic,
+							      					 	                          online:1
 							      					 	                       });
 														Inning_UserDao.insertInningUser(inning_2, function(err, result){
 							      					 		socket.emit('client_change', p_name, key, player_i, g_data, sum);
