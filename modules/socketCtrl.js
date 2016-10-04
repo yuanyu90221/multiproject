@@ -1050,7 +1050,6 @@ module.exports = {
 		        });// query game
 		      }// winner
 
-
 		      if (win.win_p.score == 5 && win.inning < 8) {
 		        for (var d = 0; d < win.players.length; d++) {
 		          add_score(5, win.players[d].guid);
