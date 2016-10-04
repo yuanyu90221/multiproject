@@ -2,6 +2,7 @@
 var GameDao = require('./dao/gameDao');
 var InningDao = require('./dao/inningDao');
 var InningVo = require('./dao/inning');
+var Inning_User = require('./dao/inning_User');
 var Inning_UserDao = require('./dao/inning_UserDao');
 var UserVo = require('./dao/user');
 var UserDao = require('./dao/userDao');
@@ -15,7 +16,7 @@ module.exports = {
 									//此人加入inning_user資料表
 				var key_iu=uuid.v4();
 				console.log(key_iu);
-				var inning_1 = new InningVo({iu_guid:key_iu,
+				var inning_1 = new Inning_User({iu_guid:key_iu,
 	 	                          inning_gref:player_i,
 	 	                          game_guid:player_g,
 	 	                          user_gref:key,
@@ -294,7 +295,7 @@ module.exports = {
 														Inning_UserDao.updateByCriteria(function(err, result, db){
 															db.close();
 															var key_iu = uuid.v4();
-															var inning_2 = new InningVo({iu_guid:key_iu,
+															var inning_2 = new Inning_User({iu_guid:key_iu,
 								      					 	                          inning_gref:player_i,
 								      					 	                          game_guid:player_g,
 								      					 	                          user_gref:key,
@@ -321,7 +322,7 @@ module.exports = {
 											          socket.emit('join_failed');//無法加入遊戲
 											        } else{//此人加入inning_user資料表
 											        	var key_iu = uuid.v4();
-								      					var inning_1 = new InningVo({iu_guid:key_iu,
+								      					var inning_1 = new Inning_User({iu_guid:key_iu,
 								      					 	                          inning_gref:player_i,
 								      					 	                          game_guid:player_g,
 								      					 	                          user_gref:key,
@@ -345,7 +346,7 @@ module.exports = {
 						       						var sum = 0;
 						       						sum = sumList.length;
 						       						console.log("總人數：" + sum);
-							      					 var inning_1 = new InningVo({iu_guid:key_iu,
+							      					 var inning_1 = new Inning_User({iu_guid:key_iu,
 							      					 	                          inning_gref:player_i,
 							      					 	                          game_guid:player_g,
 							      					 	                          user_gref:key,
@@ -387,7 +388,7 @@ module.exports = {
 													Inning_UserDao.updateByCriteria(function(err, result, db){
 														db.close();
 														var key_iu = uuid.v4();
-														var inning_2 = new InningVo({iu_guid:key_iu,
+														var inning_2 = new Inning_User({iu_guid:key_iu,
 							      					 	                          inning_gref:player_i,
 							      					 	                          game_guid:player_g,
 							      					 	                          user_gref:key,
@@ -413,7 +414,7 @@ module.exports = {
 										          socket.emit('join_failed');//無法加入遊戲
 										        } else{//此人加入inning_user資料表
 										        	var key_iu = uuid.v4();
-							      					var inning_1 = new InningVo({iu_guid:key_iu,
+							      					var inning_1 = new Inning_User({iu_guid:key_iu,
 							      					 	                          inning_gref:player_i,
 							      					 	                          game_guid:player_g,
 							      					 	                          user_gref:key,
