@@ -6,6 +6,11 @@ var Inning_User = require('./dao/inning_User');
 var Inning_UserDao = require('./dao/inning_UserDao');
 var UserVo = require('./dao/user');
 var UserDao = require('./dao/userDao');
+var Game = require('../../ox_game'),
+    Game_f = require('../../flip_game'),
+    Game_p = require('../../paper_game'),
+    Game_m = require('../../mono_game'),
+    Game_s = require('../../seven_game');
 var all_socket  = {};
 var flip_select_number='';
 
