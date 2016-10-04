@@ -93,7 +93,7 @@ module.exports = {
 					console.log('這個玩家的pic：'+action.players[i].pic);
 					console.log('這個遊戲誰先開始：'+action.str_p.guid);
                     console.log(all_socket);
-					// all_socket[ action.players[i].guid ].emit('ox_game_start', action.players[i], action.str_p.guid);
+					all_socket[ action.players[i].guid ].emit('ox_game_start', action.players[i], action.str_p.guid);
 				}
 				all_socket[ player_i ].emit('ox_game_start_tv', action.str_p, action.players);
 			}
@@ -314,7 +314,7 @@ module.exports = {
 								        						all_socket[player_i].emit('tv_newplayer', p_name, key_iu);
 								        						socket.broadcast.emit('tv_change', player_i, player_g, g_name);
 								      						});
-
+															all_socket[key_iu] = u_s;//把這個人的socket存起來
 														},{inning_guid:player_i},{g_gref:player_g});
 						       						} else if((sum + 1) >= g_data[0].g_p_less && (sum + 1) < g_data[0].g_p_more) {//答到開始遊戲人數最低標準
 														socket.emit('client_change', p_name, key, player_i, g_data, sum);
@@ -348,7 +348,7 @@ module.exports = {
 					      					 });//insertUser end
 					      				}
 					      				else{//此人加入inning_user資料表
-					      					 var key_iu = uuid.v4();
+					      					 	var key_iu = uuid.v4();
 					      					 	Inning_UserDao.queryByCriteria({inning_gref:player_i,game_guid:player_g,online:1},function(err, sumList){
 						       						var sum = 0;
 						       						sum = sumList.length;
@@ -371,9 +371,9 @@ module.exports = {
 							        					socket.broadcast.emit('tv_change', player_i, player_g, g_data[0].g_name);
 							      					 });
 					      						});
-
+					      					 	all_socket[key_iu] = u_s;//把這個人的socket存起來
 					      				}//else end
-					      				all_socket[key_iu] = u_s;//把這個人的socket存起來
+
 					     				console.log("所有的all_socket：" + all_socket);
 					      			});
 
