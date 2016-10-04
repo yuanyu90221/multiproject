@@ -265,6 +265,7 @@ module.exports = {
 					    if(g_data.length > 0){
 	                    	console.log("名字是：" + g_data[0].g_name);
 	                    	console.log("這是遊戲的最少人數" + g_data[0].g_p_less);
+	                    	g_name = g_data[0].g_name;
 	                	}
 
 	                	//找資料庫有沒有這個人，不然就新增 *先判斷inning_user 在判斷user
@@ -331,7 +332,7 @@ module.exports = {
 								      					Inning_UserDao.insertInningUser(inning_1, function(err, result){
 								      					 	socket.emit('client_change', p_name, key, player_i, g_data, sum);
 								        					all_socket[player_i].emit('tv_newplayer', p_name, key);
-								        					socket.broadcast.emit('tv_change', player_i, player_g, p_name);
+								        					socket.broadcast.emit('tv_change', player_i, player_g, g_name);
 								      					});
 											        }
 
