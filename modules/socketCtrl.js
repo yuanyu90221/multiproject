@@ -450,7 +450,6 @@ module.exports = {
 			    );//取出遊戲
 		    });
 		    //此局的名字
-
 		  });//socket.on('client') end
 
 		  //斷線處理
