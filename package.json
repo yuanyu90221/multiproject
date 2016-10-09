@@ -8,6 +8,7 @@
     "express": "^3.21.2",
     "hbs": "^4.0.0",
     "mongodb": "^2.2.10",
+    "mongoose": "^4.6.3",
     "node-mysql": "^0.4.2",
     "node-uuid": "^1.4.1",
     "nodemailer": "^2.6.4",
