@@ -15,6 +15,7 @@
     "nodemailer-smtp-transport": "^2.7.2",
     "passport": "^0.3.2",
     "passport-google-oauth-2": "^0.1.1",
+    "passport-oauth": "^1.0.0",
     "socket.io": "^0.9.16"
   },
   "devDependencies": {},

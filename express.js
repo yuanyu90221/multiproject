@@ -44,6 +44,7 @@ var Game = require('./ox_game'),
     path = require('path');
 var routerCtrl = require('./modules/routerCtrl');
 var hbs = require('hbs');
+
 app.set('views', path.join(__dirname, '/'));
 app.set('view engine','htm');
 app.engine('htm', hbs.__express);
