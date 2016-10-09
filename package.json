@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/yuanyu90221/multiproject#readme",
   "engines": {
-    "node": "4.4.7"
+    "node": "4.4.5"
   },
   "directories": {
     "doc": "doc"
